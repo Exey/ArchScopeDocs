@@ -9,58 +9,56 @@
   <text x="120" y="72" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">17 files · 4 937 lines · 51 declarations</text>
   <text x="32"  y="88" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">🟢 39 structs · 🔵 8 classes · 🟡 4 enums · 🔹 5 extensions</text>
 
-  <!-- App table header -->
   <rect x="32" y="98" width="1036" height="24" rx="0" fill="#f5f5f7"/>
   <text x="42"  y="114" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">FILE</text>
   <text x="460" y="114" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">LINES</text>
   <text x="540" y="114" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">DECL</text>
   <text x="620" y="114" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">DECLARATIONS</text>
 
-  <!-- App rows rh=26 -->
   <line x1="32" y1="122" x2="1068" y2="122" stroke="#e5e5ea" stroke-width="1"/>
-  <text x="42"  y="138" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">Workout/</text><text x="98" y="138" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#0071e3">WorkoutView.swift</text>
+  <text x="42" y="138" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">FitPose/Views/Workout/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">WorkoutView.swift</tspan></text>
   <text x="460" y="138" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">1 133</text>
   <text x="540" y="138" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">5</text>
   <text x="620" y="138" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">🟡 WorkoutPhase · 🟢 WorkoutView · 🟢 CompletionData · 🟢 InstructionScreen · 🟢 CompletionSheet</text>
 
   <line x1="32" y1="148" x2="1068" y2="148" stroke="#e5e5ea" stroke-width="1"/>
-  <text x="42"  y="164" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">Goals/</text><text x="88" y="164" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#0071e3">GoalChatView.swift</text>
+  <text x="42" y="164" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">FitPose/Views/Goals/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">GoalChatView.swift</tspan></text>
   <text x="460" y="164" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">738</text>
   <text x="540" y="164" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">6</text>
   <text x="620" y="164" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">🟡 GoalChatMode · 🟡 ChatStep · 🟢 GoalChatView · 🟢 MessageBubble · 🟢 TypingIndicator · 🟢 GoalChip</text>
 
   <line x1="32" y1="174" x2="1068" y2="174" stroke="#e5e5ea" stroke-width="1"/>
-  <text x="42"  y="190" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">Plan/</text><text x="80" y="190" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#0071e3">PlanView.swift</text>
+  <text x="42" y="190" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">FitPose/Views/Plan/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">PlanView.swift</tspan></text>
   <text x="460" y="190" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">641</text>
   <text x="540" y="190" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">4</text>
   <text x="620" y="190" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">🟢 PlanView · 🟢 PlanEditSheet · 🟢 PlanBuilderView · 🟢 CustomPlanSheet</text>
 
   <line x1="32" y1="200" x2="1068" y2="200" stroke="#e5e5ea" stroke-width="1"/>
-  <text x="42"  y="216" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">Home/</text><text x="88" y="216" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#0071e3">HomeView.swift</text>
+  <text x="42" y="216" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">FitPose/Views/Home/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">HomeView.swift</tspan></text>
   <text x="460" y="216" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">520</text>
   <text x="540" y="216" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">5</text>
   <text x="620" y="216" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">🟢 HomeView · 🟢 GoalProgressTile · 🟢 ProgressRing · 🟢 PlanTile · 🟢 ActivityTile</text>
 
   <line x1="32" y1="226" x2="1068" y2="226" stroke="#e5e5ea" stroke-width="1"/>
-  <text x="42"  y="242" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">Models/</text><text x="94" y="242" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#0071e3">Models.swift</text>
+  <text x="42" y="242" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">FitPose/Models/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">Models.swift</tspan></text>
   <text x="460" y="242" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">310</text>
   <text x="540" y="242" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">10</text>
   <text x="620" y="242" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">🟢 ExerciseKeypointPair · AnglePhase · ExerciseConfig · ExercisesFile · ExerciseConfigRaw · ChatMessage · GoalOption · 🔵 Plan · FitnessGoal · WorkoutResult</text>
 
   <line x1="32" y1="252" x2="1068" y2="252" stroke="#e5e5ea" stroke-width="1"/>
-  <text x="42"  y="268" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">Stats/</text><text x="80" y="268" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#0071e3">StatsView.swift</text>
+  <text x="42" y="268" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">FitPose/Views/Stats/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">StatsView.swift</tspan></text>
   <text x="460" y="268" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">277</text>
   <text x="540" y="268" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">3</text>
   <text x="620" y="268" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">🟢 StatsView · WorkoutRow · StatCard</text>
 
   <line x1="32" y1="278" x2="1068" y2="278" stroke="#e5e5ea" stroke-width="1"/>
-  <text x="42"  y="294" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">Services/</text><text x="104" y="294" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#0071e3">FitnessChatAssistant.swift</text>
+  <text x="42" y="294" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">FitPose/Services/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">FitnessChatAssistant.swift</tspan></text>
   <text x="460" y="294" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">237</text>
   <text x="540" y="294" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">3</text>
   <text x="620" y="294" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">🟡 AIAvailability · 🔵 FitnessChatAssistant · 🟢 GoalPlanEntry</text>
 
   <line x1="32" y1="304" x2="1068" y2="304" stroke="#e5e5ea" stroke-width="1"/>
-  <text x="42"  y="320" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">Services/</text><text x="104" y="320" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#0071e3">ExerciseCounter.swift</text>
+  <text x="42" y="320" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">FitPose/Services/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">ExerciseCounter.swift</tspan></text>
   <text x="460" y="320" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">217</text>
   <text x="540" y="320" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">1</text>
   <text x="620" y="320" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">🔵 ExerciseCounter</text>
@@ -74,7 +72,6 @@
   <text x="228" y="350" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">3 files · 717 lines · 5 declarations</text>
   <text x="32"  y="366" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">🟢 3 structs · 🔵 2 classes</text>
 
-  <!-- PoseCamera table header -->
   <rect x="32" y="376" width="1036" height="24" rx="0" fill="#f5f5f7"/>
   <text x="42"  y="392" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">FILE</text>
   <text x="460" y="392" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">LINES</text>
@@ -82,19 +79,19 @@
   <text x="620" y="392" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">DECLARATIONS</text>
 
   <line x1="32" y1="400" x2="1068" y2="400" stroke="#e5e5ea" stroke-width="1"/>
-  <text x="42"  y="416" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">PoseCamera/</text><text x="122" y="416" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#0071e3">CameraCocoView.swift</text>
+  <text x="42" y="416" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">Sources/PoseCamera/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">CameraCocoView.swift</tspan></text>
   <text x="460" y="416" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">365</text>
   <text x="540" y="416" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">2</text>
   <text x="620" y="416" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">🟢 LimbStyle · 🟢 CameraCocoView</text>
 
   <line x1="32" y1="426" x2="1068" y2="426" stroke="#e5e5ea" stroke-width="1"/>
-  <text x="42"  y="442" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">PoseCamera/</text><text x="122" y="442" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#0071e3">PoseDetectionService.swift</text>
+  <text x="42" y="442" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">Sources/PoseCamera/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">PoseDetectionService.swift</tspan></text>
   <text x="460" y="442" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">350</text>
   <text x="540" y="442" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">3</text>
   <text x="620" y="442" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">🟢 PoseMetrics · 🔵 PoseDetectionService · 🔵 CaptureDelegate</text>
 
   <line x1="32" y1="452" x2="1068" y2="452" stroke="#e5e5ea" stroke-width="1"/>
-  <text x="42"  y="468" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">PoseCamera/</text><text x="122" y="468" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">Package.swift</text>
+  <text x="42" y="468" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">Package.swift</text>
   <text x="460" y="468" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">—</text>
   <text x="540" y="468" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">—</text>
   <text x="620" y="468" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">Package manifest</text>
