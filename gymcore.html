@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    <title>🔬 ArchSwiftScope — gymcore</title>
+    <style>
+        :root { --bg: #f5f5f7; --card: #fff; --border: #e5e5ea; --text: #1d1d1f; --text2: #424245; --text3: #86868b; --accent: #0071e3; --red: #ff3b30; }
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif; margin: 0; padding: 20px; background: var(--bg); color: var(--text); line-height: 1.5; }
+        .container { max-width: 1280px; margin: 0 auto; }
+        .card { background: var(--card); padding: 28px; border-radius: 16px; box-shadow: 0 1px 12px rgba(0,0,0,0.06); margin-bottom: 20px; }
+        h1 { font-size: 28px; font-weight: 700; margin: 0 0 4px 0; }
+        h2 { color: var(--text2); font-size: 20px; border-bottom: 2px solid var(--border); padding-bottom: 10px; margin: 0 0 16px 0; }
+        h3 { color: var(--text2); font-size: 16px; margin: 20px 0 8px 0; }
+        .subtitle { color: var(--text3); font-size: 14px; margin-bottom: 20px; }
+        .branch-badge { display: inline-block; background: #e3f2fd; color: #1565c0; padding: 2px 10px; border-radius: 8px; font-size: 13px; font-weight: 500; font-family: 'SF Mono', Menlo, monospace; }
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 24px; }
+        .summary-card { background: var(--bg); border-radius: 12px; padding: 14px 8px; text-align: center; }
+        .summary-card .num { font-size: 26px; font-weight: 700; color: var(--accent); }
+        .summary-card .label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 2px; }
+        .team-table, .file-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        .team-table th, .file-table th { color: var(--text3); font-weight: 500; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; text-align: left; padding: 8px 10px; border-bottom: 2px solid var(--border); }
+        .team-table td, .file-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+        .mono { font-family: 'SF Mono', Menlo, monospace; font-size: 13px; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 12px; font-weight: 500; margin: 2px; }
+        .tag-apple { background: #e8f5e9; color: #2e7d32; }
+        .tag-external { background: #fff3e0; color: #e65100; }
+        .tag-local { background: #e3f2fd; color: #1565c0; }
+        .tag-cloud { line-height: 2.2; }
+        .pkg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 4px 8px; }
+        .pkg-link { display: flex; align-items: center; justify-content: space-between; text-decoration: none; cursor: pointer; transition: background 0.15s; }
+        .pkg-link:hover { background: #bbdefb; }
+        .pkg-major { border: 2px solid var(--accent); font-weight: 600; }
+        .pkg-link-inline { text-decoration: none; cursor: pointer; }
+        .vs-link { text-decoration: none; color: inherit; }
+        .vs-link:hover { text-decoration: underline; color: var(--accent); }
+        .pkg-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .bs-badge-right { background: rgba(0,0,0,0.07); color: var(--text3); font-size: 9px; padding: 1px 5px; border-radius: 4px; margin-left: auto; padding-left: 6px; flex-shrink: 0; font-weight: 400; letter-spacing: 0.02em; }
+        .bs-badge { background: rgba(0,0,0,0.08); color: var(--text3); font-size: 10px; padding: 1px 5px; border-radius: 4px; margin-left: 2px; font-weight: 400; }
+        .tag-private { background: #fce4ec; color: #c62828; }
+        .tag-pop { background: #e8f5e9; color: #2e7d32; }
+        .tag-oop { background: #fff3e0; color: #e65100; }
+        .tag-mixed { background: #f5f5f5; color: #757575; }
+        .private-warn { color: #c62828; font-size: 12px; margin: 4px 0 8px 0; }
+        .count { font-weight: 400; color: var(--text3); }
+        .import-group { margin-bottom: 16px; }
+        .import-group h3 { margin-bottom: 8px; }
+        .hotspot-list { list-style: none; padding: 0; margin: 0; }
+        .hotspot-item { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; }
+        .hotspot-score { font-weight: 600; color: var(--red); font-family: 'SF Mono', monospace; font-size: 13px; white-space: nowrap; }
+        .description { color: var(--text3); font-style: italic; display: block; margin-top: 2px; font-size: 13px; }
+        .package-section { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+        .package-section:last-child { border-bottom: none; }
+        .pkg-stats { font-weight: 400; color: var(--text3); font-size: 13px; margin-left: 8px; }
+        .stats-detail { color: var(--text3); font-size: 13px; margin: 4px 0 12px 0; }
+        .file-desc { color: var(--text3); font-size: 12px; font-style: italic; margin-top: 2px; }
+        .decl-tags { font-size: 12px; line-height: 1.8; }
+        .pkg-graph-container { width: 100%; height: 420px; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 16px; overflow: hidden; background: #fafafa; }
+        .arch-graph-container { width: 100%; height: 500px; border-radius: 8px; overflow: hidden; background: #fafafa; }
+        .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .sub-card { border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+        .sub-card:last-child { margin-bottom: 0; }
+        .sub-card-title { font-size: 15px; font-weight: 600; margin: 0 0 12px 0; color: var(--text); }
+        .ap-summary { margin-bottom: 16px; display: flex; gap: 12px; align-items: center; }
+        .ap-fail-badge { background: #fff0f0; color: var(--red); padding: 4px 12px; border-radius: 8px; font-weight: 600; font-size: 14px; }
+        .ap-pass-badge { background: #f0fff4; color: #34c759; padding: 4px 12px; border-radius: 8px; font-weight: 600; font-size: 14px; }
+        .ap-passed-list { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 24px; }
+        .ap-passed-item { display: flex; align-items: center; gap: 4px; font-size: 13px; color: var(--text3); }
+        .ap-priority { padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+        .ap-pri-high { background: #ffeaea; color: #c62828; }
+        .ap-pri-med { background: #fff3e0; color: #e65100; }
+        .ap-pri-low { background: #fffde7; color: #f57f17; }
+        .ap-lang-badge { padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; background: #e3f2fd; color: #1565c0; }
+        .ap-check { margin-bottom: 16px; border: 1px solid #ffeaea; border-radius: 10px; overflow: hidden; }
+        .ap-check-header { background: #fff8f8; padding: 10px 14px; display: flex; align-items: center; gap: 8px; }
+        .ap-check-title { font-weight: 600; font-size: 14px; flex: 1; }
+        .ap-check-count { color: var(--red); font-size: 12px; font-weight: 500; }
+        .ap-violations { padding: 10px 14px; }
+        .ap-check-desc { font-size: 12px; color: var(--text3); margin-bottom: 8px; line-height: 1.6; }
+        .ap-violation { display: flex; gap: 6px; margin-bottom: 4px; font-size: 12px; overflow: hidden; align-items: center; }
+        .ap-file { font-family: 'SF Mono', Menlo, monospace; color: var(--accent); flex-shrink: 0; }
+        .ap-snippet { font-family: 'SF Mono', Menlo, monospace; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
+        .ap-author-badge { margin-left: auto; flex-shrink: 0; background: #e3f2fd; color: #1565c0; font-size: 10px; padding: 1px 5px; border-radius: 4px; white-space: nowrap; }
+        /* ── Security Risks ── */
+        .sec-toprow { display: flex; gap: 24px; align-items: stretch; margin: 8px 0 22px; flex-wrap: wrap; }
+        .sec-gauge-wrap { display: flex; flex-direction: column; align-items: center; padding: 14px 18px; background: var(--bg); border-radius: 12px; flex: 0 0 240px; }
+        .sec-gauge-svg { width: 200px; height: 124px; }
+        .sec-gauge-label { font-family: 'SF Mono', Menlo, monospace; font-size: 11px; color: var(--text3); letter-spacing: 0.08em; margin-top: 6px; }
+        .sec-gauge-val { font-size: 30px; font-weight: 700; margin-top: 2px; line-height: 1.1; }
+        .sec-gauge-desc { font-family: 'SF Mono', Menlo, monospace; font-size: 11px; color: var(--text3); margin-top: 12px; line-height: 1.9; text-align: left; align-self: stretch; }
+        .sec-gauge-desc .rng { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
+        .sec-gauge-desc .cur { font-weight: 700; color: var(--text); }
+        .sec-weight-bars { flex: 1 1 360px; min-width: 320px; }
+        .sec-weight-title { font-size: 11px; font-weight: 600; color: var(--text3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+        .sec-wb-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+        .sec-wb-name { font-size: 12px; color: var(--text2); min-width: 230px; display: flex; align-items: center; gap: 5px; }
+        .sec-wb-num { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 4px; background: var(--border); color: var(--text3); font-size: 9px; font-weight: 700; flex-shrink: 0; }
+        .sec-wb-track { flex: 1; height: 7px; background: var(--border); border-radius: 4px; overflow: hidden; min-width: 60px; }
+        .sec-wb-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+        .sec-wb-na-fill { background: repeating-linear-gradient(45deg, var(--border), var(--border) 4px, transparent 4px, transparent 8px); }
+        .sec-wb-pts { font-family: 'SF Mono', Menlo, monospace; font-size: 11px; font-weight: 600; min-width: 56px; text-align: right; }
+        .sec-wb-na { font-size: 10px; color: var(--text3); font-style: italic; min-width: 56px; text-align: right; }
+        .sec-wb-weight { font-family: 'SF Mono', Menlo, monospace; font-size: 10px; color: var(--text3); min-width: 42px; text-align: right; }
+        .sec-detail { margin-top: 8px; }
+        .sec-sec { border: 1px solid var(--border); border-radius: 10px; padding: 0; margin-bottom: 12px; overflow: hidden; }
+        .sec-sec-head { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: var(--bg); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+        .sec-sec-num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 5px; background: var(--text2); color: #fff; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+        .sec-sec-icon { font-size: 16px; }
+        .sec-sec-title { font-weight: 600; font-size: 14px; }
+        .sec-sec-weight { font-family: 'SF Mono', Menlo, monospace; font-size: 11px; color: var(--text3); margin-left: 6px; }
+        .sec-sec-risk { font-family: 'SF Mono', Menlo, monospace; font-size: 12px; font-weight: 600; margin-left: auto; }
+        .sec-sec-na { color: var(--text3); font-weight: 400; font-style: italic; }
+        .sec-sec-blurb { font-size: 12px; color: var(--text3); padding: 8px 14px 4px; line-height: 1.6; }
+        .sec-sec-empty { font-size: 12px; color: var(--text3); padding: 4px 14px 14px; font-style: italic; }
+        .sec-check { padding: 6px 14px 4px; }
+        .sec-check-row { display: flex; align-items: center; gap: 8px; }
+        .sec-check-status { font-weight: 700; width: 14px; text-align: center; flex-shrink: 0; }
+        .sec-check-name { font-size: 13px; font-weight: 500; min-width: 230px; flex-shrink: 0; }
+        .sec-check-track { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; min-width: 50px; }
+        .sec-check-fill { height: 100%; border-radius: 3px; transition: width 0.3s; }
+        .sec-check-count { font-family: 'SF Mono', Menlo, monospace; font-size: 12px; font-weight: 600; min-width: 90px; text-align: right; }
+        .sec-check-desc { font-size: 12px; color: var(--text3); margin: 6px 0 8px 22px; line-height: 1.6; }
+        .sec-violations { margin: 0 0 8px 22px; }
+        .arch-layers { display: flex; flex-direction: column; gap: 8px; }
+        .arch-layer {}
+        .layer-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+        .layer-icon { font-size: 15px; width: 20px; text-align: center; flex-shrink: 0; }
+        .layer-name { font-weight: 600; font-size: 13px; flex: 1; color: var(--text); }
+        .layer-count { font-size: 11px; color: var(--text3); white-space: nowrap; font-family: 'SF Mono', Menlo, monospace; }
+        .layer-bar-track { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+        .layer-bar-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.3s; }
+        .component-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+        .component-item { display: flex; align-items: center; gap: 10px; background: var(--bg); border-radius: 10px; padding: 10px 12px; }
+        .component-icon { font-size: 22px; flex-shrink: 0; }
+        .component-name { font-weight: 600; font-size: 13px; }
+        .component-detail { font-size: 11px; color: var(--text3); margin-top: 1px; }
+        .bm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .bm-card { background: var(--bg); border-radius: 10px; padding: 12px; text-align: center; }
+        .bm-value { font-size: 22px; font-weight: 700; color: var(--accent); }
+        .bm-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 2px; }
+        .sem-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13px; }
+        .sem-label { width: 160px; flex-shrink: 0; color: var(--text2); font-weight: 500; }
+        .sem-bar-wrap { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+        .sem-bar { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+        .sem-stat { color: var(--text3); font-size: 12px; white-space: nowrap; min-width: 160px; }
+        .sem-type-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+        .sem-type-badge { background: #f0f4ff; color: #1565c0; border-radius: 6px; padding: 3px 8px; font-size: 12px; }
+        .sem-samples { margin-top: 8px; border-top: 1px solid var(--border); padding-top: 8px; }
+        .sem-sample { font-family: 'SF Mono', Menlo, monospace; font-size: 11px; color: var(--text3); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        @media (max-width: 768px) {
+            body { padding: 8px; }
+            .card { padding: 14px; border-radius: 12px; }
+            .summary-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+            .summary-card { padding: 10px 4px; }
+            .summary-card .num { font-size: 18px; }
+            .summary-card .label { font-size: 9px; }
+            h1 { font-size: 20px; }
+            h2 { font-size: 17px; }
+            .team-table, .file-table { font-size: 12px; min-width: 500px; }
+            .team-table th, .file-table th { padding: 6px; font-size: 10px; }
+            .team-table td, .file-table td { padding: 6px; }
+            .pkg-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+            .tag { font-size: 11px; padding: 2px 6px; }
+            .hotspot-item { flex-direction: column; gap: 4px; }
+            .pkg-graph-container { height: 300px; }
+            .sec-toprow { flex-direction: column; gap: 14px; }
+            .sec-gauge-wrap { flex: 1 1 auto; }
+            .sec-weight-bars { min-width: 0; }
+            .sec-wb-name { min-width: 150px; font-size: 11px; }
+            .sec-check-name { min-width: 130px; font-size: 12px; }
+            .sec-sec-head { gap: 6px; }
+        }
+    </style>
+    <script src="https://unpkg.com/force-graph"></script>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>🔬 ArchSwiftScope 📋 gymcore</h1>
+        <p class="subtitle">Generated 22.05.2026, 0:39 · <span class="branch-badge">main</span> branch</p>
+        <div class="summary-grid">
+            <div class="summary-card"><div class="num" style="font-size:20px">Swift 6.0</div><div class="label">Language</div></div>
+            <div class="summary-card"><div class="num" style="font-size:16px">iOS 26.0</div><div class="label">Min Deployment</div></div>
+            <div class="summary-card"><div class="num" style="font-size:20px">1.1.0</div><div class="label">App Version</div></div>
+            <div class="summary-card"><div class="num" style="font-size:18px">29 <span style="font-size:14px;font-weight:400;color:var(--text3)">(0.6 MB)</span></div><div class="label">Assets</div></div>
+            <div class="summary-card"><div class="num">20</div><div class="label">Swift Files</div></div>
+            <div class="summary-card"><div class="num">5 654</div><div class="label">Lines of Code</div></div>
+            <div class="summary-card"><div class="num">56</div><div class="label">Declarations</div></div>
+            <div class="summary-card"><div class="num">5</div><div class="label">Extensions</div></div>
+            <div class="summary-card"><div class="num">2</div><div class="label">Packages</div></div>
+            
+            <div class="summary-card"><div class="num">42</div><div class="label">🟢 Structs</div></div>
+            <div class="summary-card"><div class="num">10</div><div class="label">🔵 Classes</div></div>
+            <div class="summary-card"><div class="num">4</div><div class="label">🟡 Enums</div></div>
+            <div class="summary-card"><div class="num">0</div><div class="label">🟣 Protocols</div></div>
+            <div class="summary-card"><div class="num">0</div><div class="label">🔴 Actors</div></div>
+            
+        </div>
+    </div>
+    <div class="card">
+        <h2>🏛️ Architecture</h2><div class='sub-card'><h3 class='sub-card-title'>📐 Layers</h3><div class='arch-layers'><div class="arch-layer"><div class="layer-bar-row"><span class="layer-icon">📱</span><span class="layer-name">UI / Views</span><span class="layer-count">9 files · 4 000 loc</span></div><div class="layer-bar-track"><div class="layer-bar-fill" style="width:100%"></div></div></div>
+<div class="arch-layer"><div class="layer-bar-row"><span class="layer-icon">📦</span><span class="layer-name">Models</span><span class="layer-count">1 files · 310 loc</span></div><div class="layer-bar-track"><div class="layer-bar-fill" style="width:7%"></div></div></div>
+<div class="arch-layer"><div class="layer-bar-row"><span class="layer-icon">🌐</span><span class="layer-name">API / Networking</span><span class="layer-count">6 files · 1 132 loc</span></div><div class="layer-bar-track"><div class="layer-bar-fill" style="width:28%"></div></div></div>
+<div class="arch-layer"><div class="layer-bar-row"><span class="layer-icon">🔩</span><span class="layer-name">Core</span><span class="layer-count">4 files · 212 loc</span></div><div class="layer-bar-track"><div class="layer-bar-fill" style="width:5%"></div></div></div></div></div><div class='sub-card'><h3 class='sub-card-title'>🧩 Components <span class='count'>(6)</span></h3><div class='component-grid'><div class='component-item'><span class='component-icon'>🎨</span><div><div class='component-name'>SwiftUI</div><div class='component-detail'>Declarative UI</div></div></div>
+<div class='component-item'><span class='component-icon'>📱</span><div><div class='component-name'>UIKit</div><div class='component-detail'>Imperative UI</div></div></div>
+<div class='component-item'><span class='component-icon'>💾</span><div><div class='component-name'>SwiftData</div><div class='component-detail'>Swift-native Persistence</div></div></div>
+<div class='component-item'><span class='component-icon'>🎬</span><div><div class='component-name'>AVFoundation</div><div class='component-detail'>Audio / Video</div></div></div>
+<div class='component-item'><span class='component-icon'>💳</span><div><div class='component-name'>StoreKit</div><div class='component-detail'>In-App Purchases</div></div></div>
+<div class='component-item'><span class='component-icon'>👁️</span><div><div class='component-name'>Vision</div><div class='component-detail'>Computer Vision</div></div></div></div></div><div class='sub-card'><h3 class='sub-card-title'>🍎 Apple Frameworks <span class='count'>(3)</span></h3><div class='tag-cloud'><span class='tag tag-apple'>Foundation</span> <span class='tag tag-apple'>FoundationModels</span> <span class='tag tag-apple'>PackageDescription</span></div></div><div class='sub-card'><h3 class='sub-card-title'>📦 External Libraries <span class='count'>(1)</span></h3><div class='tag-cloud'><span class='tag tag-external'>Charts</span></div></div><div class='sub-card'><h3 class='sub-card-title'>🗺️ Architecture Graph <span class='count'>(1 connections)</span></h3><div id='arch-graph' class='arch-graph-container'></div></div><div class='sub-card'><h3 class='sub-card-title'>🏠 Local Packages</h3><div class='import-group'><div style='color:var(--text3);font-size:12px;margin-bottom:8px'>🏠 2 packages</div><div class='pkg-grid'><a href='#pkg-App' class='tag tag-local pkg-link pkg-major'><span class='pkg-name'>📱 App</span><span class='bs-badge-right'>4 937 loc</span></a>
+<a href='#pkg-PoseCamera' class='tag tag-local pkg-link'><span class='pkg-name'>PoseCamera</span><span class='bs-badge-right'>SwiftPM</span></a></div></div></div>
+    </div>
+    <div class="card">
+        <h2>🧬 OOP vs POP</h2>
+<p class="subtitle">Style signal across 56 types · Protocol Design 55% · Value Semantics 30% · Anti-inheritance 15%</p>
+<div style="margin:16px 0 24px">
+  <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-bottom:6px">
+    <span>◀ OOP</span><span>POP ▶</span>
+  </div>
+  <div style="position:relative;height:14px;margin-bottom:20px">
+    <div style="height:14px;border-radius:8px;background:linear-gradient(to right,#ff3b30 0%,#ff9500 40%,#34c759 100%)"></div>
+    <div style="position:absolute;top:-5px;left:41%;transform:translateX(-50%);width:3px;height:24px;background:white;border-radius:2px;box-shadow:0 1px 4px rgba(0,0,0,0.35)"></div>
+    <div style="position:absolute;top:-28px;left:41%;transform:translateX(-50%);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,0.1);color:#ff9500">41% POP</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:7px"><span style="font-size:11px;color:var(--text3);min-width:160px">Protocol Design (M1+generics)</span><div style="flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;width:0%;background:#ff3b30;border-radius:3px"></div></div><span class="mono" style="font-size:11px;min-width:32px;text-align:right;color:#ff3b30">0%</span><span style="font-size:10px;color:var(--text3);min-width:36px">W=55%</span></div>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:7px"><span style="font-size:11px;color:var(--text3);min-width:160px">Value Semantics</span><div style="flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;width:91%;background:#34c759;border-radius:3px"></div></div><span class="mono" style="font-size:11px;min-width:32px;text-align:right;color:#34c759">91%</span><span style="font-size:10px;color:var(--text3);min-width:36px">W=30%</span></div>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:7px"><span style="font-size:11px;color:var(--text3);min-width:160px">Anti-inheritance</span><div style="flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;width:93%;background:#34c759;border-radius:3px"></div></div><span class="mono" style="font-size:11px;min-width:32px;text-align:right;color:#34c759">93%</span><span style="font-size:10px;color:var(--text3);min-width:36px">W=15%</span></div>
+</div>
+<div class="table-wrap">
+<table class="file-table" style="table-layout:fixed">
+  <colgroup>
+    <col style="width:24px"><col style="width:40%"><col><col style="width:110px"><col style="width:70px">
+  </colgroup>
+  <thead><tr><th>#</th><th>Metric</th><th>Value</th><th>POP Score</th><th>Signal</th></tr></thead>
+  <tbody><tr><td colspan='5' style="padding:10px 0 4px;font-size:11px;font-weight:600;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase;border-top:2px solid var(--border)">Protocol Design · 55% weight  (M1 only — no protocols defined)</td></tr><tr><td class="mono" style="color:var(--text3);border-top:1px solid var(--border)">1</td><td style="border-top:1px solid var(--border)">Protocol definitions</td><td class="mono" style="border-top:1px solid var(--border)">0 protocols · 52 types</td><td style="border-top:1px solid var(--border)"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:var(--border);border-radius:3px;min-width:60px;overflow:hidden"><div style="height:100%;width:0%;background:#ff3b30;border-radius:3px"></div></div><span class="mono" style="font-size:11px;color:var(--text3);min-width:28px;text-align:right">0%</span></div></td><td style="border-top:1px solid var(--border)"><span class='tag tag-oop'>OOP</span></td></tr><tr><td class="mono" style="color:var(--text3);border-top:1px solid var(--border)">2</td><td style="border-top:1px solid var(--border)">Constrained generics</td><td class="mono" style="border-top:1px solid var(--border)">0 in 52 types</td><td style="border-top:1px solid var(--border)"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:var(--border);border-radius:3px;min-width:60px;overflow:hidden"><div style="height:100%;width:0%;background:#ff3b30;border-radius:3px"></div></div><span class="mono" style="font-size:11px;color:var(--text3);min-width:28px;text-align:right">0%</span></div></td><td style="border-top:1px solid var(--border)"><span class='tag tag-oop'>OOP</span></td></tr><tr><td class="mono" style="color:var(--text3);border-top:1px solid var(--border)">3</td><td style="border-top:1px solid var(--border);color:var(--text3)">Conformance breadth</td><td class="mono" style="border-top:1px solid var(--border);color:var(--text3)">no protocols — N/A</td><td style="border-top:1px solid var(--border)"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:var(--border);border-radius:3px;min-width:60px"></div><span class="mono" style="font-size:11px;color:var(--text3);min-width:28px;text-align:right">N/A</span></div></td><td style="border-top:1px solid var(--border);color:var(--text3)">&mdash;</td></tr><tr><td class="mono" style="color:var(--text3);border-top:1px solid var(--border)">4</td><td style="border-top:1px solid var(--border);color:var(--text3)">Protocol extensions with default impl</td><td class="mono" style="border-top:1px solid var(--border);color:var(--text3)">no protocols — N/A</td><td style="border-top:1px solid var(--border)"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:var(--border);border-radius:3px;min-width:60px"></div><span class="mono" style="font-size:11px;color:var(--text3);min-width:28px;text-align:right">N/A</span></div></td><td style="border-top:1px solid var(--border);color:var(--text3)">&mdash;</td></tr><tr><td class="mono" style="color:var(--text3);border-top:1px solid var(--border)">5</td><td style="border-top:1px solid var(--border);color:var(--text3)"><code>associatedtype</code> usage</td><td class="mono" style="border-top:1px solid var(--border);color:var(--text3)">no protocols — N/A</td><td style="border-top:1px solid var(--border)"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:var(--border);border-radius:3px;min-width:60px"></div><span class="mono" style="font-size:11px;color:var(--text3);min-width:28px;text-align:right">N/A</span></div></td><td style="border-top:1px solid var(--border);color:var(--text3)">&mdash;</td></tr><tr><td class="mono" style="color:var(--text3);border-top:1px solid var(--border)">6</td><td style="border-top:1px solid var(--border);color:var(--text3)"><code>some</code> user-defined</td><td class="mono" style="border-top:1px solid var(--border);color:var(--text3)">no protocols — N/A</td><td style="border-top:1px solid var(--border)"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:var(--border);border-radius:3px;min-width:60px"></div><span class="mono" style="font-size:11px;color:var(--text3);min-width:28px;text-align:right">N/A</span></div></td><td style="border-top:1px solid var(--border);color:var(--text3)">&mdash;</td></tr><tr><td class="mono" style="color:var(--text3);border-top:1px solid var(--border)">7</td><td style="border-top:1px solid var(--border);color:var(--text3)">Protocol composition (<code>A &amp; B</code>)</td><td class="mono" style="border-top:1px solid var(--border);color:var(--text3)">no protocols — N/A</td><td style="border-top:1px solid var(--border)"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:var(--border);border-radius:3px;min-width:60px"></div><span class="mono" style="font-size:11px;color:var(--text3);min-width:28px;text-align:right">N/A</span></div></td><td style="border-top:1px solid var(--border);color:var(--text3)">&mdash;</td></tr><tr><td style="border-top:1px solid var(--border)"></td><td style="border-top:1px solid var(--border);color:var(--text3)">↳ Per-type conformance distribution</td><td class="mono" style="border-top:1px solid var(--border);color:var(--text3)">0: 13 · 1: 35 · 2+: 6</td><td style="border-top:1px solid var(--border)"></td><td style="border-top:1px solid var(--border)"></td></tr><tr><td colspan='5' style="padding:10px 0 4px;font-size:11px;font-weight:600;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase;border-top:2px solid var(--border)">Value Semantics · 30% weight</td></tr><tr><td class="mono" style="color:var(--text3);border-top:1px solid var(--border)">8</td><td style="border-top:1px solid var(--border)">Struct vs Class ratio</td><td class="mono" style="border-top:1px solid var(--border)">42 structs · 10 classes</td><td style="border-top:1px solid var(--border)"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:var(--border);border-radius:3px;min-width:60px;overflow:hidden"><div style="height:100%;width:80%;background:#34c759;border-radius:3px"></div></div><span class="mono" style="font-size:11px;color:var(--text3);min-width:28px;text-align:right">80%</span></div></td><td style="border-top:1px solid var(--border)"><span class='tag tag-pop'>POP</span></td></tr><tr><td class="mono" style="color:var(--text3);border-top:1px solid var(--border)">9</td><td style="border-top:1px solid var(--border)"><code>final</code> keyword</td><td class="mono" style="border-top:1px solid var(--border)">10 / 10 classes</td><td style="border-top:1px solid var(--border)"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:var(--border);border-radius:3px;min-width:60px;overflow:hidden"><div style="height:100%;width:100%;background:#34c759;border-radius:3px"></div></div><span class="mono" style="font-size:11px;color:var(--text3);min-width:28px;text-align:right">100%</span></div></td><td style="border-top:1px solid var(--border)"><span class='tag tag-pop'>POP</span></td></tr><tr><td class="mono" style="color:var(--text3);border-top:1px solid var(--border)">10</td><td style="border-top:1px solid var(--border)">Enums with associated values</td><td class="mono" style="border-top:1px solid var(--border)">12 / 4 enums</td><td style="border-top:1px solid var(--border)"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:var(--border);border-radius:3px;min-width:60px;overflow:hidden"><div style="height:100%;width:100%;background:#34c759;border-radius:3px"></div></div><span class="mono" style="font-size:11px;color:var(--text3);min-width:28px;text-align:right">100%</span></div></td><td style="border-top:1px solid var(--border)"><span class='tag tag-pop'>POP</span></td></tr><tr><td style="border-top:1px solid var(--border)"></td><td style="border-top:1px solid var(--border);color:var(--text3)">↳ Extension count (informational)</td><td class="mono" style="border-top:1px solid var(--border);color:var(--text3)">5 extensions</td><td style="border-top:1px solid var(--border)"></td><td style="border-top:1px solid var(--border)"></td></tr><tr><td colspan='5' style="padding:10px 0 4px;font-size:11px;font-weight:600;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase;border-top:2px solid var(--border)">Anti-inheritance · 15% weight</td></tr><tr><td class="mono" style="color:var(--text3);border-top:1px solid var(--border)">11</td><td style="border-top:1px solid var(--border)">Inheritance depth <span style="font-size:10px;color:var(--text3)">↓ lower = POP</span></td><td class="mono" style="border-top:1px solid var(--border)">avg 1.0 · max 1 · 0 deep ≥ 3</td><td style="border-top:1px solid var(--border)"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:var(--border);border-radius:3px;min-width:60px;overflow:hidden"><div style="height:100%;width:100%;background:#34c759;border-radius:3px"></div></div><span class="mono" style="font-size:11px;color:var(--text3);min-width:28px;text-align:right">100%</span></div></td><td style="border-top:1px solid var(--border)"><span class='tag tag-pop'>POP</span></td></tr><tr><td class="mono" style="color:var(--text3);border-top:1px solid var(--border)">12</td><td style="border-top:1px solid var(--border)"><code>override</code> density <span style="font-size:10px;color:var(--text3)">↓ lower = POP</span></td><td class="mono" style="border-top:1px solid var(--border)">1 in 10 classes</td><td style="border-top:1px solid var(--border)"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:var(--border);border-radius:3px;min-width:60px;overflow:hidden"><div style="height:100%;width:96%;background:#34c759;border-radius:3px"></div></div><span class="mono" style="font-size:11px;color:var(--text3);min-width:28px;text-align:right">96%</span></div></td><td style="border-top:1px solid var(--border)"><span class='tag tag-pop'>POP</span></td></tr><tr><td class="mono" style="color:var(--text3);border-top:1px solid var(--border)">13</td><td style="border-top:1px solid var(--border)">NSObject inheritance <span style="font-size:10px;color:var(--text3)">↓ lower = POP</span></td><td class="mono" style="border-top:1px solid var(--border)">2 / 10 classes</td><td style="border-top:1px solid var(--border)"><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;background:var(--border);border-radius:3px;min-width:60px;overflow:hidden"><div style="height:100%;width:80%;background:#34c759;border-radius:3px"></div></div><span class="mono" style="font-size:11px;color:var(--text3);min-width:28px;text-align:right">80%</span></div></td><td style="border-top:1px solid var(--border)"><span class='tag tag-pop'>POP</span></td></tr><tr><td colspan='5' style="padding:10px 0 4px;font-size:11px;font-weight:600;color:var(--text3);letter-spacing:0.06em;text-transform:uppercase;border-top:2px solid var(--border)">Counter-signals</td></tr><tr><td style="border-top:1px solid var(--border)"></td><td style="border-top:1px solid var(--border);color:var(--text3)">⚠ Singletons (static shared / instance)</td><td class="mono" style="border-top:1px solid var(--border);color:var(--text3)">2 found — OOP indicator</td><td style="border-top:1px solid var(--border)"></td><td style="border-top:1px solid var(--border)"></td></tr></tbody>
+</table>
+</div>
+    </div>
+    <div class="card">
+        <h2>🚨 Security Risks <span style="color:var(--text3);font-size:14px;font-weight:400">(55 active checks · index 0–1000)</span></h2><p class="subtitle">Higher index = more risk. Index aggregates 14 weighted categories; each category's risk scales with violation density. Categories without active checks are shown as <em>not assessed</em>.</p><div class="sec-toprow">
+  <div class="sec-gauge-wrap">
+  <svg class="sec-gauge-svg" id="sec-gauge-svg" viewBox="0 0 200 124"></svg>
+  <div class="sec-gauge-label">DANGER INDEX</div>
+  <div class="sec-gauge-val" id="sec-gauge-val">52 / 1000</div>
+  <div class="sec-gauge-desc" id="sec-gauge-desc"></div>
+</div>
+  <div class="sec-weight-bars">
+  <div class="sec-weight-title">Category Weights → 1000 Index</div>
+  <div class="sec-wb-row">
+  <span class="sec-wb-name"><span class="sec-wb-num">1</span>🗄️ Insecure Data Storage</span>
+  <div class="sec-wb-track"><div class="sec-wb-fill" style="width:0%;background:#5a8a7a"></div></div>
+  <span class="sec-wb-pts" style="color:#5a8a7a">0/130</span>
+  <span class="sec-wb-weight">W 130</span>
+</div><div class="sec-wb-row">
+  <span class="sec-wb-name"><span class="sec-wb-num">2</span>💥 Crash Factors</span>
+  <div class="sec-wb-track"><div class="sec-wb-fill" style="width:38%;background:#a0a030"></div></div>
+  <span class="sec-wb-pts" style="color:#a0a030">46/120</span>
+  <span class="sec-wb-weight">W 120</span>
+</div><div class="sec-wb-row">
+  <span class="sec-wb-name"><span class="sec-wb-num">3</span>🧨 Unsafe &amp; Deprecated Constructs</span>
+  <div class="sec-wb-track"><div class="sec-wb-fill" style="width:0%;background:#5a8a7a"></div></div>
+  <span class="sec-wb-pts" style="color:#5a8a7a">0/60</span>
+  <span class="sec-wb-weight">W 60</span>
+</div><div class="sec-wb-row">
+  <span class="sec-wb-name"><span class="sec-wb-num">4</span>📦 Third-Party &amp; Supply Chain Risks</span>
+  <div class="sec-wb-track"><div class="sec-wb-fill" style="width:0%;background:#5a8a7a"></div></div>
+  <span class="sec-wb-pts" style="color:#5a8a7a">0/50</span>
+  <span class="sec-wb-weight">W 50</span>
+</div><div class="sec-wb-row">
+  <span class="sec-wb-name"><span class="sec-wb-num">5</span>🧠 Memory Corruption &amp; Exploit Factors</span>
+  <div class="sec-wb-track"><div class="sec-wb-fill" style="width:0%;background:#5a8a7a"></div></div>
+  <span class="sec-wb-pts" style="color:#5a8a7a">0/80</span>
+  <span class="sec-wb-weight">W 80</span>
+</div><div class="sec-wb-row">
+  <span class="sec-wb-name"><span class="sec-wb-num">6</span>🔐 Cryptography Issues</span>
+  <div class="sec-wb-track"><div class="sec-wb-fill" style="width:0%;background:#5a8a7a"></div></div>
+  <span class="sec-wb-pts" style="color:#5a8a7a">0/110</span>
+  <span class="sec-wb-weight">W 110</span>
+</div><div class="sec-wb-row">
+  <span class="sec-wb-name"><span class="sec-wb-num">7</span>🌐 Network Security</span>
+  <div class="sec-wb-track"><div class="sec-wb-fill" style="width:0%;background:#5a8a7a"></div></div>
+  <span class="sec-wb-pts" style="color:#5a8a7a">0/90</span>
+  <span class="sec-wb-weight">W 90</span>
+</div><div class="sec-wb-row">
+  <span class="sec-wb-name"><span class="sec-wb-num">8</span>🪪 Authentication &amp; Authorization</span>
+  <div class="sec-wb-track"><div class="sec-wb-fill" style="width:0%;background:#5a8a7a"></div></div>
+  <span class="sec-wb-pts" style="color:#5a8a7a">0/100</span>
+  <span class="sec-wb-weight">W 100</span>
+</div><div class="sec-wb-row">
+  <span class="sec-wb-name"><span class="sec-wb-num">9</span>⌨️ Input/Output Validation</span>
+  <div class="sec-wb-track"><div class="sec-wb-fill" style="width:5%;background:#5a8a7a"></div></div>
+  <span class="sec-wb-pts" style="color:#5a8a7a">4/80</span>
+  <span class="sec-wb-weight">W 80</span>
+</div><div class="sec-wb-row">
+  <span class="sec-wb-name"><span class="sec-wb-num">10</span>🛡️ Binary Protections</span>
+  <div class="sec-wb-track"><div class="sec-wb-fill" style="width:5%;background:#5a8a7a"></div></div>
+  <span class="sec-wb-pts" style="color:#5a8a7a">2/40</span>
+  <span class="sec-wb-weight">W 40</span>
+</div><div class="sec-wb-row">
+  <span class="sec-wb-name"><span class="sec-wb-num">11</span>🔍 Privacy Violations</span>
+  <div class="sec-wb-track"><div class="sec-wb-fill" style="width:0%;background:#5a8a7a"></div></div>
+  <span class="sec-wb-pts" style="color:#5a8a7a">0/50</span>
+  <span class="sec-wb-weight">W 50</span>
+</div><div class="sec-wb-row">
+  <span class="sec-wb-name"><span class="sec-wb-num">12</span>⚙️ iOS Configuration Weaknesses</span>
+  <div class="sec-wb-track"><div class="sec-wb-fill" style="width:0%;background:#5a8a7a"></div></div>
+  <span class="sec-wb-pts" style="color:#5a8a7a">0/40</span>
+  <span class="sec-wb-weight">W 40</span>
+</div><div class="sec-wb-row">
+  <span class="sec-wb-name"><span class="sec-wb-num">13</span>🔀 Logic &amp; State-based Exploit Factors</span>
+  <div class="sec-wb-track"><div class="sec-wb-fill" style="width:0%;background:#5a8a7a"></div></div>
+  <span class="sec-wb-pts" style="color:#5a8a7a">0/30</span>
+  <span class="sec-wb-weight">W 30</span>
+</div><div class="sec-wb-row">
+  <span class="sec-wb-name"><span class="sec-wb-num">14</span>🔩 Low-level Binary Vulnerabilities</span>
+  <div class="sec-wb-track"><div class="sec-wb-fill" style="width:0%;background:#5a8a7a"></div></div>
+  <span class="sec-wb-pts" style="color:#5a8a7a">0/20</span>
+  <span class="sec-wb-weight">W 20</span>
+</div>
+</div>
+</div><div class="ap-summary"><span class="ap-pass-badge">✓ 50 passed</span><span class="ap-fail-badge">✗ 5 failed</span></div><div class="sec-detail"><div class="sec-sec">
+  <div class="sec-sec-head">
+    <span class="sec-sec-num">1</span>
+    <span class="sec-sec-icon">🗄️</span>
+    <span class="sec-sec-title">Insecure Data Storage</span>
+    <span class="sec-sec-weight">weight 130 / 1000</span>
+    <span class="sec-sec-risk" style="color:#5a8a7a">0% risk · 0/130 pts</span>
+  </div>
+  <div class="sec-sec-blurb">Hardcoded secrets, unprotected local storage, sensitive logging.</div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Hardcoded Secrets</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">UserDefaults Only for Non-Sensitive Data</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Unencrypted Database (Realm / CoreData / SQLite)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Hardcoded Secrets in Info.plist / xcconfig</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-med">MEDIUM</span>
+    <span class="sec-check-name">Sensitive Responses Persisted by URLCache / WKWebView</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-low">LOW</span>
+    <span class="sec-check-name">Sensitive Data in Print / Debug Logs</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div></div><div class="sec-sec">
+  <div class="sec-sec-head">
+    <span class="sec-sec-num">2</span>
+    <span class="sec-sec-icon">💥</span>
+    <span class="sec-sec-title">Crash Factors</span>
+    <span class="sec-sec-weight">weight 120 / 1000</span>
+    <span class="sec-sec-risk" style="color:#a0a030">38% risk · 46/120 pts</span>
+  </div>
+  <div class="sec-sec-blurb">Force unwraps, try!, as!, IUOs, deadlocks, runtime selector failures.</div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:var(--red)">✗</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Never Force Unwrap or Force Try (! / try!)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:54%;background:#c05040"></div></div>
+    <span class="sec-check-count" style="color:var(--red)">11</span>
+  </div><div class="sec-check-desc">Force-unwrapping a nil optional (`x!`) and force-try (`try!`) both crash the app with a fatal error on failure, producing a poor user experience and no recovery path. Use `if let`, `guard let`, `??`, or `try?`/`do-catch` to handle the absent or error case safely. `try!` violations are listed first.</div><div class="sec-violations"><div class="ap-violation"><span class="ap-file"><a href="vscode://file//Users/exey/gymcore/FitPose/Services/DataService.swift:61" class="vs-link" title="Open in VS Code">FitPose/Services/DataService.swift:61</a></span><span class="ap-snippet">let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!</span><span class="ap-author-badge">Exey Panteleev</span></div><div class="ap-violation"><span class="ap-file"><a href="vscode://file//Users/exey/gymcore/FitPose/Services/DataService.swift:103" class="vs-link" title="Open in VS Code">FitPose/Services/DataService.swift:103</a></span><span class="ap-snippet">let weekStart = calendar.startOfDay(for: calendar.date(byAdding: .day, value: -daysFromMonday, to: n…</span><span class="ap-author-badge">Exey Panteleev</span></div><div class="ap-violation"><span class="ap-file"><a href="vscode://file//Users/exey/gymcore/FitPose/Services/DataService.swift:131" class="vs-link" title="Open in VS Code">FitPose/Services/DataService.swift:131</a></span><span class="ap-snippet">checkDate = calendar.date(byAdding: .day, value: -1, to: checkDate)!</span><span class="ap-author-badge">Exey Panteleev</span></div><div class="ap-violation"><span class="ap-file"><a href="vscode://file//Users/exey/gymcore/FitPose/Services/DataService.swift:138" class="vs-link" title="Open in VS Code">FitPose/Services/DataService.swift:138</a></span><span class="ap-snippet">checkDate = calendar.date(byAdding: .day, value: -1, to: checkDate)!</span><span class="ap-author-badge">Exey Panteleev</span></div><div class="ap-violation"><span class="ap-file"><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Stats/StatsView.swift:49" class="vs-link" title="Open in VS Code">Views/Stats/StatsView.swift:49</a></span><span class="ap-snippet">let date = calendar.date(byAdding: .day, value: -offset, to: today)!</span><span class="ap-author-badge">Exey Panteleev</span></div><div class="ap-violation"><span class="ap-file"><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Stats/StatsView.swift:50" class="vs-link" title="Open in VS Code">Views/Stats/StatsView.swift:50</a></span><span class="ap-snippet">let nextDate = calendar.date(byAdding: .day, value: 1, to: date)!</span><span class="ap-author-badge">Exey Panteleev</span></div><div class="ap-violation"><span class="ap-file"><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Plan/PlanView.swift:299" class="vs-link" title="Open in VS Code">Views/Plan/PlanView.swift:299</a></span><span class="ap-snippet">allDays.firstIndex(of: $0)! &lt; allDays.firstIndex(of: $1)!</span><span class="ap-author-badge">Exey Panteleev</span></div><div class="ap-violation"><span class="ap-file"><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Plan/PlanView.swift:422" class="vs-link" title="Open in VS Code">Views/Plan/PlanView.swift:422</a></span><span class="ap-snippet">ExerciseImage(exercise: selectedExercise!, size: 48)</span><span class="ap-author-badge">Exey Panteleev</span></div><div class="ap-violation"><span class="ap-file"><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Plan/PlanView.swift:425" class="vs-link" title="Open in VS Code">Views/Plan/PlanView.swift:425</a></span><span class="ap-snippet">Text(selectedExercise!.localizedName)</span><span class="ap-author-badge">Exey Panteleev</span></div><div class="ap-violation"><span class="ap-file"><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Plan/PlanView.swift:513" class="vs-link" title="Open in VS Code">Views/Plan/PlanView.swift:513</a></span><span class="ap-snippet">allDays.firstIndex(of: $0)! &lt; allDays.firstIndex(of: $1)!</span><span class="ap-author-badge">Exey Panteleev</span></div><div class="ap-violation"><span class="ap-file"><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Plan/PlanView.swift:634" class="vs-link" title="Open in VS Code">Views/Plan/PlanView.swift:634</a></span><span class="ap-snippet">allDays.firstIndex(of: $0)! &lt; allDays.firstIndex(of: $1)!</span><span class="ap-author-badge">Exey Panteleev</span></div></div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Avoid Force Casts (as!)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Avoid DispatchQueue.main.sync</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-med">MEDIUM</span>
+    <span class="sec-check-name">Avoid Implicitly Unwrapped Optionals (IUOs)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:var(--red)">✗</span>
+    <span class="ap-priority ap-pri-med">MEDIUM</span>
+    <span class="sec-check-name">fatalError / preconditionFailure in Production Code</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:30%;background:#c0a030"></div></div>
+    <span class="sec-check-count" style="color:var(--red)">3</span>
+  </div><div class="sec-check-desc">`fatalError` and `preconditionFailure` terminate the process immediately with no recovery path. They are also common placeholders left over from Xcode-generated stubs. Replace with a recoverable error, a graceful fallback, or ensure the path is truly unreachable before keeping them in production.</div><div class="sec-violations"><div class="ap-violation"><span class="ap-file"><a href="vscode://file//Users/exey/gymcore/FitPose/App/FitPoseApp.swift:32" class="vs-link" title="Open in VS Code">FitPose/App/FitPoseApp.swift:32</a></span><span class="ap-snippet">fatalError(&quot;Could not create ModelContainer: \(error)&quot;)</span><span class="ap-author-badge">Exey Panteleev</span></div><div class="ap-violation"><span class="ap-file"><a href="vscode://file//Users/exey/gymcore/Modules/PoseCamera/Sources/PoseCamera/PoseDetectionService.swift:28" class="vs-link" title="Open in VS Code">Sources/PoseCamera/PoseDetectionService.swift:28</a></span><span class="ap-snippet">fatalError(&quot;Failed to find the Core ML model in the bundle.&quot;)</span><span class="ap-author-badge">Exey Panteleev</span></div><div class="ap-violation"><span class="ap-file"><a href="vscode://file//Users/exey/gymcore/Modules/PoseCamera/Sources/PoseCamera/CameraCocoView.swift:356" class="vs-link" title="Open in VS Code">Sources/PoseCamera/CameraCocoView.swift:356</a></span><span class="ap-snippet">required init?(coder: NSCoder) { fatalError(&quot;init(coder:) has not been implemented&quot;) }</span><span class="ap-author-badge">Exey Panteleev</span></div></div></div></div><div class="sec-sec">
+  <div class="sec-sec-head">
+    <span class="sec-sec-num">3</span>
+    <span class="sec-sec-icon">🧨</span>
+    <span class="sec-sec-title">Unsafe &amp; Deprecated Constructs</span>
+    <span class="sec-sec-weight">weight 60 / 1000</span>
+    <span class="sec-sec-risk" style="color:#5a8a7a">0% risk · 0/60 pts</span>
+  </div>
+  <div class="sec-sec-blurb">Legacy ObjC APIs, deprecated calls, compile-time literals.</div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Dangerous C String Functions</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Weak Cryptographic Algorithm Constants (DES / 3DES / RC2 / RC4)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">UIWebView Usage (Deprecated, No Security Patches Since iOS 12)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-med">MEDIUM</span>
+    <span class="sec-check-name">Replace Deprecated openURL</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-low">LOW</span>
+    <span class="sec-check-name">Deprecated arc4random in Non-Security Code</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div></div><div class="sec-sec">
+  <div class="sec-sec-head">
+    <span class="sec-sec-num">4</span>
+    <span class="sec-sec-icon">📦</span>
+    <span class="sec-sec-title">Third-Party &amp; Supply Chain Risks</span>
+    <span class="sec-sec-weight">weight 50 / 1000</span>
+    <span class="sec-sec-risk" style="color:#5a8a7a">0% risk · 0/50 pts</span>
+  </div>
+  <div class="sec-sec-blurb">Vulnerable or unaudited dependencies, dependency confusion.</div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">HTTP (Non-TLS) Package Source URLs</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-med">MEDIUM</span>
+    <span class="sec-check-name">Floating / Branch Dependency Pins</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div></div><div class="sec-sec">
+  <div class="sec-sec-head">
+    <span class="sec-sec-num">5</span>
+    <span class="sec-sec-icon">🧠</span>
+    <span class="sec-sec-title">Memory Corruption &amp; Exploit Factors</span>
+    <span class="sec-sec-weight">weight 80 / 1000</span>
+    <span class="sec-sec-risk" style="color:#5a8a7a">0% risk · 0/80 pts</span>
+  </div>
+  <div class="sec-sec-blurb">Unsafe pointers, use-after-free, buffer/integer overflows.</div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Unsafe Pointer Usage</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-med">MEDIUM</span>
+    <span class="sec-check-name">Manual Reference Counting (Unmanaged&lt;T&gt;)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div></div><div class="sec-sec">
+  <div class="sec-sec-head">
+    <span class="sec-sec-num">6</span>
+    <span class="sec-sec-icon">🔐</span>
+    <span class="sec-sec-title">Cryptography Issues</span>
+    <span class="sec-sec-weight">weight 110 / 1000</span>
+    <span class="sec-sec-risk" style="color:#5a8a7a">0% risk · 0/110 pts</span>
+  </div>
+  <div class="sec-sec-blurb">Weak algorithms, insecure randomness, broken modes, key handling.</div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Insecure Randomness in Security Context (arc4random)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Weak Hash Algorithm (MD5 / SHA-1)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">ECB Cipher Mode</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Hardcoded Encryption Key</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">CBC Mode Without Authentication (MAC)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-med">MEDIUM</span>
+    <span class="sec-check-name">Hardcoded IV / Nonce</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-med">MEDIUM</span>
+    <span class="sec-check-name">Insufficient PBKDF2 Iterations</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div></div><div class="sec-sec">
+  <div class="sec-sec-head">
+    <span class="sec-sec-num">7</span>
+    <span class="sec-sec-icon">🌐</span>
+    <span class="sec-sec-title">Network Security</span>
+    <span class="sec-sec-weight">weight 90 / 1000</span>
+    <span class="sec-sec-risk" style="color:#5a8a7a">0% risk · 0/90 pts</span>
+  </div>
+  <div class="sec-sec-blurb">ATS disabled, missing pinning, plaintext communication.</div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Plaintext HTTP URLs</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Certificate Validation Bypass</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">URLSessionDelegate Challenge Bypass (unconditional useCredential)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">ATS Disabled in Info.plist (NSAllowsArbitraryLoads)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">WebView JavaScript Injection / Unsafe Configuration</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Hardcoded Auth Token in HTTP Header</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">URLSessionConfiguration Allows Arbitrary Loads (in Code)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div></div><div class="sec-sec">
+  <div class="sec-sec-head">
+    <span class="sec-sec-num">8</span>
+    <span class="sec-sec-icon">🪪</span>
+    <span class="sec-sec-title">Authentication &amp; Authorization</span>
+    <span class="sec-sec-weight">weight 100 / 1000</span>
+    <span class="sec-sec-risk" style="color:#5a8a7a">0% risk · 0/100 pts</span>
+  </div>
+  <div class="sec-sec-blurb">Credential misuse, broken cert validation, session handling.</div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Over-Accessible Keychain Items (kSecAttrAccessibleAlways)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Biometric Auth Not Bound to Keychain Item</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-med">MEDIUM</span>
+    <span class="sec-check-name">Deprecated SecTrustEvaluate (use SecTrustEvaluateWithError)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div></div><div class="sec-sec">
+  <div class="sec-sec-head">
+    <span class="sec-sec-num">9</span>
+    <span class="sec-sec-icon">⌨️</span>
+    <span class="sec-sec-title">Input/Output Validation</span>
+    <span class="sec-sec-weight">weight 80 / 1000</span>
+    <span class="sec-sec-risk" style="color:#5a8a7a">5% risk · 4/80 pts</span>
+  </div>
+  <div class="sec-sec-blurb">Injection, path traversal, command injection.</div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:var(--red)">✗</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">SQL Injection (String Interpolation in Queries)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:15%;background:#c05040"></div></div>
+    <span class="sec-check-count" style="color:var(--red)">1</span>
+  </div><div class="sec-check-desc">Building SQL queries with string interpolation (`&quot;SELECT … WHERE name = '\(userInput)'&quot;`) lets a single-quote break the query structure and execute attacker-controlled SQL. Use parameterized queries: prepare the statement with `?` / `:name` placeholders and bind values via `sqlite3_bind_*` so values are never treated as executable SQL.</div><div class="sec-violations"><div class="ap-violation"><span class="ap-file"><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Goals/GoalChatView.swift:411" class="vs-link" title="Open in VS Code">Views/Goals/GoalChatView.swift:411</a></span><span class="ap-snippet">botMessage(&quot;Great.\(limitNote)\n\nWhat's your main fitness goal? Pick from the categories below, or …</span><span class="ap-author-badge">Exey Panteleev</span></div></div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Insecure Deserialization (NSKeyedUnarchiver)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Shell Command Injection Risk (Process / NSTask)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-med">MEDIUM</span>
+    <span class="sec-check-name">Path Traversal Risk (&quot;..&quot; in File Paths)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div></div><div class="sec-sec">
+  <div class="sec-sec-head">
+    <span class="sec-sec-num">10</span>
+    <span class="sec-sec-icon">🛡️</span>
+    <span class="sec-sec-title">Binary Protections</span>
+    <span class="sec-sec-weight">weight 40 / 1000</span>
+    <span class="sec-sec-risk" style="color:#5a8a7a">5% risk · 2/40 pts</span>
+  </div>
+  <div class="sec-sec-blurb">Obfuscation, debugger/jailbreak detection, integrity checks.</div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Debug / Diagnostic Framework in Production</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:var(--red)">✗</span>
+    <span class="ap-priority ap-pri-med">MEDIUM</span>
+    <span class="sec-check-name">No Jailbreak Detection in Codebase</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:15%;background:#c0a030"></div></div>
+    <span class="sec-check-count" style="color:var(--red)">1</span>
+  </div><div class="sec-check-desc">No jailbreak/root-detection patterns were found. On a jailbroken device, code-signing is bypassed, sandbox boundaries are removed, and runtime hooks can intercept API calls. For sensitive applications implement active jailbreak detection and respond accordingly.</div><div class="sec-violations"><div class="ap-violation"><span class="ap-file"><span>Project-wide</span></span><span class="ap-snippet">No jailbreak detection patterns found in the codebase.</span></div></div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:var(--red)">✗</span>
+    <span class="ap-priority ap-pri-med">MEDIUM</span>
+    <span class="sec-check-name">No Anti-Tampering Protections Found</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:15%;background:#c0a030"></div></div>
+    <span class="sec-check-count" style="color:var(--red)">1</span>
+  </div><div class="sec-check-desc">No runtime anti-tampering signals were detected — no anti-debug checks (PT_DENY_ATTACH, sysctl-based), no simulator-environment guards, and no tweak-injection awareness (DYLD_INSERT_LIBRARIES, Substrate). For security-sensitive apps, implement layered runtime integrity checks to raise the cost of reverse-engineering and dynamic analysis.</div><div class="sec-violations"><div class="ap-violation"><span class="ap-file"><span>Project-wide</span></span><span class="ap-snippet">No runtime anti-tampering protections found (anti-debug, simulator guards, tweak injection detection).</span></div></div></div></div><div class="sec-sec">
+  <div class="sec-sec-head">
+    <span class="sec-sec-num">11</span>
+    <span class="sec-sec-icon">🔍</span>
+    <span class="sec-sec-title">Privacy Violations</span>
+    <span class="sec-sec-weight">weight 50 / 1000</span>
+    <span class="sec-sec-risk" style="color:#5a8a7a">0% risk · 0/50 pts</span>
+  </div>
+  <div class="sec-sec-blurb">Excessive permissions, consent gaps, identifier misuse.</div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-med">MEDIUM</span>
+    <span class="sec-check-name">Clipboard Data Access</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-med">MEDIUM</span>
+    <span class="sec-check-name">Declared Permission Without API Usage (Info.plist Mismatch)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-low">LOW</span>
+    <span class="sec-check-name">Device Fingerprinting / Advertising ID</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-low">LOW</span>
+    <span class="sec-check-name">Crash Reporter Initialized Without Data Scrubbing</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div></div><div class="sec-sec">
+  <div class="sec-sec-head">
+    <span class="sec-sec-num">12</span>
+    <span class="sec-sec-icon">⚙️</span>
+    <span class="sec-sec-title">iOS Configuration Weaknesses</span>
+    <span class="sec-sec-weight">weight 40 / 1000</span>
+    <span class="sec-sec-risk" style="color:#5a8a7a">0% risk · 0/40 pts</span>
+  </div>
+  <div class="sec-sec-blurb">Info.plist misconfigurations (backup, ATS, sharing).</div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">File Sharing / NSFileProtectionNone in Plist</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">NSFileProtectionNone in Swift Code</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div></div><div class="sec-sec">
+  <div class="sec-sec-head">
+    <span class="sec-sec-num">13</span>
+    <span class="sec-sec-icon">🔀</span>
+    <span class="sec-sec-title">Logic &amp; State-based Exploit Factors</span>
+    <span class="sec-sec-weight">weight 30 / 1000</span>
+    <span class="sec-sec-risk" style="color:#5a8a7a">0% risk · 0/30 pts</span>
+  </div>
+  <div class="sec-sec-blurb">Race conditions, jailbreak bypasses, insecure IPC, state bugs.</div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-med">MEDIUM</span>
+    <span class="sec-check-name">Main Thread Blocking (Thread.sleep)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-low">LOW</span>
+    <span class="sec-check-name">Notification Observer Not Removed</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div></div><div class="sec-sec">
+  <div class="sec-sec-head">
+    <span class="sec-sec-num">14</span>
+    <span class="sec-sec-icon">🔩</span>
+    <span class="sec-sec-title">Low-level Binary Vulnerabilities</span>
+    <span class="sec-sec-weight">weight 20 / 1000</span>
+    <span class="sec-sec-risk" style="color:#5a8a7a">0% risk · 0/20 pts</span>
+  </div>
+  <div class="sec-sec-blurb">C/ObjC/C++ memory-corruption primitives and ObjC runtime hazards.</div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Raw C Memory Operations (malloc / free / memcpy)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-high">HIGH</span>
+    <span class="sec-check-name">Objective-C Runtime Hazards (objc_msgSend / NSInvocation / performSelector)</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div><div class="sec-check">
+  <div class="sec-check-row">
+    <span class="sec-check-status" style="color:#34c759">✓</span>
+    <span class="ap-priority ap-pri-med">MEDIUM</span>
+    <span class="sec-check-name">Unsafe Buffer Pointer / baseAddress! Access</span>
+    <div class="sec-check-track"><div class="sec-check-fill" style="width:0%;background:#5a8a7a"></div></div>
+    <span class="sec-check-count" style="color:var(--text3)">0</span>
+  </div></div></div></div>
+    </div>
+    <div class="card">
+        <h2>🐙 Git Analysis</h2>
+        <div class="sub-card">
+    <h3 class="sub-card-title">👥 Team Contribution Map</h3>
+    <div class="table-wrap"><table class="team-table">
+        <thead><tr><th>Developer</th><th>Files</th><th>Commits</th><th>LOC</th><th>LOC/Commit</th><th>First Change</th><th>Last Change</th><th>Top-3 Modules</th></tr></thead>
+        <tbody><tr><td>Exey Panteleev</td><td>20</td><td>29</td><td>13 203</td><td>455</td><td>2026-04-04</td><td>2026-04-18</td><td><a href='#pkg-App' class='tag tag-local pkg-link-inline' style='font-size:11px'>App</a> <a href='#pkg-PoseCamera' class='tag tag-local pkg-link-inline' style='font-size:11px'>PoseCamera</a></td></tr></tbody>
+    </table></div>
+</div>
+        <div class="sub-card"><h3 class="sub-card-title">🌿 Branch Management</h3><div class='bm-grid'><div class='bm-card'><div class='bm-value'>1</div><div class='bm-label'>Branch Depth</div></div><div class='bm-card'><div class='bm-value'>0.0%</div><div class='bm-label'>Rollback Rate</div></div><div class='bm-card'><div class='bm-value' style='font-size:16px'>Saturday</div><div class='bm-label'>Peak Commit Day</div></div></div></div>
+        <div class="sub-card">
+            <h3 class="sub-card-title">🔥 Code Churn</h3>
+            <div class='table-wrap'><table class='file-table'><thead><tr><th>File</th><th>Changes</th></tr></thead><tbody><tr><td><span style='color:var(--text3);font-weight:400'>Views/Workout/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Workout/WorkoutView.swift" class="vs-link" title="Open in VS Code"><strong>WorkoutView.swift</strong></a></td><td class='mono' style='white-space:nowrap'>15</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>FitPose.xcodeproj/</span><a href="vscode://file//Users/exey/gymcore/FitPose.xcodeproj/project.pbxproj" class="vs-link" title="Open in VS Code"><strong>project.pbxproj</strong></a></td><td class='mono' style='white-space:nowrap'>14</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>FitPose/Resources/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Resources/exercises.json" class="vs-link" title="Open in VS Code"><strong>exercises.json</strong></a></td><td class='mono' style='white-space:nowrap'>12</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>FitPose/Models/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Models/Models.swift" class="vs-link" title="Open in VS Code"><strong>Models.swift</strong></a></td><td class='mono' style='white-space:nowrap'>10</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Sources/PoseCamera/</span><a href="vscode://file//Users/exey/gymcore/Modules/PoseCamera/Sources/PoseCamera/CameraCocoView.swift" class="vs-link" title="Open in VS Code"><strong>CameraCocoView.swift</strong></a></td><td class='mono' style='white-space:nowrap'>9</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Views/Home/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Home/HomeView.swift" class="vs-link" title="Open in VS Code"><strong>HomeView.swift</strong></a></td><td class='mono' style='white-space:nowrap'>8</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Views/Goals/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Goals/GoalChatView.swift" class="vs-link" title="Open in VS Code"><strong>GoalChatView.swift</strong></a></td><td class='mono' style='white-space:nowrap'>8</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>FitPose/Services/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Services/ExerciseService.swift" class="vs-link" title="Open in VS Code"><strong>ExerciseService.swift</strong></a></td><td class='mono' style='white-space:nowrap'>7</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>FitPose/App/</span><a href="vscode://file//Users/exey/gymcore/FitPose/App/FitPoseApp.swift" class="vs-link" title="Open in VS Code"><strong>FitPoseApp.swift</strong></a></td><td class='mono' style='white-space:nowrap'>6</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Views/Plan/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Plan/PlanView.swift" class="vs-link" title="Open in VS Code"><strong>PlanView.swift</strong></a></td><td class='mono' style='white-space:nowrap'>6</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Views/Settings/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Settings/SettingsView.swift" class="vs-link" title="Open in VS Code"><strong>SettingsView.swift</strong></a></td><td class='mono' style='white-space:nowrap'>6</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Sources/PoseCamera/</span><a href="vscode://file//Users/exey/gymcore/Modules/PoseCamera/Sources/PoseCamera/PoseDetectionService.swift" class="vs-link" title="Open in VS Code"><strong>PoseDetectionService.swift</strong></a></td><td class='mono' style='white-space:nowrap'>5</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>FitPose/Services/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Services/PoseDetectionService.swift" class="vs-link" title="Open in VS Code"><strong>PoseDetectionService.swift</strong></a></td><td class='mono' style='white-space:nowrap'>5</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>xcuserdata/exey.xcuserdatad/</span><a href="vscode://file//Users/exey/gymcore/FitPose.xcodeproj/project.xcworkspace/xcuserdata/exey.xcuserdatad/UserInterfaceState.xcuserstate" class="vs-link" title="Open in VS Code"><strong>UserInterfaceState.xcuserstate</strong></a></td><td class='mono' style='white-space:nowrap'>5</td></tr>
+<tr><td><a href="vscode://file//Users/exey/gymcore/.gitignore" class="vs-link" title="Open in VS Code"><strong>.gitignore</strong></a></td><td class='mono' style='white-space:nowrap'>4</td></tr></tbody></table></div>
+        </div>
+        <div class="sub-card">
+            <h3 class="sub-card-title">📐 Semantic Standards</h3>
+            <div class='sem-row'><span class='sem-label'>🏷️ Semver Tags</span><span class='sem-bar-wrap'><span class='sem-bar' style='width:0%'></span></span><span class='sem-stat'>No tags found</span></div><div class='sem-row'><span class='sem-label'>📝 Conv. Commits</span><span class='sem-bar-wrap'><span class='sem-bar' style='width:0%'></span></span><span class='sem-stat'>0 / 29 structured</span></div><div class='sem-samples'><span style='color:var(--text3);font-size:11px;font-weight:600'>Non-standard samples:</span><div class='sem-sample'>remove levels /&nbsp;add russian language /&nbsp;limb coloring /&nbsp;camera rotation + impove AI assistant /&nbsp;pre-release ui/ux fixes</div></div>
+        </div>
+    </div>
+    <div class="card">
+        <h2>🔥 Hot Zones</h2>
+        <p class="subtitle">Files imported or referenced by the most other files — the highest-leverage nodes in the codebase.</p>
+        <div class="table-wrap"><table class="file-table">
+            <thead><tr><th>File</th><th>Uses</th><th>Lines</th><th>Decl</th><th>Package</th></tr></thead>
+            <tbody><tr><td><a href="vscode://file//Users/exey/gymcore/FitPose/Models/Models.swift" class="vs-link" title="Open in VS Code"><span style='color:var(--text3)'>gymcore/FitPose/Models/</span><strong>Models.swift</strong></a></td><td class='mono'>12</td><td class='mono'>310</td><td class='mono'>10</td><td><a href='#pkg-App' class='tag tag-local pkg-link-inline' style='font-size:11px'>App</a></td></tr>
+<tr><td><a href="vscode://file//Users/exey/gymcore/FitPose/Services/LanguageService.swift" class="vs-link" title="Open in VS Code"><span style='color:var(--text3)'>gymcore/FitPose/Services/</span><strong>LanguageService.swift</strong></a></td><td class='mono'>3</td><td class='mono'>105</td><td class='mono'>1</td><td><a href='#pkg-App' class='tag tag-local pkg-link-inline' style='font-size:11px'>App</a></td></tr>
+<tr><td><a href="vscode://file//Users/exey/gymcore/FitPose/App/FitPoseApp.swift" class="vs-link" title="Open in VS Code"><span style='color:var(--text3)'>gymcore/FitPose/App/</span><strong>FitPoseApp.swift</strong></a></td><td class='mono'>1</td><td class='mono'>61</td><td class='mono'>2</td><td><a href='#pkg-App' class='tag tag-local pkg-link-inline' style='font-size:11px'>App</a></td></tr>
+<tr><td><a href="vscode://file//Users/exey/gymcore/Modules/PoseCamera/Sources/PoseCamera/CameraCocoView.swift" class="vs-link" title="Open in VS Code"><span style='color:var(--text3)'>PoseCamera/Sources/PoseCamera/</span><strong>CameraCocoView.swift</strong></a></td><td class='mono'>2</td><td class='mono'>365</td><td class='mono'>2</td><td><a href='#pkg-PoseCamera' class='tag tag-local pkg-link-inline' style='font-size:11px'>PoseCamera</a></td></tr>
+<tr><td><a href="vscode://file//Users/exey/gymcore/Modules/PoseCamera/Sources/PoseCamera/PoseDetectionService.swift" class="vs-link" title="Open in VS Code"><span style='color:var(--text3)'>PoseCamera/Sources/PoseCamera/</span><strong>PoseDetectionService.swift</strong></a></td><td class='mono'>1</td><td class='mono'>350</td><td class='mono'>3</td><td><a href='#pkg-PoseCamera' class='tag tag-local pkg-link-inline' style='font-size:11px'>PoseCamera</a></td></tr>
+<tr><td><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Onboarding/OnboardingView.swift" class="vs-link" title="Open in VS Code"><span style='color:var(--text3)'>FitPose/Views/Onboarding/</span><strong>OnboardingView.swift</strong></a></td><td class='mono'>1</td><td class='mono'>86</td><td class='mono'>1</td><td><a href='#pkg-App' class='tag tag-local pkg-link-inline' style='font-size:11px'>App</a></td></tr>
+<tr><td><a href="vscode://file//Users/exey/gymcore/FitPose/App/ContentView.swift" class="vs-link" title="Open in VS Code"><span style='color:var(--text3)'>gymcore/FitPose/App/</span><strong>ContentView.swift</strong></a></td><td class='mono'>1</td><td class='mono'>35</td><td class='mono'>2</td><td><a href='#pkg-App' class='tag tag-local pkg-link-inline' style='font-size:11px'>App</a></td></tr>
+<tr><td><a href="vscode://file//Users/exey/gymcore/FitPose/Services/ExerciseService.swift" class="vs-link" title="Open in VS Code"><span style='color:var(--text3)'>gymcore/FitPose/Services/</span><strong>ExerciseService.swift</strong></a></td><td class='mono'>6</td><td class='mono'>60</td><td class='mono'>1</td><td><a href='#pkg-App' class='tag tag-local pkg-link-inline' style='font-size:11px'>App</a></td></tr>
+<tr><td><a href="vscode://file//Users/exey/gymcore/FitPose/Services/DataService.swift" class="vs-link" title="Open in VS Code"><span style='color:var(--text3)'>gymcore/FitPose/Services/</span><strong>DataService.swift</strong></a></td><td class='mono'>5</td><td class='mono'>163</td><td class='mono'>1</td><td><a href='#pkg-App' class='tag tag-local pkg-link-inline' style='font-size:11px'>App</a></td></tr>
+<tr><td><a href="vscode://file//Users/exey/gymcore/FitPose/App/Theme.swift" class="vs-link" title="Open in VS Code"><span style='color:var(--text3)'>gymcore/FitPose/App/</span><strong>Theme.swift</strong></a></td><td class='mono'>5</td><td class='mono'>123</td><td class='mono'>4</td><td><a href='#pkg-App' class='tag tag-local pkg-link-inline' style='font-size:11px'>App</a></td></tr>
+<tr><td><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Plan/PlanView.swift" class="vs-link" title="Open in VS Code"><span style='color:var(--text3)'>FitPose/Views/Plan/</span><strong>PlanView.swift</strong></a></td><td class='mono'>2</td><td class='mono'>641</td><td class='mono'>4</td><td><a href='#pkg-App' class='tag tag-local pkg-link-inline' style='font-size:11px'>App</a></td></tr>
+<tr><td><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Settings/SettingsView.swift" class="vs-link" title="Open in VS Code"><span style='color:var(--text3)'>FitPose/Views/Settings/</span><strong>SettingsView.swift</strong></a></td><td class='mono'>1</td><td class='mono'>205</td><td class='mono'>2</td><td><a href='#pkg-App' class='tag tag-local pkg-link-inline' style='font-size:11px'>App</a></td></tr>
+<tr><td><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Stats/StatsView.swift" class="vs-link" title="Open in VS Code"><span style='color:var(--text3)'>FitPose/Views/Stats/</span><strong>StatsView.swift</strong></a></td><td class='mono'>1</td><td class='mono'>277</td><td class='mono'>3</td><td><a href='#pkg-App' class='tag tag-local pkg-link-inline' style='font-size:11px'>App</a></td></tr>
+<tr><td><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Home/HomeView.swift" class="vs-link" title="Open in VS Code"><span style='color:var(--text3)'>FitPose/Views/Home/</span><strong>HomeView.swift</strong></a></td><td class='mono'>1</td><td class='mono'>520</td><td class='mono'>5</td><td><a href='#pkg-App' class='tag tag-local pkg-link-inline' style='font-size:11px'>App</a></td></tr>
+<tr><td><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Workout/WorkoutView.swift" class="vs-link" title="Open in VS Code"><span style='color:var(--text3)'>FitPose/Views/Workout/</span><strong>WorkoutView.swift</strong></a></td><td class='mono'>2</td><td class='mono'>1133</td><td class='mono'>5</td><td><a href='#pkg-App' class='tag tag-local pkg-link-inline' style='font-size:11px'>App</a></td></tr></tbody>
+        </table></div>
+    </div>
+    <div class="card">
+    <h2>📏 Longest Functions</h2>
+    <div class="table-wrap"><table class="file-table">
+        <thead><tr><th>Function</th><th>Lines</th><th>File</th><th>Module</th></tr></thead>
+        <tbody><tr><td><code><a href="vscode://file//Users/exey/gymcore/Modules/PoseCamera/Sources/PoseCamera/CameraCocoView.swift:145" class="vs-link" title="Open in VS Code">drawSkeleton()</a></code></td><td class='mono'>157</td><td><a href="vscode://file//Users/exey/gymcore/Modules/PoseCamera/Sources/PoseCamera/CameraCocoView.swift:145" class="vs-link" title="Open in VS Code">CameraCocoView.swift</a></td><td><a href='#pkg-PoseCamera' class='pkg-link-inline'>PoseCamera</a></td></tr>
+<tr><td><code><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Workout/WorkoutView.swift:434" class="vs-link" title="Open in VS Code">workoutHUD()</a></code></td><td class='mono'>103</td><td><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Workout/WorkoutView.swift:434" class="vs-link" title="Open in VS Code">WorkoutView.swift</a></td><td><a href='#pkg-App' class='pkg-link-inline'>App</a></td></tr>
+<tr><td><code><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Goals/GoalChatView.swift:372" class="vs-link" title="Open in VS Code">submitText()</a></code></td><td class='mono'>62</td><td><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Goals/GoalChatView.swift:372" class="vs-link" title="Open in VS Code">GoalChatView.swift</a></td><td><a href='#pkg-App' class='pkg-link-inline'>App</a></td></tr>
+<tr><td><code><a href="vscode://file//Users/exey/gymcore/Modules/PoseCamera/Sources/PoseCamera/PoseDetectionService.swift:150" class="vs-link" title="Open in VS Code">setup()</a></code></td><td class='mono'>59</td><td><a href="vscode://file//Users/exey/gymcore/Modules/PoseCamera/Sources/PoseCamera/PoseDetectionService.swift:150" class="vs-link" title="Open in VS Code">PoseDetectionService.swift</a></td><td><a href='#pkg-PoseCamera' class='pkg-link-inline'>PoseCamera</a></td></tr>
+<tr><td><code><a href="vscode://file//Users/exey/gymcore/FitPose/Services/ExerciseCounter.swift:143" class="vs-link" title="Open in VS Code">processSequence()</a></code></td><td class='mono'>57</td><td><a href="vscode://file//Users/exey/gymcore/FitPose/Services/ExerciseCounter.swift:143" class="vs-link" title="Open in VS Code">ExerciseCounter.swift</a></td><td><a href='#pkg-App' class='pkg-link-inline'>App</a></td></tr>
+<tr><td><code><a href="vscode://file//Users/exey/gymcore/FitPose/Services/FitnessChatAssistant.swift:52" class="vs-link" title="Open in VS Code">generateSummary()</a></code></td><td class='mono'>47</td><td><a href="vscode://file//Users/exey/gymcore/FitPose/Services/FitnessChatAssistant.swift:52" class="vs-link" title="Open in VS Code">FitnessChatAssistant.swift</a></td><td><a href='#pkg-App' class='pkg-link-inline'>App</a></td></tr>
+<tr><td><code><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Plan/PlanView.swift:151" class="vs-link" title="Open in VS Code">planRow()</a></code></td><td class='mono'>38</td><td><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Plan/PlanView.swift:151" class="vs-link" title="Open in VS Code">PlanView.swift</a></td><td><a href='#pkg-App' class='pkg-link-inline'>App</a></td></tr>
+<tr><td><code><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Settings/SettingsView.swift:169" class="vs-link" title="Open in VS Code">populateMockData()</a></code></td><td class='mono'>36</td><td><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Settings/SettingsView.swift:169" class="vs-link" title="Open in VS Code">SettingsView.swift</a></td><td><a href='#pkg-App' class='pkg-link-inline'>App</a></td></tr>
+<tr><td><code><a href="vscode://file//Users/exey/gymcore/FitPose/Services/DataService.swift:117" class="vs-link" title="Open in VS Code">workoutStreak()</a></code></td><td class='mono'>26</td><td><a href="vscode://file//Users/exey/gymcore/FitPose/Services/DataService.swift:117" class="vs-link" title="Open in VS Code">DataService.swift</a></td><td><a href='#pkg-App' class='pkg-link-inline'>App</a></td></tr>
+<tr><td><code><a href="vscode://file//Users/exey/gymcore/FitPose/App/Theme.swift:66" class="vs-link" title="Open in VS Code">sizeThatFits()</a></code></td><td class='mono'>17</td><td><a href="vscode://file//Users/exey/gymcore/FitPose/App/Theme.swift:66" class="vs-link" title="Open in VS Code">Theme.swift</a></td><td><a href='#pkg-App' class='pkg-link-inline'>App</a></td></tr>
+<tr><td><code><a href="vscode://file//Users/exey/gymcore/FitPose/Services/LanguageService.swift:45" class="vs-link" title="Open in VS Code">updateBundle()</a></code></td><td class='mono'>8</td><td><a href="vscode://file//Users/exey/gymcore/FitPose/Services/LanguageService.swift:45" class="vs-link" title="Open in VS Code">LanguageService.swift</a></td><td><a href='#pkg-App' class='pkg-link-inline'>App</a></td></tr>
+<tr><td><code><a href="vscode://file//Users/exey/gymcore/FitPose/App/FitPoseApp.swift:11" class="vs-link" title="Open in VS Code">application()</a></code></td><td class='mono'>6</td><td><a href="vscode://file//Users/exey/gymcore/FitPose/App/FitPoseApp.swift:11" class="vs-link" title="Open in VS Code">FitPoseApp.swift</a></td><td><a href='#pkg-App' class='pkg-link-inline'>App</a></td></tr>
+<tr><td><code><a href="vscode://file//Users/exey/gymcore/FitPose/Services/ExerciseService.swift:57" class="vs-link" title="Open in VS Code">exercise()</a></code></td><td class='mono'>3</td><td><a href="vscode://file//Users/exey/gymcore/FitPose/Services/ExerciseService.swift:57" class="vs-link" title="Open in VS Code">ExerciseService.swift</a></td><td><a href='#pkg-App' class='pkg-link-inline'>App</a></td></tr>
+<tr><td><code><a href="vscode://file//Users/exey/gymcore/FitPose/Models/Models.swift:208" class="vs-link" title="Open in VS Code">options()</a></code></td><td class='mono'>1</td><td><a href="vscode://file//Users/exey/gymcore/FitPose/Models/Models.swift:208" class="vs-link" title="Open in VS Code">Models.swift</a></td><td><a href='#pkg-App' class='pkg-link-inline'>App</a></td></tr></tbody>
+    </table></div>
+</div>
+    <div class="card">
+        <h2>📋 Module Insights</h2>
+        <h3>🔗 Package Penetration</h3>
+<p class="subtitle">Modules imported by the most other packages — high-penetration modules are foundational dependencies.</p>
+<div class="table-wrap"><table class="file-table">
+    <thead><tr><th>Module</th><th>Imported by</th><th>Dependent Packages</th></tr></thead>
+    <tbody><tr><td><a href='#pkg-PoseCamera' class='pkg-link-inline'>PoseCamera</a></td><td class='mono'>1</td><td style='color:var(--text3);font-size:12px'>App</td></tr></tbody>
+</table></div>
+        <h3>📝 TODO / FIXME</h3>
+        <p style="color: var(--text3)">No TODO or FIXME comments found across the codebase.</p>
+    </div>
+    <div class="card">
+    <h2>📦 Packages & Modules</h2>
+    <p class="subtitle">Showing files with ≥ 20 lines and at least one declaration. Graphs: type references between declarations. <span style="color:#007aff">●</span> class <span style="color:#34c759">●</span> struct <span style="color:#ff9500">●</span> enum <span style="color:#ff3b30">●</span> actor. Arrows from class/actor only.</p>
+    <div class="package-section" id="pkg-App">
+    <h3>📱 App
+        <span class="pkg-stats">17 files · 4 937 lines · 51 declarations</span>
+    </h3>
+    <p class="stats-detail">🟢 39 structs · 🔵 8 classes · 🟡 4 enums · 🔹 5 extensions</p>
+    <div id='pkg-graph-0' class='pkg-graph-container'></div>
+    <div class="table-wrap"><table class="file-table">
+        <thead><tr><th>File</th><th>Lines</th><th>Decl</th><th>Declarations</th></tr></thead>
+        <tbody><tr><td><span style='color:var(--text3);font-weight:400'>Workout/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Workout/WorkoutView.swift" class="vs-link" title="Open in VS Code"><strong>WorkoutView.swift</strong></a></td><td class='mono'>1133</td><td>5</td><td class='decl-tags'>🟡&thinsp;WorkoutPhase&ensp;🟢&thinsp;WorkoutView&ensp;🟢&thinsp;CompletionData&ensp;🟢&thinsp;InstructionScreen&ensp;🟢&thinsp;CompletionSheet</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Goals/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Goals/GoalChatView.swift" class="vs-link" title="Open in VS Code"><strong>GoalChatView.swift</strong></a></td><td class='mono'>738</td><td>6</td><td class='decl-tags'>🟡&thinsp;GoalChatMode&ensp;🟡&thinsp;ChatStep&ensp;🟢&thinsp;GoalChatView&ensp;🟢&thinsp;MessageBubble&ensp;🟢&thinsp;TypingIndicator&ensp;🟢&thinsp;GoalChip</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Plan/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Plan/PlanView.swift" class="vs-link" title="Open in VS Code"><strong>PlanView.swift</strong></a></td><td class='mono'>641</td><td>4</td><td class='decl-tags'>🟢&thinsp;PlanView&ensp;🟢&thinsp;PlanEditSheet&ensp;🟢&thinsp;PlanBuilderView&ensp;🟢&thinsp;CustomPlanSheet</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Home/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Home/HomeView.swift" class="vs-link" title="Open in VS Code"><strong>HomeView.swift</strong></a></td><td class='mono'>520</td><td>5</td><td class='decl-tags'>🟢&thinsp;HomeView&ensp;🟢&thinsp;GoalProgressTile&ensp;🟢&thinsp;ProgressRing&ensp;🟢&thinsp;PlanTile&ensp;🟢&thinsp;ActivityTile</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Models/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Models/Models.swift" class="vs-link" title="Open in VS Code"><strong>Models.swift</strong></a><div class='file-desc'>💡 One phase in a multi-step angle sequence. A rep is counted only when the full sequence completes in order.</div></td><td class='mono'>310</td><td>10</td><td class='decl-tags'>🟢&thinsp;ExerciseKeypointPair&ensp;🟢&thinsp;AnglePhase&ensp;🟢&thinsp;ExerciseConfig&ensp;🟢&thinsp;ExercisesFile&ensp;🟢&thinsp;ExerciseConfigRaw&ensp;🟢&thinsp;ChatMessage&ensp;🟢&thinsp;GoalOption&ensp;🔵&thinsp;Plan&ensp;🔵&thinsp;FitnessGoal&ensp;🔵&thinsp;WorkoutResult</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Stats/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Stats/StatsView.swift" class="vs-link" title="Open in VS Code"><strong>StatsView.swift</strong></a></td><td class='mono'>277</td><td>3</td><td class='decl-tags'>🟢&thinsp;StatsView&ensp;🟢&thinsp;WorkoutRow&ensp;🟢&thinsp;StatCard</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Services/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Services/FitnessChatAssistant.swift" class="vs-link" title="Open in VS Code"><strong>FitnessChatAssistant.swift</strong></a></td><td class='mono'>237</td><td>3</td><td class='decl-tags'>🟡&thinsp;AIAvailability&ensp;🔵&thinsp;FitnessChatAssistant&ensp;🟢&thinsp;GoalPlanEntry&ensp;🔹&thinsp;GoalOption</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Services/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Services/ExerciseCounter.swift" class="vs-link" title="Open in VS Code"><strong>ExerciseCounter.swift</strong></a></td><td class='mono'>217</td><td>1</td><td class='decl-tags'>🔵&thinsp;ExerciseCounter</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Settings/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Settings/SettingsView.swift" class="vs-link" title="Open in VS Code"><strong>SettingsView.swift</strong></a></td><td class='mono'>205</td><td>2</td><td class='decl-tags'>🟢&thinsp;SettingsView&ensp;🟢&thinsp;DebugMenuView</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Services/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Services/DataService.swift" class="vs-link" title="Open in VS Code"><strong>DataService.swift</strong></a><div class='file-desc'>💡 Provides query helpers on top of SwiftData's ModelContext. Mirrors the Flutter DatabaseService API.</div></td><td class='mono'>163</td><td>1</td><td class='decl-tags'>🟢&thinsp;DataService</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>App/</span><a href="vscode://file//Users/exey/gymcore/FitPose/App/Theme.swift" class="vs-link" title="Open in VS Code"><strong>Theme.swift</strong></a><div class='file-desc'>💡 Shows the asset image if available, falls back to the SF Symbol.</div></td><td class='mono'>123</td><td>4</td><td class='decl-tags'>🟢&thinsp;CardStyle&ensp;🟢&thinsp;ExerciseImage&ensp;🟢&thinsp;FlowLayout&ensp;🟢&thinsp;LevelBadge&ensp;🔹&thinsp;Color&ensp;🔹&thinsp;Font&ensp;🔹&thinsp;View</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Services/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Services/LanguageService.swift" class="vs-link" title="Open in VS Code"><strong>LanguageService.swift</strong></a></td><td class='mono'>105</td><td>1</td><td class='decl-tags'>🔵&thinsp;LanguageService</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Onboarding/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Views/Onboarding/OnboardingView.swift" class="vs-link" title="Open in VS Code"><strong>OnboardingView.swift</strong></a></td><td class='mono'>86</td><td>1</td><td class='decl-tags'>🟢&thinsp;OnboardingView</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>App/</span><a href="vscode://file//Users/exey/gymcore/FitPose/App/FitPoseApp.swift" class="vs-link" title="Open in VS Code"><strong>FitPoseApp.swift</strong></a></td><td class='mono'>61</td><td>2</td><td class='decl-tags'>🔵&thinsp;AppDelegate&ensp;🟢&thinsp;FitPoseApp</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>Services/</span><a href="vscode://file//Users/exey/gymcore/FitPose/Services/ExerciseService.swift" class="vs-link" title="Open in VS Code"><strong>ExerciseService.swift</strong></a><div class='file-desc'>💡 Loads exercise configurations from the bundled exercises.json.  All properties are immutable after init — safe to share </div></td><td class='mono'>60</td><td>1</td><td class='decl-tags'>🔵&thinsp;ExerciseService</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>App/</span><a href="vscode://file//Users/exey/gymcore/FitPose/App/ContentView.swift" class="vs-link" title="Open in VS Code"><strong>ContentView.swift</strong></a></td><td class='mono'>35</td><td>2</td><td class='decl-tags'>🟢&thinsp;SelectTabKey&ensp;🟢&thinsp;ContentView&ensp;🔹&thinsp;EnvironmentValues</td></tr></tbody>
+    </table></div>
+</div><div class="package-section" id="pkg-PoseCamera">
+    <h3>📦 PoseCamera <span class='bs-badge'>SwiftPM</span>
+        <span class="pkg-stats">3 files · 717 lines · 5 declarations</span>
+    </h3>
+    <p class="stats-detail">🟢 3 structs · 🔵 2 classes</p>
+    <div id='pkg-graph-1' class='pkg-graph-container'></div>
+    <div class="table-wrap"><table class="file-table">
+        <thead><tr><th>File</th><th>Lines</th><th>Decl</th><th>Declarations</th></tr></thead>
+        <tbody><tr><td><span style='color:var(--text3);font-weight:400'>PoseCamera/</span><a href="vscode://file//Users/exey/gymcore/Modules/PoseCamera/Sources/PoseCamera/CameraCocoView.swift" class="vs-link" title="Open in VS Code"><strong>CameraCocoView.swift</strong></a><div class='file-desc'>💡 SwiftUI wrapper для отображения камеры и скелета COCO-17 с индивидуальными стилями конечностей.</div></td><td class='mono'>365</td><td>2</td><td class='decl-tags'>🟢&thinsp;LimbStyle&ensp;🟢&thinsp;CameraCocoView</td></tr>
+<tr><td><span style='color:var(--text3);font-weight:400'>PoseCamera/</span><a href="vscode://file//Users/exey/gymcore/Modules/PoseCamera/Sources/PoseCamera/PoseDetectionService.swift" class="vs-link" title="Open in VS Code"><strong>PoseDetectionService.swift</strong></a></td><td class='mono'>350</td><td>3</td><td class='decl-tags'>🟢&thinsp;PoseMetrics&ensp;🔵&thinsp;PoseDetectionService&ensp;🔵&thinsp;CaptureDelegate</td></tr></tbody>
+    </table></div>
+</div>
+</div>
+    <div class="card">
+    <h2>🎨 Assets — 0.6 MB</h2>
+    <div class="table-wrap"><table class="file-table">
+        <thead><tr><th>Type</th><th>Files</th><th>Size</th><th>Top-3 Heaviest Files</th></tr></thead>
+        <tbody><tr><td>🖼️ <strong>.png</strong></td><td class='mono'>25</td><td class='mono'>0.6 MB</td><td><div style='margin:2px 0'><span class='bs-badge-right' style='margin-left:0;margin-right:6px'>283 KB</span><a href="vscode://file//Users/exey/gymcore/FitPose/Resources/Assets.xcassets/AppIcon.appiconset/Icon-1024.png" class="vs-link" title="Open in VS Code"><span style='font-size:12px'>FitPose/Resources/Assets.xcassets/AppIcon.appiconset/Icon-1024.png</span></a></div><div style='margin:2px 0'><span class='bs-badge-right' style='margin-left:0;margin-right:6px'>83 KB</span><a href="vscode://file//Users/exey/gymcore/FitPose/Resources/Assets.xcassets/plank.imageset/plank.png" class="vs-link" title="Open in VS Code"><span style='font-size:12px'>FitPose/Resources/Assets.xcassets/plank.imageset/plank.png</span></a></div><div style='margin:2px 0'><span class='bs-badge-right' style='margin-left:0;margin-right:6px'>37 KB</span><a href="vscode://file//Users/exey/gymcore/FitPose/Resources/Assets.xcassets/push-up.imageset/17759206547207-4.png" class="vs-link" title="Open in VS Code"><span style='font-size:12px'>FitPose/Resources/Assets.xcassets/push-up.imageset/17759206547207-4.png</span></a></div></td></tr>
+<tr><td>🎧 <strong>.mp3</strong></td><td class='mono'>4</td><td class='mono'>0.0 MB</td><td><div style='margin:2px 0'><span class='bs-badge-right' style='margin-left:0;margin-right:6px'>12 KB</span><a href="vscode://file//Users/exey/gymcore/FitPose/Resources/Assets.xcassets/rep_fail.mp3" class="vs-link" title="Open in VS Code"><span style='font-size:12px'>FitPose/Resources/Assets.xcassets/rep_fail.mp3</span></a></div><div style='margin:2px 0'><span class='bs-badge-right' style='margin-left:0;margin-right:6px'>12 KB</span><a href="vscode://file//Users/exey/gymcore/FitPose/Resources/Assets.xcassets/rep_fail.dataset/rep_fail.mp3" class="vs-link" title="Open in VS Code"><span style='font-size:12px'>FitPose/Resources/Assets.xcassets/rep_fail.dataset/rep_fail.mp3</span></a></div><div style='margin:2px 0'><span class='bs-badge-right' style='margin-left:0;margin-right:6px'>11 KB</span><a href="vscode://file//Users/exey/gymcore/FitPose/Resources/Assets.xcassets/rep_success.dataset/rep_success.mp3" class="vs-link" title="Open in VS Code"><span style='font-size:12px'>FitPose/Resources/Assets.xcassets/rep_success.dataset/rep_success.mp3</span></a></div></td></tr></tbody>
+    </table></div>
+    
+</div>
+    <footer style="text-align:center; padding: 20px 0 10px; color: var(--text3); font-size: 12px;">
+        Generator: <a href="https://github.com/Exey/ArchSwiftScope" style="color: var(--accent); text-decoration: none;">ArchSwiftScope</a> · MIT License · Exey Panteleev
+    </footer>
+</div>
+<script>
+window.SECURITY_DATA = {score:52,cats:[{id:1,name:"Insecure Data Storage",risk:0,points:0,weight:130,assessed:true},{id:2,name:"Crash Factors",risk:38,points:46,weight:120,assessed:true},{id:3,name:"Unsafe & Deprecated Constructs",risk:0,points:0,weight:60,assessed:true},{id:4,name:"Third-Party & Supply Chain Risks",risk:0,points:0,weight:50,assessed:true},{id:5,name:"Memory Corruption & Exploit Factors",risk:0,points:0,weight:80,assessed:true},{id:6,name:"Cryptography Issues",risk:0,points:0,weight:110,assessed:true},{id:7,name:"Network Security",risk:0,points:0,weight:90,assessed:true},{id:8,name:"Authentication & Authorization",risk:0,points:0,weight:100,assessed:true},{id:9,name:"Input/Output Validation",risk:5,points:4,weight:80,assessed:true},{id:10,name:"Binary Protections",risk:5,points:2,weight:40,assessed:true},{id:11,name:"Privacy Violations",risk:0,points:0,weight:50,assessed:true},{id:12,name:"iOS Configuration Weaknesses",risk:0,points:0,weight:40,assessed:true},{id:13,name:"Logic & State-based Exploit Factors",risk:0,points:0,weight:30,assessed:true},{id:14,name:"Low-level Binary Vulnerabilities",risk:0,points:0,weight:20,assessed:true}]};
+(function(){
+    var D = window.SECURITY_DATA;
+    var svg = document.getElementById('sec-gauge-svg');
+    if (!svg || !D) return;
+
+    // Half-gauge geometry.
+    var r = 80, cx = 100, cy = 104;
+    var ns = 'http://www.w3.org/2000/svg';
+
+    // Background arc (left → right semicircle).
+    var bg = document.createElementNS(ns, 'path');
+    bg.setAttribute('d', 'M ' + (cx - r) + ',' + cy + ' A ' + r + ',' + r + ' 0 0 1 ' + (cx + r) + ',' + cy);
+    bg.setAttribute('fill', 'none');
+    bg.setAttribute('stroke', '#e0e0e0');
+    bg.setAttribute('stroke-width', '16');
+    bg.setAttribute('stroke-linecap', 'round');
+    svg.appendChild(bg);
+
+    // Foreground arc proportional to score / 1000.
+    var pct = Math.min(Math.max(D.score / 1000, 0.001), 0.999);
+    var endAngle = Math.PI * (1 - pct);
+    var ex = cx + r * Math.cos(endAngle);
+    var ey = cy - r * Math.sin(endAngle);
+    var col = pct < 0.20 ? '#5a8a7a' : pct < 0.50 ? '#a0a030' : pct < 0.80 ? '#c0a030' : '#c05040';
+    var fg = document.createElementNS(ns, 'path');
+    fg.setAttribute('d', 'M ' + (cx - r) + ',' + cy + ' A ' + r + ',' + r + ' 0 0 1 ' + ex.toFixed(2) + ',' + ey.toFixed(2));
+    fg.setAttribute('fill', 'none');
+    fg.setAttribute('stroke', col);
+    fg.setAttribute('stroke-width', '16');
+    fg.setAttribute('stroke-linecap', 'round');
+    svg.appendChild(fg);
+
+    // Band legend with current-band marker.
+    var ranges = [
+        { lo: 0,   hi: 199,  col: '#5a8a7a', label: 'Hardened' },
+        { lo: 200, hi: 499,  col: '#a0a030', label: 'Minor exposure' },
+        { lo: 500, hi: 799,  col: '#c0a030', label: 'Elevated risk' },
+        { lo: 800, hi: 1000, col: '#c05040', label: 'Critical exposure' }
+    ];
+    var desc = '';
+    for (var i = 0; i < ranges.length; i++) {
+        var rg = ranges[i];
+        var cur = D.score >= rg.lo && D.score <= rg.hi;
+        desc += '<div' + (cur ? ' class="cur"' : '') + '>'
+              + '<span class="rng" style="background:' + rg.col + '"></span>'
+              + rg.lo + '–' + rg.hi + ': ' + rg.label + (cur ? ' ◂' : '') + '</div>';
+    }
+    var el = document.getElementById('sec-gauge-desc');
+    if (el) el.innerHTML = desc;
+})();
+{
+    const d = {"nodes":[{"score":0.10479303352588694,"id":"\/Users\/exey\/gymcore\/FitPose\/App\/FitPoseApp.swift::AppDelegate","group":"App","label":"AppDelegate","sublabel":"FitPoseApp.swift","kind":"class"},{"score":0.10479303352588694,"id":"\/Users\/exey\/gymcore\/FitPose\/App\/FitPoseApp.swift::FitPoseApp","group":"App","label":"FitPoseApp","sublabel":"FitPoseApp.swift","kind":"struct"},{"score":0.03727648813769835,"id":"\/Users\/exey\/gymcore\/FitPose\/App\/ContentView.swift::ContentView","group":"App","label":"ContentView","sublabel":"ContentView.swift","kind":"struct"},{"score":0.12080512101072112,"id":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExerciseKeypointPair","group":"App","label":"ExerciseKeypointPair","sublabel":"Models.swift","kind":"struct"},{"score":0.12080512101072112,"id":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::AnglePhase","group":"App","label":"AnglePhase","sublabel":"Models.swift","kind":"struct"},{"score":0.12080512101072112,"id":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExerciseConfig","group":"App","label":"ExerciseConfig","sublabel":"Models.swift","kind":"struct"},{"score":0.12080512101072112,"id":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExercisesFile","group":"App","label":"ExercisesFile","sublabel":"Models.swift","kind":"struct"},{"score":0.12080512101072112,"id":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExerciseConfigRaw","group":"App","label":"ExerciseConfigRaw","sublabel":"Models.swift","kind":"struct"},{"score":0.12080512101072112,"id":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ChatMessage","group":"App","label":"ChatMessage","sublabel":"Models.swift","kind":"struct"},{"score":0.12080512101072112,"id":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::GoalOption","group":"App","label":"GoalOption","sublabel":"Models.swift","kind":"struct"},{"score":0.12080512101072112,"id":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::Plan","group":"App","label":"Plan","sublabel":"Models.swift","kind":"class"},{"score":0.12080512101072112,"id":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::FitnessGoal","group":"App","label":"FitnessGoal","sublabel":"Models.swift","kind":"class"},{"score":0.12080512101072112,"id":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::WorkoutResult","group":"App","label":"WorkoutResult","sublabel":"Models.swift","kind":"class"},{"score":0.03727648813769835,"id":"\/Users\/exey\/gymcore\/FitPose\/Views\/Onboarding\/OnboardingView.swift::OnboardingView","group":"App","label":"OnboardingView","sublabel":"OnboardingView.swift","kind":"struct"},{"score":0.010090677537169836,"id":"\/Users\/exey\/gymcore\/FitPose\/Services\/FitnessChatAssistant.swift::AIAvailability","group":"App","label":"AIAvailability","sublabel":"FitnessChatAssistant.swift","kind":"enum"},{"score":0.010090677537169836,"id":"\/Users\/exey\/gymcore\/FitPose\/Services\/FitnessChatAssistant.swift::FitnessChatAssistant","group":"App","label":"FitnessChatAssistant","sublabel":"FitnessChatAssistant.swift","kind":"class"},{"score":0.010090677537169836,"id":"\/Users\/exey\/gymcore\/FitPose\/Services\/FitnessChatAssistant.swift::GoalPlanEntry","group":"App","label":"GoalPlanEntry","sublabel":"FitnessChatAssistant.swift","kind":"struct"},{"score":0.00920760920178753,"id":"\/Users\/exey\/gymcore\/FitPose\/Services\/ExerciseCounter.swift::ExerciseCounter","group":"App","label":"ExerciseCounter","sublabel":"ExerciseCounter.swift","kind":"class"},{"score":0.022233955525174945,"id":"\/Users\/exey\/gymcore\/FitPose\/Services\/ExerciseService.swift::ExerciseService","group":"App","label":"ExerciseService","sublabel":"ExerciseService.swift","kind":"class"},{"score":0.11462570478090592,"id":"\/Users\/exey\/gymcore\/FitPose\/Services\/LanguageService.swift::LanguageService","group":"App","label":"LanguageService","sublabel":"LanguageService.swift","kind":"class"}],"links":[{"source":"\/Users\/exey\/gymcore\/FitPose\/App\/FitPoseApp.swift::AppDelegate","target":"\/Users\/exey\/gymcore\/FitPose\/App\/FitPoseApp.swift::FitPoseApp"},{"source":"\/Users\/exey\/gymcore\/FitPose\/App\/FitPoseApp.swift::AppDelegate","target":"\/Users\/exey\/gymcore\/FitPose\/App\/ContentView.swift::ContentView"},{"source":"\/Users\/exey\/gymcore\/FitPose\/App\/FitPoseApp.swift::AppDelegate","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::Plan"},{"source":"\/Users\/exey\/gymcore\/FitPose\/App\/FitPoseApp.swift::AppDelegate","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::FitnessGoal"},{"source":"\/Users\/exey\/gymcore\/FitPose\/App\/FitPoseApp.swift::AppDelegate","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::WorkoutResult"},{"source":"\/Users\/exey\/gymcore\/FitPose\/App\/FitPoseApp.swift::AppDelegate","target":"\/Users\/exey\/gymcore\/FitPose\/Views\/Onboarding\/OnboardingView.swift::OnboardingView"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::Plan","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExerciseKeypointPair"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::Plan","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::AnglePhase"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::Plan","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExerciseConfig"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::Plan","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExercisesFile"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::Plan","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExerciseConfigRaw"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::Plan","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ChatMessage"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::Plan","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::GoalOption"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::Plan","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::FitnessGoal"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::Plan","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::WorkoutResult"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::Plan","target":"\/Users\/exey\/gymcore\/FitPose\/Services\/LanguageService.swift::LanguageService"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::FitnessGoal","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExerciseKeypointPair"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::FitnessGoal","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::AnglePhase"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::FitnessGoal","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExerciseConfig"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::FitnessGoal","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExercisesFile"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::FitnessGoal","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExerciseConfigRaw"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::FitnessGoal","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ChatMessage"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::FitnessGoal","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::GoalOption"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::FitnessGoal","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::Plan"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::FitnessGoal","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::WorkoutResult"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::FitnessGoal","target":"\/Users\/exey\/gymcore\/FitPose\/Services\/LanguageService.swift::LanguageService"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::WorkoutResult","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExerciseKeypointPair"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::WorkoutResult","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::AnglePhase"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::WorkoutResult","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExerciseConfig"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::WorkoutResult","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExercisesFile"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::WorkoutResult","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExerciseConfigRaw"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::WorkoutResult","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ChatMessage"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::WorkoutResult","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::GoalOption"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::WorkoutResult","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::Plan"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::WorkoutResult","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::FitnessGoal"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::WorkoutResult","target":"\/Users\/exey\/gymcore\/FitPose\/Services\/LanguageService.swift::LanguageService"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Services\/FitnessChatAssistant.swift::FitnessChatAssistant","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ChatMessage"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Services\/FitnessChatAssistant.swift::FitnessChatAssistant","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::GoalOption"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Services\/FitnessChatAssistant.swift::FitnessChatAssistant","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::Plan"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Services\/FitnessChatAssistant.swift::FitnessChatAssistant","target":"\/Users\/exey\/gymcore\/FitPose\/Services\/FitnessChatAssistant.swift::AIAvailability"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Services\/FitnessChatAssistant.swift::FitnessChatAssistant","target":"\/Users\/exey\/gymcore\/FitPose\/Services\/FitnessChatAssistant.swift::GoalPlanEntry"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Services\/ExerciseCounter.swift::ExerciseCounter","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExerciseKeypointPair"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Services\/ExerciseCounter.swift::ExerciseCounter","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::AnglePhase"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Services\/ExerciseCounter.swift::ExerciseCounter","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExerciseConfig"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Services\/ExerciseService.swift::ExerciseService","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExerciseConfig"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Services\/ExerciseService.swift::ExerciseService","target":"\/Users\/exey\/gymcore\/FitPose\/Models\/Models.swift::ExercisesFile"},{"source":"\/Users\/exey\/gymcore\/FitPose\/Services\/LanguageService.swift::LanguageService","target":"\/Users\/exey\/gymcore\/FitPose\/App\/FitPoseApp.swift::FitPoseApp"}]};
+    const el = document.getElementById('pkg-graph-0');
+    if (d.nodes.length > 0 && el) {
+        const kc = {'class':'#007aff','struct':'#34c759','enum':'#ff9500','actor':'#ff3b30'};
+        const g = ForceGraph()(el)
+            .graphData(d)
+            .nodeLabel(n => n.label + ' (' + n.sublabel + ')\n' + n.kind)
+            .nodeVal(n => Math.max(n.score * 3000, 5))
+            .nodeColor(n => kc[n.kind] || '#999')
+            .nodeCanvasObject((node, ctx, gs) => {
+                const r = Math.max(Math.sqrt(Math.max(node.score * 3000, 5)) * 0.8, 3);
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, r, 0, 2 * Math.PI);
+                ctx.fillStyle = kc[node.kind] || '#999';
+                ctx.fill();
+                if (gs > 0.5) {
+                    ctx.font = `${Math.max(10/gs, 3)}px -apple-system, sans-serif`;
+                    ctx.textAlign = 'center';
+                    ctx.fillStyle = '#333';
+                    ctx.fillText(node.label, node.x, node.y + r + 10/gs);
+                }
+            })
+            .linkDirectionalArrowLength(8)
+            .linkDirectionalArrowRelPos(1)
+            .linkColor(() => 'rgba(0,0,0,0.12)')
+            .width(el.offsetWidth)
+            .height(420);
+        g.d3Force('charge').strength(-250);
+        g.d3Force('link').distance(80);
+    }
+}
+{
+    const d = {"links":[{"target":"\/Users\/exey\/gymcore\/Modules\/PoseCamera\/Sources\/PoseCamera\/PoseDetectionService.swift::PoseMetrics","source":"\/Users\/exey\/gymcore\/Modules\/PoseCamera\/Sources\/PoseCamera\/PoseDetectionService.swift::PoseDetectionService"},{"target":"\/Users\/exey\/gymcore\/Modules\/PoseCamera\/Sources\/PoseCamera\/PoseDetectionService.swift::CaptureDelegate","source":"\/Users\/exey\/gymcore\/Modules\/PoseCamera\/Sources\/PoseCamera\/PoseDetectionService.swift::PoseDetectionService"},{"target":"\/Users\/exey\/gymcore\/Modules\/PoseCamera\/Sources\/PoseCamera\/CameraCocoView.swift::CameraCocoView","source":"\/Users\/exey\/gymcore\/Modules\/PoseCamera\/Sources\/PoseCamera\/PoseDetectionService.swift::PoseDetectionService"},{"target":"\/Users\/exey\/gymcore\/Modules\/PoseCamera\/Sources\/PoseCamera\/PoseDetectionService.swift::PoseMetrics","source":"\/Users\/exey\/gymcore\/Modules\/PoseCamera\/Sources\/PoseCamera\/PoseDetectionService.swift::CaptureDelegate"},{"target":"\/Users\/exey\/gymcore\/Modules\/PoseCamera\/Sources\/PoseCamera\/PoseDetectionService.swift::PoseDetectionService","source":"\/Users\/exey\/gymcore\/Modules\/PoseCamera\/Sources\/PoseCamera\/PoseDetectionService.swift::CaptureDelegate"},{"target":"\/Users\/exey\/gymcore\/Modules\/PoseCamera\/Sources\/PoseCamera\/CameraCocoView.swift::CameraCocoView","source":"\/Users\/exey\/gymcore\/Modules\/PoseCamera\/Sources\/PoseCamera\/PoseDetectionService.swift::CaptureDelegate"}],"nodes":[{"label":"PoseMetrics","kind":"struct","score":0.05532457242195642,"id":"\/Users\/exey\/gymcore\/Modules\/PoseCamera\/Sources\/PoseCamera\/PoseDetectionService.swift::PoseMetrics","group":"PoseCamera","sublabel":"PoseDetectionService.swift"},{"label":"PoseDetectionService","kind":"class","score":0.05532457242195642,"id":"\/Users\/exey\/gymcore\/Modules\/PoseCamera\/Sources\/PoseCamera\/PoseDetectionService.swift::PoseDetectionService","group":"PoseCamera","sublabel":"PoseDetectionService.swift"},{"label":"CaptureDelegate","kind":"class","score":0.05532457242195642,"id":"\/Users\/exey\/gymcore\/Modules\/PoseCamera\/Sources\/PoseCamera\/PoseDetectionService.swift::CaptureDelegate","group":"PoseCamera","sublabel":"PoseDetectionService.swift"},{"label":"CameraCocoView","kind":"struct","score":0.056004106285684904,"id":"\/Users\/exey\/gymcore\/Modules\/PoseCamera\/Sources\/PoseCamera\/CameraCocoView.swift::CameraCocoView","group":"PoseCamera","sublabel":"CameraCocoView.swift"}]};
+    const el = document.getElementById('pkg-graph-1');
+    if (d.nodes.length > 0 && el) {
+        const kc = {'class':'#007aff','struct':'#34c759','enum':'#ff9500','actor':'#ff3b30'};
+        const g = ForceGraph()(el)
+            .graphData(d)
+            .nodeLabel(n => n.label + ' (' + n.sublabel + ')\n' + n.kind)
+            .nodeVal(n => Math.max(n.score * 3000, 5))
+            .nodeColor(n => kc[n.kind] || '#999')
+            .nodeCanvasObject((node, ctx, gs) => {
+                const r = Math.max(Math.sqrt(Math.max(node.score * 3000, 5)) * 0.8, 3);
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, r, 0, 2 * Math.PI);
+                ctx.fillStyle = kc[node.kind] || '#999';
+                ctx.fill();
+                if (gs > 0.5) {
+                    ctx.font = `${Math.max(10/gs, 3)}px -apple-system, sans-serif`;
+                    ctx.textAlign = 'center';
+                    ctx.fillStyle = '#333';
+                    ctx.fillText(node.label, node.x, node.y + r + 10/gs);
+                }
+            })
+            .linkDirectionalArrowLength(8)
+            .linkDirectionalArrowRelPos(1)
+            .linkColor(() => 'rgba(0,0,0,0.12)')
+            .width(el.offsetWidth)
+            .height(420);
+        g.d3Force('charge').strength(-250);
+        g.d3Force('link').distance(80);
+    }
+}
+{
+    const d = {"links":[{"source":"App","target":"PoseCamera"}],"nodes":[{"val":17,"label":"App","id":"App"},{"val":3,"label":"PoseCamera","id":"PoseCamera"}]};
+    const el = document.getElementById('arch-graph');
+    if (d.nodes.length > 0 && el) {
+        const g = ForceGraph()(el)
+            .graphData(d)
+            .nodeLabel(n => n.label + ' (' + n.val + ' files)')
+            .nodeVal(n => Math.max(n.val * 2, 4))
+            .nodeColor(() => '#007aff')
+            .nodeCanvasObject((node, ctx, gs) => {
+                const r = Math.max(Math.sqrt(Math.max(node.val * 2, 4)) * 1.2, 4);
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, r, 0, 2 * Math.PI);
+                ctx.fillStyle = '#007aff';
+                ctx.fill();
+                if (gs > 0.4) {
+                    ctx.font = `${Math.max(11/gs, 3)}px -apple-system, sans-serif`;
+                    ctx.textAlign = 'center';
+                    ctx.fillStyle = '#333';
+                    ctx.fillText(node.label, node.x, node.y + r + 12/gs);
+                }
+            })
+            .linkDirectionalArrowLength(0)
+            .linkColor(() => 'rgba(0,0,0,0.2)')
+            .width(el.offsetWidth)
+            .height(500);
+        g.d3Force('charge').strength(-300);
+        g.d3Force('link').distance(120);
+    }
+}
+
+</script>
+</body>
+</html>

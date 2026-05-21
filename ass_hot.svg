@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 510">
+  <rect x="0" y="0" width="1100" height="510" rx="40" fill="#ffffff" stroke="#e5e5ea" stroke-width="1"/>
+
+  <text x="32" y="42" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="20" font-weight="bold" fill="#424245">🔥 Hot Zones</text>
+  <text x="32" y="60" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="13" fill="#86868b">Files imported or referenced by the most other files — highest-leverage nodes in the codebase.</text>
+  <line x1="32" y1="70" x2="1068" y2="70" stroke="#e5e5ea" stroke-width="2"/>
+
+  <!-- Table header: File(42-590) | Uses(598) | Lines(686) | Decl(774) | Package(862) -->
+  <rect x="32" y="78" width="1036" height="26" rx="0" fill="#f5f5f7"/>
+  <text x="42"  y="95" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">FILE</text>
+  <text x="598" y="95" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">USES</text>
+  <text x="686" y="95" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">LINES</text>
+  <text x="774" y="95" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">DECL</text>
+  <text x="862" y="95" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">PACKAGE</text>
+
+  <!-- Rows: rh=27, start y=104 -->
+  <line x1="32" y1="104" x2="1068" y2="104" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42" y="121" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">gymcore/FitPose/Models/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">Models.swift</tspan></text>
+  <text x="598" y="121" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#1d1d1f">12</text>
+  <text x="686" y="121" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">310</text>
+  <text x="774" y="121" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">10</text>
+  <rect x="862" y="113" width="50" height="17" rx="5" fill="#e3f2fd"/><text x="887" y="125" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#1565c0">App</text>
+
+  <line x1="32" y1="131" x2="1068" y2="131" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42" y="148" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">gymcore/FitPose/Services/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">ExerciseService.swift</tspan></text>
+  <text x="598" y="148" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#1d1d1f">6</text>
+  <text x="686" y="148" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">60</text>
+  <text x="774" y="148" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">1</text>
+  <rect x="862" y="140" width="50" height="17" rx="5" fill="#e3f2fd"/><text x="887" y="152" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#1565c0">App</text>
+
+  <line x1="32" y1="158" x2="1068" y2="158" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42" y="175" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">gymcore/FitPose/Services/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">DataService.swift</tspan></text>
+  <text x="598" y="175" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#1d1d1f">5</text>
+  <text x="686" y="175" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">163</text>
+  <text x="774" y="175" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">1</text>
+  <rect x="862" y="167" width="50" height="17" rx="5" fill="#e3f2fd"/><text x="887" y="179" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#1565c0">App</text>
+
+  <line x1="32" y1="185" x2="1068" y2="185" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42" y="202" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">gymcore/FitPose/App/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">Theme.swift</tspan></text>
+  <text x="598" y="202" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#1d1d1f">5</text>
+  <text x="686" y="202" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">123</text>
+  <text x="774" y="202" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">4</text>
+  <rect x="862" y="194" width="50" height="17" rx="5" fill="#e3f2fd"/><text x="887" y="206" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#1565c0">App</text>
+
+  <line x1="32" y1="212" x2="1068" y2="212" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42" y="229" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">gymcore/FitPose/Services/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">LanguageService.swift</tspan></text>
+  <text x="598" y="229" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">3</text>
+  <text x="686" y="229" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">105</text>
+  <text x="774" y="229" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">1</text>
+  <rect x="862" y="221" width="50" height="17" rx="5" fill="#e3f2fd"/><text x="887" y="233" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#1565c0">App</text>
+
+  <line x1="32" y1="239" x2="1068" y2="239" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42" y="256" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">PoseCamera/Sources/PoseCamera/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">CameraCocoView.swift</tspan></text>
+  <text x="598" y="256" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">2</text>
+  <text x="686" y="256" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">365</text>
+  <text x="774" y="256" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">2</text>
+  <rect x="862" y="248" width="90" height="17" rx="5" fill="#e3f2fd"/><text x="907" y="260" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#1565c0">PoseCamera</text>
+
+  <line x1="32" y1="266" x2="1068" y2="266" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42" y="283" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">FitPose/Views/Plan/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">PlanView.swift</tspan></text>
+  <text x="598" y="283" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">2</text>
+  <text x="686" y="283" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">641</text>
+  <text x="774" y="283" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">4</text>
+  <rect x="862" y="275" width="50" height="17" rx="5" fill="#e3f2fd"/><text x="887" y="287" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#1565c0">App</text>
+
+  <line x1="32" y1="293" x2="1068" y2="293" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42" y="310" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">FitPose/Views/Workout/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">WorkoutView.swift</tspan></text>
+  <text x="598" y="310" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">2</text>
+  <text x="686" y="310" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">1 133</text>
+  <text x="774" y="310" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">5</text>
+  <rect x="862" y="302" width="50" height="17" rx="5" fill="#e3f2fd"/><text x="887" y="314" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#1565c0">App</text>
+
+  <line x1="32" y1="320" x2="1068" y2="320" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42" y="337" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">gymcore/FitPose/App/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">FitPoseApp.swift</tspan></text>
+  <text x="598" y="337" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">1</text>
+  <text x="686" y="337" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">61</text>
+  <text x="774" y="337" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">2</text>
+  <rect x="862" y="329" width="50" height="17" rx="5" fill="#e3f2fd"/><text x="887" y="341" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#1565c0">App</text>
+
+  <line x1="32" y1="347" x2="1068" y2="347" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42" y="364" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">PoseCamera/Sources/PoseCamera/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">PoseDetectionService.swift</tspan></text>
+  <text x="598" y="364" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">1</text>
+  <text x="686" y="364" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">350</text>
+  <text x="774" y="364" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">3</text>
+  <rect x="862" y="356" width="90" height="17" rx="5" fill="#e3f2fd"/><text x="907" y="368" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#1565c0">PoseCamera</text>
+
+  <line x1="32" y1="374" x2="1068" y2="374" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42" y="391" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">FitPose/Views/Stats/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">StatsView.swift</tspan></text>
+  <text x="598" y="391" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">1</text>
+  <text x="686" y="391" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">277</text>
+  <text x="774" y="391" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">3</text>
+  <rect x="862" y="383" width="50" height="17" rx="5" fill="#e3f2fd"/><text x="887" y="395" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#1565c0">App</text>
+
+  <line x1="32" y1="401" x2="1068" y2="401" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42" y="418" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">FitPose/Views/Home/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">HomeView.swift</tspan></text>
+  <text x="598" y="418" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">1</text>
+  <text x="686" y="418" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">520</text>
+  <text x="774" y="418" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">5</text>
+  <rect x="862" y="410" width="50" height="17" rx="5" fill="#e3f2fd"/><text x="887" y="422" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#1565c0">App</text>
+
+  <line x1="32" y1="428" x2="1068" y2="428" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42" y="445" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">FitPose/Views/Settings/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">SettingsView.swift</tspan></text>
+  <text x="598" y="445" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">1</text>
+  <text x="686" y="445" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">205</text>
+  <text x="774" y="445" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">2</text>
+  <rect x="862" y="437" width="50" height="17" rx="5" fill="#e3f2fd"/><text x="887" y="449" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#1565c0">App</text>
+
+  <line x1="32" y1="455" x2="1068" y2="455" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42" y="472" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">FitPose/Views/Onboarding/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">OnboardingView.swift</tspan></text>
+  <text x="598" y="472" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">1</text>
+  <text x="686" y="472" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">86</text>
+  <text x="774" y="472" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">1</text>
+  <rect x="862" y="464" width="50" height="17" rx="5" fill="#e3f2fd"/><text x="887" y="476" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#1565c0">App</text>
+
+  <line x1="32" y1="482" x2="1068" y2="482" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42" y="499" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif"><tspan font-size="11" fill="#86868b">gymcore/FitPose/App/</tspan><tspan font-size="12" font-weight="600" fill="#0071e3">ContentView.swift</tspan></text>
+  <text x="598" y="499" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">1</text>
+  <text x="686" y="499" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">35</text>
+  <text x="774" y="499" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">2</text>
+  <rect x="862" y="491" width="50" height="17" rx="5" fill="#e3f2fd"/><text x="887" y="503" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#1565c0">App</text>
+</svg>

@@ -13,41 +13,116 @@
 
         body {
             background-color: #0d1117;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             line-height: 1.5;
-            color: #1f2328; 
+            color: #1f2328;
         }
 
         .container {
-            width: 50%;
-            max-width: 1200px; 
-            min-width: 600px;  
+            width: 90%;
+            max-width: 1200px;
             margin: 2rem auto;
-            text-align: center; 
         }
 
         h1 {
             font-size: 2rem;
             font-weight: 600;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             color: #e6edf3;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #8b949e;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card-wrap img,
+        .card-wrap object {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 40px;
+        }
+
+        .card-label {
+            color: #8b949e;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 6px;
+            padding-left: 4px;
         }
 
         @media (max-width: 768px) {
-            .container {
-                width: 85%;  /
-            }
+            .container { width: 95%; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>ArchSwiftScope</h1>
-        <img src="sas_sec.svg" alt="ArchSwiftScope">
+        <div class="cards">
+
+            <div class="card-wrap">
+                <div class="card-label">Overview</div>
+                <img src="ass_summary.svg" alt="Summary">
+            </div>
+
+            <div class="card-wrap">
+                <div class="card-label">Architecture</div>
+                <img src="ass_arch.svg" alt="Architecture">
+            </div>
+
+            <div class="card-wrap">
+                <div class="card-label">OOP vs POP</div>
+                <img src="ass_oop.svg" alt="OOP vs POP">
+            </div>
+
+            <div class="card-wrap">
+                <div class="card-label">Security Risks</div>
+                <img src="ass_sec.svg" alt="Security Risks">
+            </div>
+
+            <div class="card-wrap">
+                <div class="card-label">Git Analysis</div>
+                <img src="ass_git.svg" alt="Git Analysis">
+            </div>
+
+            <div class="card-wrap">
+                <div class="card-label">Hot Zones</div>
+                <img src="ass_hot.svg" alt="Hot Zones">
+            </div>
+
+            <div class="card-wrap">
+                <div class="card-label">Longest Functions</div>
+                <img src="ass_funcs.svg" alt="Longest Functions">
+            </div>
+
+            <div class="card-wrap">
+                <div class="card-label">Module Insights</div>
+                <img src="ass_modules.svg" alt="Module Insights">
+            </div>
+
+            <div class="card-wrap">
+                <div class="card-label">Packages &amp; Modules</div>
+                <img src="ass_pkgs.svg" alt="Packages">
+            </div>
+
+            <div class="card-wrap">
+                <div class="card-label">Assets</div>
+                <img src="ass_assets.svg" alt="Assets">
+            </div>
+
+        </div>
     </div>
 </body>
 </html>

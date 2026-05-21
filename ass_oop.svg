@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 460">
+  <defs>
+    <linearGradient id="popGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#ff3b30"/>
+      <stop offset="40%"  stop-color="#ff9500"/>
+      <stop offset="100%" stop-color="#34c759"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1100" height="460" rx="40" fill="#ffffff" stroke="#e5e5ea" stroke-width="1"/>
+
+  <text x="32" y="42" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="20" font-weight="bold" fill="#424245">🧬 OOP vs POP</text>
+  <text x="32" y="60" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="13" fill="#86868b">Style signal across 56 types · Protocol Design 55% · Value Semantics 30% · Anti-inheritance 15%</text>
+  <line x1="32" y1="70" x2="1068" y2="70" stroke="#e5e5ea" stroke-width="2"/>
+
+  <!-- Score badge -->
+  <text x="32"   y="100" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b" letter-spacing="0.06em">◀ OOP</text>
+  <text x="1068" y="100" text-anchor="end" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b" letter-spacing="0.06em">POP ▶</text>
+
+  <!-- Gradient bar -->
+  <rect x="32" y="108" width="1036" height="14" rx="7" fill="url(#popGrad)"/>
+
+  <!-- Needle at 41% → x = 32 + 0.41*1036 = 32+424.76 ≈ 457 -->
+  <rect x="454" y="103" width="4" height="24" rx="2" fill="#ffffff" style="filter:drop-shadow(0 1px 3px rgba(0,0,0,0.3))"/>
+
+  <!-- Score label above needle -->
+  <rect x="418" y="78" width="76" height="22" rx="6" fill="#ffffff" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="456" y="93" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="bold" fill="#ff9500">41% POP</text>
+
+  <line x1="32" y1="144" x2="1068" y2="144" stroke="#e5e5ea" stroke-width="1.5"/>
+
+  <!-- Metric bars -->
+  <!-- label col: 32-360(328px), bar: 368-848(480px), pct: 856-900, weight: 910-1000 -->
+  <text x="32" y="168" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="bold" fill="#86868b" letter-spacing="0.06em">METRIC BREAKDOWN</text>
+
+  <!-- Protocol Design: 0% POP -->
+  <text x="32"   y="196" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">Protocol Design (M1+generics)</text>
+  <rect x="368"  y="189" width="480" height="7" rx="3" fill="#e5e5ea"/>
+  <text x="860"  y="197" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="600" fill="#ff3b30">0%</text>
+  <text x="920"  y="197" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#86868b">W=55%</text>
+  <rect x="1020" y="185" width="48" height="18" rx="6" fill="#fff0f0"/>
+  <text x="1044" y="197" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="700" fill="#c62828">OOP</text>
+
+  <!-- Value Semantics: 91% POP -->
+  <text x="32"   y="224" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">Value Semantics</text>
+  <rect x="368"  y="217" width="480" height="7" rx="3" fill="#e5e5ea"/>
+  <rect x="368"  y="217" width="437" height="7" rx="3" fill="#34c759"/>
+  <text x="860"  y="225" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="600" fill="#34c759">91%</text>
+  <text x="920"  y="225" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#86868b">W=30%</text>
+  <rect x="1020" y="213" width="48" height="18" rx="6" fill="#f0fff4"/>
+  <text x="1044" y="225" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="700" fill="#2e7d32">POP</text>
+
+  <!-- Anti-inheritance: 93% POP -->
+  <text x="32"   y="252" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#424245">Anti-inheritance</text>
+  <rect x="368"  y="245" width="480" height="7" rx="3" fill="#e5e5ea"/>
+  <rect x="368"  y="245" width="446" height="7" rx="3" fill="#34c759"/>
+  <text x="860"  y="253" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="600" fill="#34c759">93%</text>
+  <text x="920"  y="253" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#86868b">W=15%</text>
+  <rect x="1020" y="241" width="48" height="18" rx="6" fill="#f0fff4"/>
+  <text x="1044" y="253" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="700" fill="#2e7d32">POP</text>
+
+  <line x1="32" y1="272" x2="1068" y2="272" stroke="#e5e5ea" stroke-width="1.5"/>
+
+  <!-- Key metrics table -->
+  <!-- Header -->
+  <rect x="32" y="280" width="1036" height="26" rx="0" fill="#f5f5f7"/>
+  <text x="42"   y="297" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">#</text>
+  <text x="72"   y="297" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">METRIC</text>
+  <text x="550"  y="297" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">VALUE</text>
+  <text x="800"  y="297" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">POP SCORE</text>
+  <text x="1020" y="297" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="600" fill="#86868b" letter-spacing="0.05em">SIGNAL</text>
+
+  <!-- Row: Struct vs Class ratio -->
+  <line x1="32" y1="306" x2="1068" y2="306" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42"  y="323" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">1</text>
+  <text x="72"  y="323" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#1d1d1f">Struct vs Class ratio</text>
+  <text x="550" y="323" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#424245">42 structs · 10 classes</text>
+  <rect x="800" y="316" width="180" height="7" rx="3" fill="#e5e5ea"/>
+  <rect x="800" y="316" width="144" height="7" rx="3" fill="#34c759"/>
+  <text x="992" y="324" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="600" fill="#34c759">80%</text>
+  <rect x="1020" y="312" width="48" height="18" rx="6" fill="#f0fff4"/>
+  <text x="1044" y="324" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="700" fill="#2e7d32">POP</text>
+
+  <!-- Row: final keyword -->
+  <line x1="32" y1="334" x2="1068" y2="334" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42"  y="351" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">2</text>
+  <text x="72"  y="351" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#1d1d1f">final keyword</text>
+  <text x="550" y="351" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#424245">10 / 10 classes</text>
+  <rect x="800" y="344" width="180" height="7" rx="3" fill="#e5e5ea"/>
+  <rect x="800" y="344" width="180" height="7" rx="3" fill="#34c759"/>
+  <text x="992" y="352" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="600" fill="#34c759">100%</text>
+  <rect x="1020" y="340" width="48" height="18" rx="6" fill="#f0fff4"/>
+  <text x="1044" y="352" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="700" fill="#2e7d32">POP</text>
+
+  <!-- Row: Inheritance depth -->
+  <line x1="32" y1="362" x2="1068" y2="362" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42"  y="379" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">3</text>
+  <text x="72"  y="379" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#1d1d1f">Inheritance depth</text>
+  <text x="550" y="379" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#424245">avg 1.0 · max 1 · 0 deep ≥ 3</text>
+  <rect x="800" y="372" width="180" height="7" rx="3" fill="#e5e5ea"/>
+  <rect x="800" y="372" width="180" height="7" rx="3" fill="#34c759"/>
+  <text x="992" y="380" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="600" fill="#34c759">100%</text>
+  <rect x="1020" y="368" width="48" height="18" rx="6" fill="#f0fff4"/>
+  <text x="1044" y="380" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="700" fill="#2e7d32">POP</text>
+
+  <!-- Counter-signals -->
+  <line x1="32" y1="390" x2="1068" y2="390" stroke="#e5e5ea" stroke-width="1"/>
+  <rect x="32" y="398" width="1036" height="26" rx="0" fill="#fff8f0"/>
+  <text x="72"  y="415" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">⚠ Counter-signals</text>
+  <text x="550" y="415" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">2 singletons · 1 override in 10 classes · 2/10 NSObject</text>
+
+  <!-- Protocol definitions -->
+  <line x1="32" y1="424" x2="1068" y2="424" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="42"  y="441" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">4</text>
+  <text x="72"  y="441" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#1d1d1f">Protocol definitions</text>
+  <text x="550" y="441" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#424245">0 protocols · 52 types</text>
+  <text x="800" y="441" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">N/A — no protocols defined</text>
+  <rect x="1020" y="430" width="48" height="18" rx="6" fill="#fff0f0"/>
+  <text x="1044" y="442" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" font-weight="700" fill="#c62828">OOP</text>
+</svg>
