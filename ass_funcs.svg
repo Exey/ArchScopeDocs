@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 468">
-  <rect x="0" y="0" width="1100" height="468" rx="40" fill="#ffffff" stroke="#e5e5ea" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 446">
+  <rect x="0" y="0" width="1100" height="446" rx="40" fill="#ffffff" stroke="#e5e5ea" stroke-width="1"/>
 
   <text x="32" y="42" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="20" font-weight="bold" fill="#424245">📏 Longest Functions</text>
   <line x1="32" y1="52" x2="1068" y2="52" stroke="#e5e5ea" stroke-width="2"/>
@@ -84,7 +84,4 @@
   <text x="440" y="436" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">FitPoseApp.swift</text>
   <rect x="830" y="426" width="50" height="17" rx="5" fill="#e3f2fd"/><text x="855" y="438" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#1565c0">App</text>
 
-  <line x1="32" y1="446" x2="1068" y2="446" stroke="#e5e5ea" stroke-width="1"/>
-  <text x="42"  y="460" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">exercise() · 3 ln · ExerciseService.swift</text>
-  <text x="440" y="460" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">options() · 1 ln · Models.swift</text>
 </svg>
