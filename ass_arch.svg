@@ -1,102 +1,208 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 560">
-  <rect x="0" y="0" width="1100" height="560" rx="40" fill="#ffffff" stroke="#e5e5ea" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 930">
+  <rect x="0" y="0" width="1100" height="930" rx="40" fill="#ffffff" stroke="#e5e5ea" stroke-width="1"/>
 
   <text x="32" y="42" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="20" font-weight="bold" fill="#424245">🏛️ Architecture</text>
-  <line x1="32" y1="52" x2="1068" y2="52" stroke="#e5e5ea" stroke-width="2"/>
 
-  <!-- LAYERS -->
-  <text x="32" y="72" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="bold" fill="#86868b" letter-spacing="0.06em">📐 LAYERS</text>
+  <!-- ═══ SUB-BLOCK 1: ARCHITECTURE PATTERN (new) ═══ -->
+  <rect x="20" y="60" width="1060" height="208" rx="10" fill="none" stroke="#e5e5ea" stroke-width="1"/>
 
-  <!-- UI/Views 100% -->
-  <text x="46" y="95" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="15">📱</text>
-  <text x="68" y="95" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="13" font-weight="600" fill="#1d1d1f">UI / Views</text>
-  <text x="1068" y="95" text-anchor="end" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">9 files · 4 000 loc</text>
-  <rect x="32" y="103" width="1036" height="8" rx="4" fill="#e5e5ea"/>
-  <rect x="32" y="103" width="1036" height="8" rx="4" fill="#0071e3"/>
+  <!-- MVVM+S 100% -->
+  <text x="32" y="96" font-family="'Courier New', monospace" font-size="13" font-weight="700" fill="#1d1d1f">MVVM+S</text>
+  <rect x="135" y="90" width="240" height="5" rx="2.5" fill="#e5e5ea"/>
+  <rect x="135" y="90" width="240" height="5" rx="2.5" fill="#0071e3"/>
+  <text x="383" y="90" font-family="'Courier New', monospace" font-size="11" fill="#0071e3">100%</text>
+  <text x="440" y="90" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">similarity based on: Model 144, View 97, ViewModel 48, Service 18</text>
 
-  <!-- API/Networking 28% -->
-  <text x="46" y="131" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="15">🌐</text>
-  <text x="68" y="131" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="13" font-weight="600" fill="#1d1d1f">API / Networking</text>
-  <text x="1068" y="131" text-anchor="end" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">6 files · 1 132 loc</text>
-  <rect x="32" y="139" width="1036" height="8" rx="4" fill="#e5e5ea"/>
-  <rect x="32" y="139" width="290" height="8" rx="4" fill="#0071e3"/>
+  <!-- MVVM+C 80% -->
+  <text x="32" y="122" font-family="'Courier New', monospace" font-size="13" font-weight="700" fill="#1d1d1f">MVVM+C</text>
+  <rect x="135" y="116" width="240" height="5" rx="2.5" fill="#e5e5ea"/>
+  <rect x="135" y="116" width="192" height="5" rx="2.5" fill="#86868b"/>
+  <text x="383" y="116" font-family="'Courier New', monospace" font-size="11" fill="#86868b">80%</text>
+  <text x="440" y="116" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">similarity based on: Model 144, View 97, ViewModel 48, Coordinator 1</text>
 
-  <!-- Models 7% -->
-  <text x="46" y="167" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="15">📦</text>
-  <text x="68" y="167" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="13" font-weight="600" fill="#1d1d1f">Models</text>
-  <text x="1068" y="167" text-anchor="end" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">1 file · 310 loc</text>
-  <rect x="32" y="175" width="1036" height="8" rx="4" fill="#e5e5ea"/>
-  <rect x="32" y="175" width="73" height="8" rx="4" fill="#0071e3"/>
+  <!-- RIBs 74% -->
+  <text x="32" y="146" font-family="'Courier New', monospace" font-size="13" font-weight="700" fill="#1d1d1f">RIBs</text>
+  <rect x="135" y="142" width="240" height="5" rx="2.5" fill="#e5e5ea"/>
+  <rect x="135" y="142" width="178" height="5" rx="2.5" fill="#86868b"/>
+  <text x="383" y="142" font-family="'Courier New', monospace" font-size="11" fill="#86868b">74%</text>
+  <text x="440" y="142" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">similarity based on: Router 4, Builder 2</text>
 
-  <!-- Core 5% -->
-  <text x="46" y="203" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="15">🔩</text>
-  <text x="68" y="203" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="13" font-weight="600" fill="#1d1d1f">Core</text>
-  <text x="1068" y="203" text-anchor="end" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">4 files · 212 loc</text>
-  <rect x="32" y="211" width="1036" height="8" rx="4" fill="#e5e5ea"/>
-  <rect x="32" y="211" width="52" height="8" rx="4" fill="#0071e3"/>
+  <!-- Letter Cards: M | V | VM | Svc  ¦  E -->
+  <!-- M card -->
+  <rect x="32" y="174" width="200" height="86" rx="12" fill="#f5f5f7"/>
+  <text x="132" y="204" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="30" font-weight="800" fill="#0071e3">M</text>
+  <text x="132" y="217" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="9" font-weight="600" fill="#424245" letter-spacing="0.04em">MODEL</text>
+  <text x="132" y="234" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="20" font-weight="700" fill="#1d1d1f">144</text>
+  <text x="132" y="247" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="9" fill="#86868b">144 files · 49 types</text>
+  <text x="132" y="258" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#0071e3">ChatEvent.swift</text>
 
-  <line x1="32" y1="231" x2="1068" y2="231" stroke="#e5e5ea" stroke-width="1.5"/>
+  <!-- V card -->
+  <rect x="241" y="174" width="200" height="86" rx="12" fill="#f5f5f7"/>
+  <text x="341" y="204" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="30" font-weight="800" fill="#0071e3">V</text>
+  <text x="341" y="217" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="9" font-weight="600" fill="#424245" letter-spacing="0.04em">VIEW</text>
+  <text x="341" y="234" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="20" font-weight="700" fill="#1d1d1f">97</text>
+  <text x="341" y="247" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="9" fill="#86868b">97 files</text>
+  <text x="341" y="258" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#0071e3">TextView.swift</text>
 
-  <!-- COMPONENTS 6 items in 3×2 grid -->
-  <text x="32" y="251" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="bold" fill="#86868b" letter-spacing="0.06em">🧩 COMPONENTS (6)</text>
+  <!-- VM card -->
+  <rect x="450" y="174" width="200" height="86" rx="12" fill="#f5f5f7"/>
+  <text x="550" y="204" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="30" font-weight="800" fill="#0071e3">VM</text>
+  <text x="550" y="217" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="9" font-weight="600" fill="#424245" letter-spacing="0.04em">VIEWMODEL</text>
+  <text x="550" y="234" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="20" font-weight="700" fill="#1d1d1f">48</text>
+  <text x="550" y="247" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="9" fill="#86868b">48 files · 48 types</text>
+  <text x="550" y="258" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#0071e3">HistoryProvidersVM.swift</text>
 
-  <!-- Row 1: SwiftUI | UIKit | SwiftData -->
-  <!-- col widths: 328 each, gaps 16, pads 32 → 3×328+2×16+2×32=984+32+64=1080 ~ adjust to 330+gap14: 3*330+2*14+64=990+28+64=1082 → cols 330, gaps 16, 3*330+2*16+2*32=990+32+64=1086 → try 340+gap10: 3*340+2*10+64=1020+20+64=1104 → too wide. Let me use 326: 3*326+2*16+2*32=978+32+64=1074 → under. Use 330, gap 9: 3*330+2*9+2*32=990+18+64=1072, gap 14: 1072→1086 hmm. Just use: col=336, gap=8: 3*336+2*8+2*32=1008+16+64=1088, gap=12: 1008+24+64=1096, gap=14: 1008+28+64=1100 ✓ -->
-  <!-- cols: x=32 (w=336), x=382 (w=336), x=732 (w=336) -->
+  <!-- Svc card -->
+  <rect x="659" y="174" width="200" height="86" rx="12" fill="#f5f5f7"/>
+  <text x="759" y="204" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="30" font-weight="800" fill="#0071e3">Svc</text>
+  <text x="759" y="217" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="9" font-weight="600" fill="#424245" letter-spacing="0.04em">SERVICE</text>
+  <text x="759" y="234" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="20" font-weight="700" fill="#1d1d1f">18</text>
+  <text x="759" y="247" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="9" fill="#86868b">18 files · 11 types</text>
+  <text x="759" y="258" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#0071e3">EventManager.swift</text>
 
-  <rect x="32"  y="261" width="336" height="48" rx="10" fill="#f5f5f7"/>
-  <text x="56"  y="287" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="22">🎨</text>
-  <text x="86"  y="284" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="14" font-weight="600" fill="#1d1d1f">SwiftUI</text>
-  <text x="86"  y="300" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">Declarative UI</text>
+  <!-- Separator between Svc and E -->
+  <line x1="863" y1="178" x2="863" y2="256" stroke="#e5e5ea" stroke-width="1.5"/>
 
-  <rect x="382" y="261" width="336" height="48" rx="10" fill="#f5f5f7"/>
-  <text x="406" y="287" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="22">📱</text>
-  <text x="436" y="284" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="14" font-weight="600" fill="#1d1d1f">UIKit</text>
-  <text x="436" y="300" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">Imperative UI</text>
+  <!-- E card (orthogonal / dimmed) -->
+  <rect x="868" y="174" width="200" height="86" rx="12" fill="#f5f5f7" opacity="0.5"/>
+  <text x="968" y="204" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="30" font-weight="800" fill="#0071e3" opacity="0.5">E</text>
+  <text x="968" y="217" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="9" font-weight="600" fill="#424245" opacity="0.5" letter-spacing="0.04em">EVENT BUS</text>
+  <text x="968" y="234" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="20" font-weight="700" fill="#1d1d1f" opacity="0.5">13</text>
+  <text x="968" y="247" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="9" fill="#86868b" opacity="0.5">Combine · 13 files</text>
+  <text x="968" y="258" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#0071e3" opacity="0.5">NotificationService.swift</text>
 
-  <rect x="732" y="261" width="336" height="48" rx="10" fill="#f5f5f7"/>
-  <text x="756" y="287" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="22">💾</text>
-  <text x="786" y="284" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="14" font-weight="600" fill="#1d1d1f">SwiftData</text>
-  <text x="786" y="300" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">Swift-native Persistence</text>
+  <!-- ═══ SUB-BLOCK 2: LAYERS (updated) ═══ -->
+  <rect x="20" y="276" width="1060" height="258" rx="10" fill="none" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="32" y="294" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="bold" fill="#86868b" letter-spacing="0.06em">📐 LAYERS</text>
 
-  <!-- Row 2: AVFoundation | StoreKit | Vision -->
-  <rect x="32"  y="321" width="336" height="48" rx="10" fill="#f5f5f7"/>
-  <text x="56"  y="347" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="22">🎬</text>
-  <text x="86"  y="344" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="14" font-weight="600" fill="#1d1d1f">AVFoundation</text>
-  <text x="86"  y="360" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">Audio / Video</text>
+  <!-- UI/Views 73% → 756px -->
+  <text x="46" y="314" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="15">📱</text>
+  <text x="68" y="314" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="13" font-weight="600" fill="#1d1d1f">UI / Views</text>
+  <text x="1068" y="314" text-anchor="end" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">108 files · 9 334 loc</text>
+  <rect x="32" y="320" width="1036" height="6" rx="3" fill="#e5e5ea"/>
+  <rect x="32" y="320" width="756" height="6" rx="3" fill="#0071e3"/>
 
-  <rect x="382" y="321" width="336" height="48" rx="10" fill="#f5f5f7"/>
-  <text x="406" y="347" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="22">💳</text>
-  <text x="436" y="344" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="14" font-weight="600" fill="#1d1d1f">StoreKit</text>
-  <text x="436" y="360" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">In-App Purchases</text>
+  <!-- Models 60% → 622px -->
+  <text x="46" y="342" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="15">📦</text>
+  <text x="68" y="342" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="13" font-weight="600" fill="#1d1d1f">Models</text>
+  <text x="1068" y="342" text-anchor="end" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">111 files · 7 705 loc</text>
+  <rect x="32" y="348" width="1036" height="6" rx="3" fill="#e5e5ea"/>
+  <rect x="32" y="348" width="622" height="6" rx="3" fill="#0071e3"/>
 
-  <rect x="732" y="321" width="336" height="48" rx="10" fill="#f5f5f7"/>
-  <text x="756" y="347" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="22">👁️</text>
-  <text x="786" y="344" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="14" font-weight="600" fill="#1d1d1f">Vision</text>
-  <text x="786" y="360" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">Computer Vision</text>
+  <!-- API/Networking 35% → 363px -->
+  <text x="46" y="370" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="15">🌐</text>
+  <text x="68" y="370" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="13" font-weight="600" fill="#1d1d1f">API / Networking</text>
+  <text x="1068" y="370" text-anchor="end" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">53 files · 4 536 loc</text>
+  <rect x="32" y="376" width="1036" height="6" rx="3" fill="#e5e5ea"/>
+  <rect x="32" y="376" width="363" height="6" rx="3" fill="#0071e3"/>
 
-  <line x1="32" y1="383" x2="1068" y2="383" stroke="#e5e5ea" stroke-width="1.5"/>
+  <!-- Persistence ~1% → 10px -->
+  <text x="46" y="398" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="15">🗄️</text>
+  <text x="68" y="398" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="13" font-weight="600" fill="#1d1d1f">Persistence</text>
+  <text x="1068" y="398" text-anchor="end" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">2 files · 127 loc</text>
+  <rect x="32" y="404" width="1036" height="6" rx="3" fill="#e5e5ea"/>
+  <rect x="32" y="404" width="10" height="6" rx="3" fill="#0071e3"/>
 
-  <!-- APPLE FRAMEWORKS -->
-  <text x="32" y="403" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="bold" fill="#86868b" letter-spacing="0.06em">🍎 APPLE FRAMEWORKS (3)</text>
-  <rect x="32"  y="413" width="130" height="26" rx="8" fill="#e8f5e9"/>
-  <text x="97"  y="430" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#2e7d32">Foundation</text>
-  <rect x="172" y="413" width="175" height="26" rx="8" fill="#e8f5e9"/>
-  <text x="259" y="430" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#2e7d32">FoundationModels</text>
-  <rect x="357" y="413" width="185" height="26" rx="8" fill="#e8f5e9"/>
-  <text x="449" y="430" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#2e7d32">PackageDescription</text>
+  <!-- Config ~0% → 6px -->
+  <text x="46" y="426" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="15">⚙️</text>
+  <text x="68" y="426" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="13" font-weight="600" fill="#1d1d1f">Config</text>
+  <text x="1068" y="426" text-anchor="end" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">2 files · 59 loc</text>
+  <rect x="32" y="432" width="1036" height="6" rx="3" fill="#e5e5ea"/>
+  <rect x="32" y="432" width="6" height="6" rx="3" fill="#0071e3"/>
 
-  <!-- EXTERNAL -->
-  <text x="32" y="464" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="bold" fill="#86868b" letter-spacing="0.06em">📦 EXTERNAL LIBRARIES (1)</text>
-  <rect x="32" y="474" width="80" height="26" rx="8" fill="#fff3e0"/>
-  <text x="72" y="491" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#e65100">Charts</text>
+  <!-- Utilities 9% → 93px -->
+  <text x="46" y="454" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="15">🧰</text>
+  <text x="68" y="454" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="13" font-weight="600" fill="#1d1d1f">Utilities</text>
+  <text x="1068" y="454" text-anchor="end" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">19 files · 1 244 loc</text>
+  <rect x="32" y="460" width="1036" height="6" rx="3" fill="#e5e5ea"/>
+  <rect x="32" y="460" width="93" height="6" rx="3" fill="#0071e3"/>
 
-  <!-- LOCAL PACKAGES -->
-  <text x="32" y="516" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="bold" fill="#86868b" letter-spacing="0.06em">🏠 LOCAL PACKAGES (2)</text>
-  <rect x="32"  y="526" width="130" height="26" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
-  <text x="97"  y="543" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#1565c0">📱 App</text>
-  <text x="205" y="542" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#86868b">4 937 loc</text>
-  <rect x="178" y="526" width="130" height="26" rx="8" fill="#e3f2fd"/>
-  <text x="243" y="543" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#1565c0">PoseCamera</text>
-  <text x="318" y="542" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#86868b">SwiftPM</text>
+  <!-- Tests 2% → 21px -->
+  <text x="46" y="482" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="15">🧪</text>
+  <text x="68" y="482" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="13" font-weight="600" fill="#1d1d1f">Tests</text>
+  <text x="1068" y="482" text-anchor="end" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">2 files · 266 loc</text>
+  <rect x="32" y="488" width="1036" height="6" rx="3" fill="#e5e5ea"/>
+  <rect x="32" y="488" width="21" height="6" rx="3" fill="#0071e3"/>
+
+  <!-- Core 100% → 1036px -->
+  <text x="46" y="510" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="15">🔩</text>
+  <text x="68" y="510" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="13" font-weight="600" fill="#1d1d1f">Core</text>
+  <text x="1068" y="510" text-anchor="end" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" fill="#86868b">134 files · 12 775 loc</text>
+  <rect x="32" y="516" width="1036" height="6" rx="3" fill="#e5e5ea"/>
+  <rect x="32" y="516" width="1036" height="6" rx="3" fill="#0071e3"/>
+
+  <!-- ═══ SUB-BLOCK 3: COMPONENTS (updated, 9 items) ═══ -->
+  <rect x="20" y="538" width="1060" height="206" rx="10" fill="none" stroke="#e5e5ea" stroke-width="1"/>
+  <text x="32" y="556" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="bold" fill="#86868b" letter-spacing="0.06em">🧩 COMPONENTS (9)</text>
+
+  <!-- Row 1: SwiftUI | UIKit | Combine -->
+  <rect x="32"  y="566" width="340" height="48" rx="10" fill="#f5f5f7"/>
+  <text x="56"  y="592" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="22">🎨</text>
+  <text x="86"  y="589" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="14" font-weight="600" fill="#1d1d1f">SwiftUI</text>
+  <text x="86"  y="605" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">Declarative UI</text>
+
+  <rect x="380" y="566" width="340" height="48" rx="10" fill="#f5f5f7"/>
+  <text x="404" y="592" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="22">📱</text>
+  <text x="434" y="589" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="14" font-weight="600" fill="#1d1d1f">UIKit</text>
+  <text x="434" y="605" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">Imperative UI</text>
+
+  <rect x="728" y="566" width="340" height="48" rx="10" fill="#f5f5f7"/>
+  <text x="752" y="592" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="22">🔄</text>
+  <text x="782" y="589" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="14" font-weight="600" fill="#1d1d1f">Combine</text>
+  <text x="782" y="605" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">Reactive Streams</text>
+
+  <!-- Row 2: AVFoundation | Auth Services | Vision -->
+  <rect x="32"  y="624" width="340" height="48" rx="10" fill="#f5f5f7"/>
+  <text x="56"  y="650" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="22">🎬</text>
+  <text x="86"  y="647" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="14" font-weight="600" fill="#1d1d1f">AVFoundation</text>
+  <text x="86"  y="663" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">Audio / Video</text>
+
+  <rect x="380" y="624" width="340" height="48" rx="10" fill="#f5f5f7"/>
+  <text x="404" y="650" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="22">🔐</text>
+  <text x="434" y="647" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="14" font-weight="600" fill="#1d1d1f">Auth Services</text>
+  <text x="434" y="663" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">Authentication</text>
+
+  <rect x="728" y="624" width="340" height="48" rx="10" fill="#f5f5f7"/>
+  <text x="752" y="650" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="22">👁️</text>
+  <text x="782" y="647" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="14" font-weight="600" fill="#1d1d1f">Vision</text>
+  <text x="782" y="663" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">Computer Vision</text>
+
+  <!-- Row 3: WebKit | Testing | Notifications -->
+  <rect x="32"  y="682" width="340" height="48" rx="10" fill="#f5f5f7"/>
+  <text x="56"  y="708" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="22">🌐</text>
+  <text x="86"  y="705" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="14" font-weight="600" fill="#1d1d1f">WebKit</text>
+  <text x="86"  y="721" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">Web Rendering</text>
+
+  <rect x="380" y="682" width="340" height="48" rx="10" fill="#f5f5f7"/>
+  <text x="404" y="708" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="22">🧪</text>
+  <text x="434" y="705" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="14" font-weight="600" fill="#1d1d1f">Testing</text>
+  <text x="434" y="721" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">Unit &amp; UI Tests</text>
+
+  <rect x="728" y="682" width="340" height="48" rx="10" fill="#f5f5f7"/>
+  <text x="752" y="708" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="22">🔔</text>
+  <text x="782" y="705" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="14" font-weight="600" fill="#1d1d1f">Notifications</text>
+  <text x="782" y="721" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#86868b">Push &amp; Local</text>
+
+  <!-- APPLE FRAMEWORKS (unchanged) -->
+  <text x="32" y="764" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="bold" fill="#86868b" letter-spacing="0.06em">🍎 APPLE FRAMEWORKS (3)</text>
+  <rect x="32"  y="774" width="130" height="26" rx="8" fill="#e8f5e9"/>
+  <text x="97"  y="791" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#2e7d32">Foundation</text>
+  <rect x="172" y="774" width="175" height="26" rx="8" fill="#e8f5e9"/>
+  <text x="259" y="791" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#2e7d32">FoundationModels</text>
+  <rect x="357" y="774" width="185" height="26" rx="8" fill="#e8f5e9"/>
+  <text x="449" y="791" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#2e7d32">PackageDescription</text>
+
+  <!-- EXTERNAL LIBRARIES (unchanged) -->
+  <text x="32" y="820" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="bold" fill="#86868b" letter-spacing="0.06em">📦 EXTERNAL LIBRARIES (1)</text>
+  <rect x="32" y="830" width="80" height="26" rx="8" fill="#fff3e0"/>
+  <text x="72" y="847" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#e65100">Charts</text>
+
+  <!-- LOCAL PACKAGES (unchanged) -->
+  <text x="32" y="876" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="11" font-weight="bold" fill="#86868b" letter-spacing="0.06em">🏠 LOCAL PACKAGES (2)</text>
+  <rect x="32"  y="886" width="130" height="26" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="97"  y="903" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#1565c0">📱 App</text>
+  <text x="205" y="902" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#86868b">4 937 loc</text>
+  <rect x="178" y="886" width="130" height="26" rx="8" fill="#e3f2fd"/>
+  <text x="243" y="903" text-anchor="middle" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="12" fill="#1565c0">PoseCamera</text>
+  <text x="318" y="902" font-family="Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif" font-size="10" fill="#86868b">SwiftPM</text>
 </svg>
