@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="480" viewBox="0 0 1100 480">
+  <defs>
+    <style>
+      text { font-family: Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif; }
+    </style>
+  </defs>
+  <!-- Outer frame -->
+  <rect width="1100" height="480" rx="8" fill="#141925" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="32" y="42" font-size="20" font-weight="bold" fill="#e6edf6">&#x1F4C2; Modules &amp; Microservices</text>
+  <text x="32" y="62" font-size="13" fill="#9aa7ba">Declaration mix · largest files · structure overview</text>
+
+  <!-- Separator -->
+  <line x1="32" y1="76" x2="1068" y2="76" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- MODULE 1: kubernetes -->
+  <rect x="32" y="84" width="1036" height="90" rx="8" fill="#1b2230" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Module header -->
+  <text x="52" y="104" font-size="14" font-weight="bold" fill="#e6edf6">kubernetes</text>
+  <rect x="148" y="92" width="68" height="16" rx="4" fill="#0d1929" stroke="#27466b" stroke-width="1"/>
+  <text x="182" y="104" text-anchor="middle" font-size="9" fill="#4ea1ff">Go module</text>
+
+  <!-- Stats pill -->
+  <rect x="228" y="92" width="220" height="16" rx="4" fill="#141925" stroke="#222b3a" stroke-width="1"/>
+  <text x="338" y="104" text-anchor="middle" font-size="9" fill="#9aa7ba">12 776 files · 3 597 277 loc · 121 822 decl</text>
+
+  <!-- Declaration mix label -->
+  <text x="52" y="124" font-size="9" fill="#5d6b80" letter-spacing="0.04em">DECLARATION MIX</text>
+
+  <!-- Mix bar (track 400px) -->
+  <rect x="160" y="115" width="400" height="10" rx="5" fill="#141925"/>
+  <!-- struct=green ~40% -->
+  <rect x="160" y="115" width="160" height="10" rx="5" fill="#3fb950"/>
+  <!-- func=blue ~45% -->
+  <rect x="320" y="115" width="180" height="10" fill="#4ea1ff"/>
+  <!-- interface=purple ~15% -->
+  <rect x="500" y="115" width="60" height="10" rx="5" fill="#9a6cf0"/>
+
+  <!-- Mix legend -->
+  <rect x="572" y="118" width="8" height="6" rx="1" fill="#3fb950"/>
+  <text x="583" y="124" font-size="9" fill="#9aa7ba">struct</text>
+  <rect x="620" y="118" width="8" height="6" rx="1" fill="#4ea1ff"/>
+  <text x="631" y="124" font-size="9" fill="#9aa7ba">func</text>
+  <rect x="664" y="118" width="8" height="6" rx="1" fill="#9a6cf0"/>
+  <text x="675" y="124" font-size="9" fill="#9aa7ba">interface</text>
+
+  <!-- File rows -->
+  <text x="52" y="143" font-size="10" fill="#4ea1ff" font-family="monospace, Courier New">staging/src/k8s.io/.../allocator_testing.go</text>
+  <text x="700" y="143" font-size="10" fill="#5d6b80">6 323 ln</text>
+  <text x="820" y="143" font-size="10" fill="#5d6b80">largest fn</text>
+
+  <text x="52" y="158" font-size="10" fill="#4ea1ff" font-family="monospace, Courier New">staging/src/k8s.io/.../zz_generated.conversion.go</text>
+  <text x="700" y="158" font-size="10" fill="#5d6b80">2 478 ln</text>
+  <text x="820" y="158" font-size="10" fill="#5d6b80">generated</text>
+
+  <text x="52" y="173" font-size="10" fill="#4ea1ff" font-family="monospace, Courier New">pkg/apis/core/types.go</text>
+  <text x="700" y="173" font-size="10" fill="#5d6b80">1 904 ln</text>
+  <text x="820" y="173" font-size="10" fill="#5d6b80">core types</text>
+
+  <!-- MODULE 2: instrumentation -->
+  <rect x="32" y="182" width="1036" height="72" rx="8" fill="#1b2230" stroke="#222b3a" stroke-width="1"/>
+
+  <text x="52" y="202" font-size="14" font-weight="bold" fill="#e6edf6">instrumentation</text>
+  <rect x="172" y="190" width="68" height="16" rx="4" fill="#0d1929" stroke="#27466b" stroke-width="1"/>
+  <text x="206" y="202" text-anchor="middle" font-size="9" fill="#4ea1ff">Go module</text>
+  <rect x="252" y="190" width="180" height="16" rx="4" fill="#141925" stroke="#222b3a" stroke-width="1"/>
+  <text x="342" y="202" text-anchor="middle" font-size="9" fill="#9aa7ba">13 files · 3 329 loc · 76 decl</text>
+
+  <!-- Mix bar -->
+  <text x="52" y="222" font-size="9" fill="#5d6b80" letter-spacing="0.04em">DECLARATION MIX</text>
+  <rect x="160" y="213" width="400" height="10" rx="5" fill="#141925"/>
+  <rect x="160" y="213" width="120" height="10" rx="5" fill="#3fb950"/>
+  <rect x="280" y="213" width="240" height="10" fill="#4ea1ff"/>
+  <rect x="520" y="213" width="40" height="10" rx="5" fill="#9a6cf0"/>
+
+  <!-- Files -->
+  <text x="52" y="241" font-size="10" fill="#4ea1ff" font-family="monospace, Courier New">metrics/metrics.go</text>
+  <text x="700" y="241" font-size="10" fill="#5d6b80">312 ln</text>
+
+  <text x="52" y="255" font-size="10" fill="#4ea1ff" font-family="monospace, Courier New">tracing/tracing.go</text>
+  <text x="700" y="255" font-size="10" fill="#5d6b80">248 ln</text>
+
+  <!-- MODULE 3: golangci-lint -->
+  <rect x="32" y="262" width="1036" height="62" rx="8" fill="#1b2230" stroke="#222b3a" stroke-width="1"/>
+
+  <text x="52" y="282" font-size="14" font-weight="bold" fill="#e6edf6">golangci-lint</text>
+  <rect x="160" y="270" width="68" height="16" rx="4" fill="#0d1929" stroke="#27466b" stroke-width="1"/>
+  <text x="194" y="282" text-anchor="middle" font-size="9" fill="#4ea1ff">Go module</text>
+  <rect x="240" y="270" width="170" height="16" rx="4" fill="#141925" stroke="#222b3a" stroke-width="1"/>
+  <text x="325" y="282" text-anchor="middle" font-size="9" fill="#9aa7ba">6 files · 1 314 loc · 39 decl</text>
+
+  <!-- Mix bar -->
+  <text x="52" y="302" font-size="9" fill="#5d6b80" letter-spacing="0.04em">DECLARATION MIX</text>
+  <rect x="160" y="293" width="400" height="10" rx="5" fill="#141925"/>
+  <rect x="160" y="293" width="80" height="10" rx="5" fill="#3fb950"/>
+  <rect x="240" y="293" width="280" height="10" fill="#4ea1ff"/>
+  <rect x="520" y="293" width="40" height="10" rx="5" fill="#9a6cf0"/>
+
+  <!-- Files -->
+  <text x="52" y="320" font-size="10" fill="#4ea1ff" font-family="monospace, Courier New">hack/tools/vendor/github.com/golangci/golangci-lint/pkg/runner.go</text>
+  <text x="860" y="320" font-size="10" fill="#5d6b80">419 ln</text>
+
+  <!-- MODULE 4: tools -->
+  <rect x="32" y="332" width="1036" height="60" rx="8" fill="#1b2230" stroke="#222b3a" stroke-width="1"/>
+
+  <text x="52" y="352" font-size="14" font-weight="bold" fill="#e6edf6">tools</text>
+  <rect x="96" y="340" width="68" height="16" rx="4" fill="#0d1929" stroke="#27466b" stroke-width="1"/>
+  <text x="130" y="352" text-anchor="middle" font-size="9" fill="#4ea1ff">Go module</text>
+  <rect x="176" y="340" width="150" height="16" rx="4" fill="#141925" stroke="#222b3a" stroke-width="1"/>
+  <text x="251" y="352" text-anchor="middle" font-size="9" fill="#9aa7ba">1 file · 240 loc · 8 decl</text>
+
+  <!-- Mix bar -->
+  <text x="52" y="370" font-size="9" fill="#5d6b80" letter-spacing="0.04em">DECLARATION MIX</text>
+  <rect x="160" y="361" width="400" height="10" rx="5" fill="#141925"/>
+  <rect x="160" y="361" width="60" height="10" rx="5" fill="#3fb950"/>
+  <rect x="220" y="361" width="300" height="10" rx="5" fill="#4ea1ff"/>
+
+  <!-- Files -->
+  <text x="52" y="388" font-size="10" fill="#4ea1ff" font-family="monospace, Courier New">cmd/dependencycheck/dependencycheck.go</text>
+  <text x="700" y="388" font-size="10" fill="#5d6b80">240 ln</text>
+
+  <!-- Separator -->
+  <line x1="32" y1="404" x2="1068" y2="404" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Footer summary -->
+  <text x="48" y="424" font-size="11" fill="#5d6b80" letter-spacing="0.06em">SUMMARY</text>
+  <text x="48" y="442" font-size="11" fill="#9aa7ba">4 Go modules · 12 783 total files · 3 598 104 total LOC · 121 852 total declarations</text>
+  <text x="48" y="458" font-size="11" fill="#9aa7ba">Largest module: kubernetes (99.9% of codebase) · Smallest: tools (1 file, 240 loc)</text>
+  <text x="48" y="474" font-size="11" fill="#5d6b80">Declaration mix computed from AST parse of all Go source files across modules.</text>
+</svg>

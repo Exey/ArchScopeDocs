@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="500" viewBox="0 0 1100 500">
+  <defs>
+    <style>
+      text { font-family: Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif; }
+    </style>
+  </defs>
+  <!-- Outer frame -->
+  <rect width="1100" height="540" rx="8" fill="#141925" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Platform tabs -->
+  <!-- Go tab (active) -->
+  <rect x="32" y="16" width="200" height="36" rx="8" fill="#1b2230" stroke="#222b3a" stroke-width="1"/>
+  <line x1="32" y1="50" x2="232" y2="50" stroke="#4ea1ff" stroke-width="2"/>
+  <text x="132" y="39" text-anchor="middle" font-size="13" font-weight="bold" fill="#e6edf6">Go</text>
+
+  <!-- Python tab (inactive) -->
+  <rect x="244" y="16" width="190" height="36" rx="8" fill="none" stroke="none"/>
+  <text x="339" y="39" text-anchor="middle" font-size="13" fill="#5d6b80">Python</text>
+
+  <!-- Separator under tabs -->
+  <line x1="32" y1="60" x2="1068" y2="60" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- 4 platform summary cards -->
+  <!-- Files -->
+  <rect x="32" y="72" width="240" height="76" rx="8" fill="#1b2230" stroke="#222b3a" stroke-width="1"/>
+  <text x="152" y="110" text-anchor="middle" font-size="24" font-weight="bold" fill="#e6edf6">12 776</text>
+  <text x="152" y="130" text-anchor="middle" font-size="10" fill="#9aa7ba" letter-spacing="0.04em">FILES</text>
+
+  <!-- Lines -->
+  <rect x="284" y="72" width="240" height="76" rx="8" fill="#1b2230" stroke="#222b3a" stroke-width="1"/>
+  <text x="404" y="110" text-anchor="middle" font-size="24" font-weight="bold" fill="#e6edf6">3 597 277</text>
+  <text x="404" y="130" text-anchor="middle" font-size="10" fill="#9aa7ba" letter-spacing="0.04em">LINES OF CODE</text>
+
+  <!-- Declarations -->
+  <rect x="536" y="72" width="240" height="76" rx="8" fill="#1b2230" stroke="#222b3a" stroke-width="1"/>
+  <text x="656" y="110" text-anchor="middle" font-size="24" font-weight="bold" fill="#e6edf6">121 822</text>
+  <text x="656" y="130" text-anchor="middle" font-size="10" fill="#9aa7ba" letter-spacing="0.04em">DECLARATIONS</text>
+
+  <!-- Modules -->
+  <rect x="788" y="72" width="280" height="76" rx="8" fill="#1b2230" stroke="#222b3a" stroke-width="1"/>
+  <text x="928" y="110" text-anchor="middle" font-size="24" font-weight="bold" fill="#e6edf6">4</text>
+  <text x="928" y="130" text-anchor="middle" font-size="10" fill="#9aa7ba" letter-spacing="0.04em">MODULES</text>
+
+  <!-- Separator -->
+  <line x1="32" y1="160" x2="1068" y2="160" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Architecture section header -->
+  <text x="32" y="182" font-size="15" font-weight="bold" fill="#e6edf6">&#x1F3DB;&#xFE0F; Architecture</text>
+  <text x="160" y="182" font-size="11" fill="#5d6b80" letter-spacing="0.06em">  LAYERED VIEW</text>
+
+  <!-- Layer bars - track from x=270 width=700 -->
+  <!-- Row: Tests 100% #3fb950 -->
+  <text x="48" y="214" font-size="12" fill="#9aa7ba">&#x1F9EA;</text>
+  <text x="68" y="214" font-size="12" fill="#e6edf6">Tests</text>
+  <text x="200" y="214" font-size="11" fill="#5d6b80">100%</text>
+  <!-- bar track -->
+  <rect x="270" y="207" width="700" height="8" rx="4" fill="#1b2230"/>
+  <rect x="270" y="207" width="700" height="8" rx="4" fill="#3fb950"/>
+  <text x="1050" y="216" text-anchor="end" font-size="11" fill="#9aa7ba">4 052 files</text>
+
+  <!-- API/Routes 47% -->
+  <text x="48" y="240" font-size="12" fill="#9aa7ba">&#x1F310;</text>
+  <text x="68" y="240" font-size="12" fill="#e6edf6">API / Routes</text>
+  <text x="200" y="240" font-size="11" fill="#5d6b80">47%</text>
+  <rect x="270" y="233" width="700" height="8" rx="4" fill="#1b2230"/>
+  <rect x="270" y="233" width="329" height="8" rx="4" fill="#4ea1ff"/>
+  <text x="1050" y="242" text-anchor="end" font-size="11" fill="#9aa7ba">2 171 files</text>
+
+  <!-- Other 38% -->
+  <text x="48" y="266" font-size="12" fill="#9aa7ba">&#x1F4E6;</text>
+  <text x="68" y="266" font-size="12" fill="#e6edf6">Other</text>
+  <text x="200" y="266" font-size="11" fill="#5d6b80">38%</text>
+  <rect x="270" y="259" width="700" height="8" rx="4" fill="#1b2230"/>
+  <rect x="270" y="259" width="266" height="8" rx="4" fill="#9aa7ba"/>
+  <text x="1050" y="268" text-anchor="end" font-size="11" fill="#9aa7ba">3 650 files</text>
+
+  <!-- CLI/Entry 11% -->
+  <text x="48" y="292" font-size="12" fill="#9aa7ba">&#x26A1;</text>
+  <text x="68" y="292" font-size="12" fill="#e6edf6">CLI / Entry</text>
+  <text x="200" y="292" font-size="11" fill="#5d6b80">11%</text>
+  <rect x="270" y="285" width="700" height="8" rx="4" fill="#1b2230"/>
+  <rect x="270" y="285" width="77" height="8" rx="4" fill="#d29922"/>
+  <text x="1050" y="294" text-anchor="end" font-size="11" fill="#9aa7ba">1 003 files</text>
+
+  <!-- Services/Domain 4% -->
+  <text x="48" y="318" font-size="12" fill="#9aa7ba">&#x2699;&#xFE0F;</text>
+  <text x="68" y="318" font-size="12" fill="#e6edf6">Services / Domain</text>
+  <text x="200" y="318" font-size="11" fill="#5d6b80">4%</text>
+  <rect x="270" y="311" width="700" height="8" rx="4" fill="#1b2230"/>
+  <rect x="270" y="311" width="28" height="8" rx="4" fill="#4ea1ff" opacity="0.5"/>
+  <text x="1050" y="320" text-anchor="end" font-size="11" fill="#9aa7ba">389 files</text>
+
+  <!-- Config/Settings 4% -->
+  <text x="48" y="344" font-size="12" fill="#9aa7ba">&#x1F527;</text>
+  <text x="68" y="344" font-size="12" fill="#e6edf6">Config / Settings</text>
+  <text x="200" y="344" font-size="11" fill="#5d6b80">4%</text>
+  <rect x="270" y="337" width="700" height="8" rx="4" fill="#1b2230"/>
+  <rect x="270" y="337" width="28" height="8" rx="4" fill="#9aa7ba" opacity="0.5"/>
+  <text x="1050" y="346" text-anchor="end" font-size="11" fill="#9aa7ba">448 files</text>
+
+  <!-- Infra/Utils 4% -->
+  <text x="48" y="370" font-size="12" fill="#9aa7ba">&#x1F529;</text>
+  <text x="68" y="370" font-size="12" fill="#e6edf6">Infra / Utils</text>
+  <text x="200" y="370" font-size="11" fill="#5d6b80">4%</text>
+  <rect x="270" y="363" width="700" height="8" rx="4" fill="#1b2230"/>
+  <rect x="270" y="363" width="28" height="8" rx="4" fill="#9aa7ba" opacity="0.5"/>
+  <text x="1050" y="372" text-anchor="end" font-size="11" fill="#9aa7ba">419 files</text>
+
+  <!-- Persistence/DB 4% -->
+  <text x="48" y="396" font-size="12" fill="#9aa7ba">&#x1F5C4;&#xFE0F;</text>
+  <text x="68" y="396" font-size="12" fill="#e6edf6">Persistence / DB</text>
+  <text x="200" y="396" font-size="11" fill="#5d6b80">4%</text>
+  <rect x="270" y="389" width="700" height="8" rx="4" fill="#1b2230"/>
+  <rect x="270" y="389" width="28" height="8" rx="4" fill="#f0883e" opacity="0.5"/>
+  <text x="1050" y="398" text-anchor="end" font-size="11" fill="#9aa7ba">276 files</text>
+
+  <!-- Auth/Security 4% -->
+  <text x="48" y="422" font-size="12" fill="#9aa7ba">&#x1F512;</text>
+  <text x="68" y="422" font-size="12" fill="#e6edf6">Auth / Security</text>
+  <text x="200" y="422" font-size="11" fill="#5d6b80">4%</text>
+  <rect x="270" y="415" width="700" height="8" rx="4" fill="#1b2230"/>
+  <rect x="270" y="415" width="28" height="8" rx="4" fill="#f85149" opacity="0.5"/>
+  <text x="1050" y="424" text-anchor="end" font-size="11" fill="#9aa7ba">231 files</text>
+
+  <!-- Background Tasks 4% -->
+  <text x="48" y="448" font-size="12" fill="#9aa7ba">&#x23F0;</text>
+  <text x="68" y="448" font-size="12" fill="#e6edf6">Background Tasks</text>
+  <text x="200" y="448" font-size="11" fill="#5d6b80">4%</text>
+  <rect x="270" y="441" width="700" height="8" rx="4" fill="#1b2230"/>
+  <rect x="270" y="441" width="28" height="8" rx="4" fill="#9aa7ba" opacity="0.4"/>
+  <text x="1050" y="450" text-anchor="end" font-size="11" fill="#9aa7ba">121 files</text>
+</svg>

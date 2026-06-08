@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="500" viewBox="0 0 1100 500">
+  <defs>
+    <style>
+      text { font-family: Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif; }
+    </style>
+  </defs>
+  <!-- Outer frame -->
+  <rect width="1100" height="500" rx="8" fill="#141925" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="32" y="42" font-size="20" font-weight="bold" fill="#e6edf6">&#x1F50E;&#xFE0F; &#x1F6E1;&#xFE0F; Danger Details · Go</text>
+  <text x="32" y="62" font-size="13" fill="#9aa7ba">Security findings grouped by rule · click file links open in VS Code</text>
+
+  <!-- Separator -->
+  <line x1="32" y1="76" x2="1068" y2="76" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- LEFT column header -->
+  <text x="48" y="98" font-size="10" fill="#5d6b80" letter-spacing="0.06em">RULE</text>
+  <text x="340" y="98" font-size="10" fill="#5d6b80" letter-spacing="0.06em">SEV</text>
+  <text x="420" y="98" font-size="10" fill="#5d6b80" letter-spacing="0.06em">FINDINGS</text>
+
+  <!-- Rule rows -->
+  <!-- go.hardcoded_credentials -->
+  <text x="48" y="118" font-size="11" fill="#e6edf6" font-family="monospace, Courier New">go.hardcoded_credentials</text>
+  <rect x="336" y="107" width="42" height="16" rx="4" fill="#f0883e" opacity="0.25"/>
+  <text x="357" y="119" text-anchor="middle" font-size="9" font-weight="bold" fill="#f0883e">HIGH</text>
+  <text x="448" y="118" font-size="12" font-weight="bold" fill="#e6edf6">22</text>
+
+  <!-- go.insecure_tls -->
+  <text x="48" y="137" font-size="11" fill="#e6edf6" font-family="monospace, Courier New">go.insecure_tls</text>
+  <rect x="336" y="126" width="42" height="16" rx="4" fill="#f0883e" opacity="0.25"/>
+  <text x="357" y="138" text-anchor="middle" font-size="9" font-weight="bold" fill="#f0883e">HIGH</text>
+  <text x="448" y="137" font-size="12" font-weight="bold" fill="#e6edf6">15</text>
+
+  <!-- go.http_server_no_tls -->
+  <text x="48" y="156" font-size="11" fill="#e6edf6" font-family="monospace, Courier New">go.http_server_no_tls</text>
+  <rect x="336" y="145" width="42" height="16" rx="4" fill="#f0883e" opacity="0.25"/>
+  <text x="357" y="157" text-anchor="middle" font-size="9" font-weight="bold" fill="#f0883e">HIGH</text>
+  <text x="448" y="156" font-size="12" font-weight="bold" fill="#e6edf6">8</text>
+
+  <!-- go.command_injection -->
+  <text x="48" y="175" font-size="11" fill="#e6edf6" font-family="monospace, Courier New">go.command_injection</text>
+  <rect x="336" y="164" width="42" height="16" rx="4" fill="#f0883e" opacity="0.25"/>
+  <text x="357" y="176" text-anchor="middle" font-size="9" font-weight="bold" fill="#f0883e">HIGH</text>
+  <text x="448" y="175" font-size="12" font-weight="bold" fill="#e6edf6">6</text>
+
+  <!-- go.tls_no_minversion -->
+  <text x="48" y="194" font-size="11" fill="#e6edf6" font-family="monospace, Courier New">go.tls_no_minversion</text>
+  <rect x="336" y="183" width="42" height="16" rx="4" fill="#f0883e" opacity="0.25"/>
+  <text x="357" y="195" text-anchor="middle" font-size="9" font-weight="bold" fill="#f0883e">HIGH</text>
+  <text x="448" y="194" font-size="12" font-weight="bold" fill="#e6edf6">4</text>
+
+  <!-- go.insecure_rand -->
+  <text x="48" y="213" font-size="11" fill="#e6edf6" font-family="monospace, Courier New">go.insecure_rand</text>
+  <rect x="336" y="202" width="42" height="16" rx="4" fill="#d29922" opacity="0.3"/>
+  <text x="357" y="214" text-anchor="middle" font-size="9" font-weight="bold" fill="#d29922">HIGH</text>
+  <text x="448" y="213" font-size="12" font-weight="bold" fill="#e6edf6">3</text>
+
+  <!-- universal.hardcoded_secrets -->
+  <text x="48" y="232" font-size="11" fill="#e6edf6" font-family="monospace, Courier New">universal.hardcoded_secrets</text>
+  <rect x="336" y="221" width="42" height="16" rx="4" fill="#f0883e" opacity="0.25"/>
+  <text x="357" y="233" text-anchor="middle" font-size="9" font-weight="bold" fill="#f0883e">HIGH</text>
+  <text x="448" y="232" font-size="12" font-weight="bold" fill="#e6edf6">2</text>
+
+  <!-- go.toctou -->
+  <text x="48" y="251" font-size="11" fill="#e6edf6" font-family="monospace, Courier New">go.toctou</text>
+  <rect x="336" y="240" width="42" height="16" rx="4" fill="#d29922" opacity="0.3"/>
+  <text x="357" y="252" text-anchor="middle" font-size="9" font-weight="bold" fill="#d29922">HIGH</text>
+  <text x="448" y="251" font-size="12" font-weight="bold" fill="#e6edf6">2</text>
+
+  <!-- go.hardcoded_byte_key -->
+  <text x="48" y="270" font-size="11" fill="#e6edf6" font-family="monospace, Courier New">go.hardcoded_byte_key</text>
+  <rect x="336" y="259" width="42" height="16" rx="4" fill="#f0883e" opacity="0.25"/>
+  <text x="357" y="271" text-anchor="middle" font-size="9" font-weight="bold" fill="#f0883e">HIGH</text>
+  <text x="448" y="270" font-size="12" font-weight="bold" fill="#e6edf6">1</text>
+
+  <!-- python.eval_exec -->
+  <text x="48" y="289" font-size="11" fill="#e6edf6" font-family="monospace, Courier New">python.eval_exec</text>
+  <rect x="336" y="278" width="42" height="16" rx="4" fill="#f0883e" opacity="0.25"/>
+  <text x="357" y="290" text-anchor="middle" font-size="9" font-weight="bold" fill="#f0883e">HIGH</text>
+  <text x="448" y="289" font-size="12" font-weight="bold" fill="#e6edf6">1</text>
+
+  <!-- Vertical separator -->
+  <line x1="548" y1="76" x2="548" y2="350" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- RIGHT column: CWE table -->
+  <text x="568" y="98" font-size="10" fill="#5d6b80" letter-spacing="0.06em">CWE-ID</text>
+  <text x="650" y="98" font-size="10" fill="#5d6b80" letter-spacing="0.06em">NAME</text>
+  <text x="960" y="98" font-size="10" fill="#5d6b80" letter-spacing="0.06em">CHECKS</text>
+
+  <!-- CWE rows -->
+  <rect x="564" y="106" width="56" height="16" rx="4" fill="#f85149" opacity="0.15"/>
+  <text x="592" y="118" text-anchor="middle" font-size="9" font-weight="bold" fill="#f85149">CWE-798</text>
+  <text x="630" y="118" font-size="11" fill="#e6edf6">Hardcoded Credentials</text>
+  <text x="980" y="118" text-anchor="end" font-size="11" font-weight="bold" fill="#9aa7ba">4 checks</text>
+
+  <rect x="564" y="125" width="56" height="16" rx="4" fill="#f0883e" opacity="0.15"/>
+  <text x="592" y="137" text-anchor="middle" font-size="9" font-weight="bold" fill="#f0883e">CWE-295</text>
+  <text x="630" y="137" font-size="11" fill="#e6edf6">Improper Cert Validation</text>
+  <text x="980" y="137" text-anchor="end" font-size="11" font-weight="bold" fill="#9aa7ba">6 checks</text>
+
+  <rect x="564" y="144" width="56" height="16" rx="4" fill="#f0883e" opacity="0.15"/>
+  <text x="592" y="156" text-anchor="middle" font-size="9" font-weight="bold" fill="#f0883e">CWE-78</text>
+  <text x="630" y="156" font-size="11" fill="#e6edf6">Command Injection</text>
+  <text x="980" y="156" text-anchor="end" font-size="11" font-weight="bold" fill="#9aa7ba">6 checks</text>
+
+  <rect x="564" y="163" width="56" height="16" rx="4" fill="#d29922" opacity="0.2"/>
+  <text x="592" y="175" text-anchor="middle" font-size="9" font-weight="bold" fill="#d29922">CWE-326</text>
+  <text x="630" y="175" font-size="11" fill="#e6edf6">Weak Cryptography</text>
+  <text x="980" y="175" text-anchor="end" font-size="11" font-weight="bold" fill="#9aa7ba">3 checks</text>
+
+  <rect x="564" y="182" width="56" height="16" rx="4" fill="#d29922" opacity="0.2"/>
+  <text x="592" y="194" text-anchor="middle" font-size="9" font-weight="bold" fill="#d29922">CWE-362</text>
+  <text x="630" y="194" font-size="11" fill="#e6edf6">Race Cond. TOCTOU</text>
+  <text x="980" y="194" text-anchor="end" font-size="11" font-weight="bold" fill="#9aa7ba">2 checks</text>
+
+  <rect x="564" y="201" width="56" height="16" rx="4" fill="#d29922" opacity="0.2"/>
+  <text x="592" y="213" text-anchor="middle" font-size="9" font-weight="bold" fill="#d29922">CWE-338</text>
+  <text x="630" y="213" font-size="11" fill="#e6edf6">Insecure Randomness</text>
+  <text x="980" y="213" text-anchor="end" font-size="11" font-weight="bold" fill="#9aa7ba">3 checks</text>
+
+  <rect x="564" y="220" width="56" height="16" rx="4" fill="#9aa7ba" opacity="0.15"/>
+  <text x="592" y="232" text-anchor="middle" font-size="9" font-weight="bold" fill="#9aa7ba">CWE-1333</text>
+  <text x="630" y="232" font-size="11" fill="#e6edf6">ReDoS</text>
+  <text x="980" y="232" text-anchor="end" font-size="11" font-weight="bold" fill="#9aa7ba">2 checks</text>
+
+  <!-- Separator before example -->
+  <line x1="32" y1="350" x2="1068" y2="350" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Example finding snippet -->
+  <text x="48" y="372" font-size="10" fill="#5d6b80" letter-spacing="0.06em">EXAMPLE FINDING</text>
+  <rect x="32" y="380" width="1036" height="108" rx="8" fill="#0d1617" stroke="#222b3a" stroke-width="1"/>
+
+  <text x="48" y="400" font-size="11" fill="#5d6b80">&#9654; go.hardcoded_credentials · HIGH · CWE-798</text>
+  <text x="48" y="418" font-size="10" fill="#4ea1ff" font-family="monospace, Courier New">staging/src/k8s.io/client-go/plugin/pkg/client/auth/oidc/oidc.go:142</text>
+  <text x="48" y="436" font-size="10" fill="#9aa7ba" font-family="monospace, Courier New">  clientSecret := "hardcoded-client-secret-value"   </text>
+  <text x="48" y="452" font-size="10" fill="#f85149" font-family="monospace, Courier New">  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</text>
+  <text x="48" y="470" font-size="10" fill="#5d6b80">Rule: Hardcoded credentials detected in source. Use environment variables or secret management systems instead.</text>
+  <text x="48" y="486" font-size="10" fill="#5d6b80">Ref: CWE-798 · OWASP A07:2021 · fix: inject via env or k8s Secret mount</text>
+</svg>

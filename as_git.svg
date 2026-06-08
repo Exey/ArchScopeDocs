@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="510" viewBox="0 0 1100 510">
+  <defs>
+    <style>
+      text { font-family: Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif; }
+    </style>
+  </defs>
+  <!-- Outer frame -->
+  <rect width="1100" height="510" rx="8" fill="#141925" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="32" y="42" font-size="20" font-weight="bold" fill="#e6edf6">&#x1F419; Git Analysis · kubernetes</text>
+  <text x="32" y="62" font-size="13" fill="#9aa7ba">Branching model · contributor activity · file churn · commit metadata</text>
+
+  <!-- Separator -->
+  <line x1="32" y1="76" x2="1068" y2="76" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Branching model row -->
+  <rect x="32" y="88" width="1036" height="80" rx="8" fill="#1b2230" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Big badge -->
+  <rect x="48" y="100" width="240" height="32" rx="8" fill="#0d1929" stroke="#4ea1ff" stroke-width="1.5"/>
+  <text x="168" y="120" text-anchor="middle" font-size="13" font-weight="bold" fill="#4ea1ff">&#x1F30A; Trunk-Based Development</text>
+
+  <!-- Description -->
+  <text x="304" y="110" font-size="12" fill="#9aa7ba">Single trunk · micro-commits · continuous integration</text>
+  <text x="304" y="128" font-size="11" fill="#5d6b80">45% confidence · primary: master</text>
+
+  <!-- Signal chip -->
+  <rect x="304" y="138" width="230" height="20" rx="6" fill="#1b2230" stroke="#3fb950" stroke-width="1"/>
+  <text x="419" y="152" text-anchor="middle" font-size="10" fill="#3fb950">&#x25CF; High merge frequency into master</text>
+
+  <!-- Separator -->
+  <line x1="32" y1="180" x2="1068" y2="180" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Two-column layout -->
+  <!-- LEFT: Team Contribution -->
+  <text x="48" y="200" font-size="11" fill="#9aa7ba" letter-spacing="0.06em">&#x1F465; TEAM CONTRIBUTION</text>
+
+  <!-- Table header -->
+  <text x="48" y="218" font-size="10" fill="#5d6b80" letter-spacing="0.04em">NAME</text>
+  <text x="290" y="218" font-size="10" fill="#5d6b80" letter-spacing="0.04em">COMMITS</text>
+  <text x="400" y="218" font-size="10" fill="#5d6b80" letter-spacing="0.04em">FILES</text>
+
+  <!-- Contributor rows -->
+  <rect x="32" y="222" width="490" height="22" rx="4" fill="#1b2230"/>
+  <text x="48" y="237" font-size="12" fill="#e6edf6">Jefftree</text>
+  <text x="290" y="237" font-size="12" font-weight="bold" fill="#4ea1ff">1 028</text>
+  <text x="400" y="237" font-size="11" fill="#9aa7ba">38</text>
+
+  <text x="48" y="259" font-size="12" fill="#e6edf6">Davanum Srinivas</text>
+  <text x="290" y="259" font-size="12" font-weight="bold" fill="#4ea1ff">612</text>
+  <text x="400" y="259" font-size="11" fill="#9aa7ba">32</text>
+
+  <rect x="32" y="263" width="490" height="22" rx="4" fill="#1b2230"/>
+  <text x="48" y="278" font-size="12" fill="#e6edf6">Joe Betz</text>
+  <text x="290" y="278" font-size="12" font-weight="bold" fill="#4ea1ff">504</text>
+  <text x="400" y="278" font-size="11" fill="#9aa7ba">45</text>
+
+  <text x="48" y="300" font-size="12" fill="#e6edf6">Patrick Ohly</text>
+  <text x="290" y="300" font-size="12" font-weight="bold" fill="#9aa7ba">324</text>
+  <text x="400" y="300" font-size="11" fill="#9aa7ba">32</text>
+
+  <rect x="32" y="304" width="490" height="22" rx="4" fill="#1b2230"/>
+  <text x="48" y="319" font-size="12" fill="#e6edf6">Yongrui Lin</text>
+  <text x="290" y="319" font-size="12" font-weight="bold" fill="#9aa7ba">283</text>
+  <text x="400" y="319" font-size="11" fill="#9aa7ba">46</text>
+
+  <text x="48" y="341" font-size="12" fill="#e6edf6">Lalit Chauhan</text>
+  <text x="290" y="341" font-size="12" font-weight="bold" fill="#9aa7ba">249</text>
+  <text x="400" y="341" font-size="11" fill="#9aa7ba">48</text>
+
+  <!-- Vertical separator -->
+  <line x1="548" y1="190" x2="548" y2="370" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- RIGHT: File Churn -->
+  <text x="568" y="200" font-size="11" fill="#9aa7ba" letter-spacing="0.06em">&#x1F525; FILE CHURN</text>
+
+  <!-- Churn header -->
+  <text x="568" y="218" font-size="10" fill="#5d6b80" letter-spacing="0.04em">FILE</text>
+  <text x="990" y="218" text-anchor="end" font-size="10" fill="#5d6b80" letter-spacing="0.04em">CHANGES</text>
+
+  <!-- Churn rows -->
+  <rect x="548" y="222" width="520" height="22" rx="4" fill="#1b2230"/>
+  <text x="568" y="237" font-size="10" fill="#9aa7ba" font-family="monospace, Courier New">pkg/features/kube_features.go</text>
+  <text x="1060" y="237" text-anchor="end" font-size="12" font-weight="bold" fill="#f0883e">53</text>
+
+  <text x="568" y="259" font-size="10" fill="#9aa7ba" font-family="monospace, Courier New">compatibility_lifecycle/feature_list.md</text>
+  <text x="1060" y="259" text-anchor="end" font-size="12" font-weight="bold" fill="#f0883e">53</text>
+
+  <rect x="548" y="263" width="520" height="22" rx="4" fill="#1b2230"/>
+  <text x="568" y="278" font-size="10" fill="#9aa7ba" font-family="monospace, Courier New">vendor/modules.txt</text>
+  <text x="1060" y="278" text-anchor="end" font-size="12" font-weight="bold" fill="#d29922">34</text>
+
+  <text x="568" y="300" font-size="10" fill="#9aa7ba" font-family="monospace, Courier New">go.mod</text>
+  <text x="1060" y="300" text-anchor="end" font-size="12" font-weight="bold" fill="#d29922">32</text>
+
+  <rect x="548" y="304" width="520" height="22" rx="4" fill="#1b2230"/>
+  <text x="568" y="319" font-size="10" fill="#9aa7ba" font-family="monospace, Courier New">go.sum</text>
+  <text x="1060" y="319" text-anchor="end" font-size="12" font-weight="bold" fill="#d29922">32</text>
+
+  <!-- Separator -->
+  <line x1="32" y1="370" x2="1068" y2="370" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Tags &amp; commits row -->
+  <rect x="32" y="382" width="1036" height="56" rx="8" fill="#1b2230" stroke="#222b3a" stroke-width="1"/>
+  <text x="48" y="402" font-size="11" fill="#5d6b80" letter-spacing="0.06em">&#x1F4CB; COMMIT METADATA</text>
+
+  <!-- No semver tags -->
+  <rect x="48" y="410" width="168" height="18" rx="6" fill="#1b2230" stroke="#5d6b80" stroke-width="1"/>
+  <text x="132" y="422" text-anchor="middle" font-size="10" fill="#5d6b80">No semver tags detected</text>
+
+  <text x="228" y="422" font-size="11" fill="#9aa7ba">Total commits:</text>
+  <text x="330" y="422" font-size="11" font-weight="bold" fill="#e6edf6">88 884</text>
+
+  <text x="420" y="422" font-size="11" fill="#9aa7ba">Conventional commits:</text>
+  <text x="580" y="422" font-size="11" font-weight="bold" fill="#9aa7ba">0%</text>
+
+  <text x="630" y="422" font-size="11" fill="#9aa7ba">Primary branch:</text>
+  <text x="750" y="422" font-size="11" font-weight="bold" fill="#e6edf6">master</text>
+
+  <!-- Separator -->
+  <line x1="32" y1="450" x2="1068" y2="450" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Footer info -->
+  <text x="48" y="470" font-size="11" fill="#5d6b80">&#x2139;&#xFE0F; Git workflow detected via commit message patterns, branch merge frequency, and history shape analysis.</text>
+  <text x="48" y="488" font-size="11" fill="#5d6b80">Confidence score 45% — indicative signal, not definitive. Increase confidence with conventional commit adoption.</text>
+  <text x="48" y="506" font-size="11" fill="#5d6b80">&#x1F4C5; Analysis date: Jun 2026 · Repository: kubernetes/kubernetes</text>
+</svg>

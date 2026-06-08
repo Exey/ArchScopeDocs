@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="440" viewBox="0 0 1100 440">
+  <defs>
+    <style>
+      text { font-family: Tahoma, 'Segoe UI', 'Helvetica Neue', sans-serif; }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#5d6b80"/>
+    </marker>
+  </defs>
+  <!-- Outer frame -->
+  <rect width="1100" height="440" rx="8" fill="#141925" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="32" y="42" font-size="20" font-weight="bold" fill="#e6edf6">&#x1F5FA;&#xFE0F; Architecture Graph</text>
+  <text x="32" y="62" font-size="13" fill="#9aa7ba">Module dependency graph · node size ∝ imports</text>
+
+  <!-- Separator -->
+  <line x1="32" y1="76" x2="1068" y2="76" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Graph area background -->
+  <rect x="32" y="84" width="1040" height="280" rx="8" fill="#1b2230" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Arrows: tools→kubernetes -->
+  <line x1="228" y1="196" x2="495" y2="238" stroke="#5d6b80" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- instrumentation→kubernetes -->
+  <line x1="756" y1="178" x2="605" y2="230" stroke="#5d6b80" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- golangci-lint→kubernetes -->
+  <line x1="265" y1="352" x2="498" y2="276" stroke="#5d6b80" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- golangci-lint→tools -->
+  <line x1="248" y1="344" x2="210" y2="232" stroke="#5d6b80" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- kubernetes node (large) -->
+  <circle cx="550" cy="240" r="55" fill="#1b2230" stroke="#4ea1ff" stroke-width="2"/>
+  <text x="550" y="237" text-anchor="middle" font-size="13" font-weight="bold" fill="#e6edf6">kubernetes</text>
+  <text x="550" y="254" text-anchor="middle" font-size="10" fill="#9aa7ba">3.6M loc</text>
+
+  <!-- tools node -->
+  <circle cx="200" cy="200" r="32" fill="#1b2230" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="200" y="197" text-anchor="middle" font-size="11" font-weight="bold" fill="#e6edf6">tools</text>
+  <text x="200" y="213" text-anchor="middle" font-size="9" fill="#9aa7ba">240 loc</text>
+
+  <!-- instrumentation node -->
+  <circle cx="820" cy="180" r="28" fill="#1b2230" stroke="#9aa7ba" stroke-width="1"/>
+  <text x="820" y="176" text-anchor="middle" font-size="10" font-weight="bold" fill="#e6edf6">instrum.</text>
+  <text x="820" y="191" text-anchor="middle" font-size="9" fill="#9aa7ba">3.3k loc</text>
+
+  <!-- golangci-lint node -->
+  <circle cx="260" cy="360" r="22" fill="#1b2230" stroke="#9aa7ba" stroke-width="1"/>
+  <text x="260" y="356" text-anchor="middle" font-size="9" font-weight="bold" fill="#e6edf6">golangci</text>
+  <text x="260" y="369" text-anchor="middle" font-size="8" fill="#9aa7ba">1.3k loc</text>
+
+  <!-- Separator before table -->
+  <line x1="32" y1="374" x2="1068" y2="374" stroke="#222b3a" stroke-width="1"/>
+
+  <!-- Table header -->
+  <text x="48" y="395" font-size="11" fill="#5d6b80" letter-spacing="0.06em">MODULE</text>
+  <text x="280" y="395" font-size="11" fill="#5d6b80" letter-spacing="0.06em">USES</text>
+  <text x="420" y="395" font-size="11" fill="#5d6b80" letter-spacing="0.06em">LINES</text>
+  <text x="600" y="395" font-size="11" fill="#5d6b80" letter-spacing="0.06em">DECL</text>
+  <text x="780" y="395" font-size="11" fill="#5d6b80" letter-spacing="0.06em">FILES</text>
+
+  <!-- Table rows -->
+  <text x="48" y="413" font-size="12" fill="#e6edf6">kubernetes</text>
+  <text x="280" y="413" font-size="12" fill="#9aa7ba">0</text>
+  <text x="420" y="413" font-size="12" fill="#e6edf6">3 597 277</text>
+  <text x="600" y="413" font-size="12" fill="#e6edf6">121 822</text>
+  <text x="780" y="413" font-size="12" fill="#e6edf6">12 776</text>
+
+  <text x="48" y="428" font-size="12" fill="#e6edf6">instrumentation</text>
+  <text x="280" y="428" font-size="12" fill="#9aa7ba">1</text>
+  <text x="420" y="428" font-size="12" fill="#e6edf6">3 329</text>
+  <text x="600" y="428" font-size="12" fill="#e6edf6">76</text>
+  <text x="780" y="428" font-size="12" fill="#e6edf6">13</text>
+</svg>
